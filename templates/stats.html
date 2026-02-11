@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Cellar Statistics - WineCellarManager{% endblock %}
+
+{% block content %}
+<h1>Cellar Statistics</h1>
+<p class="text-muted" style="font-size:11px;">An overview of your wine collection.</p>
+
+<!-- Summary Stats -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ total_bottles }}</div>
+        <div class="stat-label">Bottles in Cellar</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">${{ "%.0f"|format(total_value) }}</div>
+        <div class="stat-label">Total Value</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">${{ "%.0f"|format(avg_price) }}</div>
+        <div class="stat-label">Avg. Price</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ consumed_count }}</div>
+        <div class="stat-label">Consumed</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ ready_count }}</div>
+        <div class="stat-label">Ready to Drink</div>
+    </div>
+</div>
+
+<div class="stats-two-col">
+    <!-- By Type -->
+    <div class="panel">
+        <div class="panel-header">By Type</div>
+        <div class="panel-body">
+            {% if type_breakdown %}
+            {% set max_type = type_breakdown.values()|max %}
+            {% for wtype, count in type_breakdown.items() %}
+            <div class="breakdown-bar">
+                <span class="breakdown-label">{{ wtype }}</span>
+                <div class="breakdown-track">
+                    <div class="breakdown-fill" style="width: {{ (count / max_type * 100)|round }}%;">
+                        <span>{{ count }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-muted text-center">No data yet</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- By Appellation -->
+    <div class="panel">
+        <div class="panel-header">By Appellation</div>
+        <div class="panel-body">
+            {% if appellation_breakdown %}
+            {% set max_app = appellation_breakdown.values()|max %}
+            {% for app, count in appellation_breakdown.items() %}
+            {% if loop.index <= 10 %}
+            <div class="breakdown-bar">
+                <span class="breakdown-label">{{ app }}</span>
+                <div class="breakdown-track">
+                    <div class="breakdown-fill" style="width: {{ (count / max_app * 100)|round }}%;">
+                        <span>{{ count }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <p class="text-muted text-center">No data yet</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- By Varietal -->
+<div class="panel mt-2">
+    <div class="panel-header">By Varietal</div>
+    <div class="panel-body">
+        {% if varietal_breakdown %}
+        {% set max_varietal = varietal_breakdown.values()|max %}
+        {% for varietal, count in varietal_breakdown.items() %}
+        {% if loop.index <= 15 %}
+        <div class="breakdown-bar">
+            <span class="breakdown-label">{{ varietal }}</span>
+            <div class="breakdown-track">
+                <div class="breakdown-fill" style="width: {{ (count / max_varietal * 100)|round }}%;">
+                    <span>{{ count }}</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <p class="text-muted text-center">No data yet</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Top Rated -->
+{% if top_rated %}
+<div class="panel mt-2">
+    <div class="panel-header">Top Rated Wines</div>
+    <div class="panel-body" style="padding: 0;">
+        <table class="wine-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Wine</th>
+                    <th>Vintage</th>
+                    <th>Varietal</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wine in top_rated %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-name-link">{{ wine.name }}</a>
+                        <br><span style="color:#888;font-size:10px;">{{ wine.producer }}</span></td>
+                    <td>{{ wine.vintage or 'NV' }}</td>
+                    <td>{{ wine.varietals_display or '-' }}</td>
+                    <td><span class="wine-tag rating">{{ wine.rating }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

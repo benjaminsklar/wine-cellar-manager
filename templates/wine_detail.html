@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block title %}{{ wine.name }} - WineCellarManager{% endblock %}
+
+{% block content %}
+<div class="breadcrumb">
+    <a href="{{ url_for('cellar', status=wine.status) }}">My Cellar</a> &raquo;
+    {{ wine.name }}
+</div>
+
+<div class="wine-detail-header">
+    <span class="wine-detail-vintage">{{ wine.vintage or 'Non-Vintage' }}</span>
+    <h1 class="wine-detail-name">{{ wine.name }}</h1>
+    <p class="wine-detail-producer">{{ wine.producer }}</p>
+</div>
+
+<div class="action-links mb-2">
+    {% if wine.status == 'cellar' %}
+    <form method="POST" action="{{ url_for('consume_wine', wine_id=wine.id) }}" style="display:inline;"
+          onsubmit="return confirm('Mark a bottle as consumed?')">
+        <button type="submit" class="btn btn-success btn-sm">&#127863; Drink a Bottle</button>
+    </form>
+    {% endif %}
+    <a href="{{ url_for('edit_wine', wine_id=wine.id) }}" class="btn btn-secondary btn-sm">Edit Wine</a>
+    <a href="{{ url_for('add_tasting_note', wine_id=wine.id) }}" class="btn btn-secondary btn-sm">+ Tasting Note</a>
+    <form method="POST" action="{{ url_for('delete_wine', wine_id=wine.id) }}" style="display:inline;"
+          onsubmit="return confirm('Delete this wine permanently?')">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </form>
+</div>
+
+<!-- Wine Information -->
+<div class="panel">
+    <div class="panel-header">Wine Information</div>
+    <div class="panel-body" style="padding:0;">
+        <table class="wine-table" style="margin:0;">
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Name:</td>
+                    <td>{{ wine.name }}</td>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Vintage:</td>
+                    <td>{{ wine.vintage or 'NV' }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Producer:</td>
+                    <td>{{ wine.producer }}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Type:</td>
+                    <td>{{ wine.wine_type }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Appellation:</td>
+                    <td colspan="3">{{ wine.appellation or '-' }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Varietal 1:</td>
+                    <td>{{ wine.varietal1 or '-' }}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Varietal 2:</td>
+                    <td>{{ wine.varietal2 or '-' }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Varietal 3:</td>
+                    <td>{{ wine.varietal3 or '-' }}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Varietal 4:</td>
+                    <td>{{ wine.varietal4 or '-' }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Size (ml):</td>
+                    <td>{{ wine.size_ml or 750 }}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Alcohol %:</td>
+                    <td>{{ "%.1f"|format(wine.alcohol_pct) if wine.alcohol_pct else '-' }}%</td>
+                </tr>
+                {% if wine.description %}
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);vertical-align:top;">Description:</td>
+                    <td colspan="3">{{ wine.description }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Acquisition Information -->
+<div class="panel">
+    <div class="panel-header">Additional Acquisition Information</div>
+    <div class="panel-body" style="padding:0;">
+        <table class="wine-table" style="margin:0;">
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Date:</td>
+                    <td>{{ wine.acq_date.strftime('%b %d, %Y') if wine.acq_date else '-' }}</td>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Quantity:</td>
+                    <td>{{ wine.quantity }} bottle{{ 's' if wine.quantity != 1 }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Price:</td>
+                    <td>{% if wine.price %}${{ "%.2f"|format(wine.price) }}{% else %}-{% endif %}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">From:</td>
+                    <td>{{ wine.acq_from or '-' }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">On Order:</td>
+                    <td>{{ 'Yes' if wine.on_order else 'No' }}</td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Stored:</td>
+                    <td>{{ wine.stored or '-' }}</td>
+                </tr>
+                {% if wine.acq_description %}
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);vertical-align:top;">Description:</td>
+                    <td colspan="3">{{ wine.acq_description }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Cellar Tracking -->
+<div class="panel">
+    <div class="panel-header">Cellar Tracking</div>
+    <div class="panel-body" style="padding:0;">
+        <table class="wine-table" style="margin:0;">
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Status:</td>
+                    <td>
+                        {% if wine.status == 'cellar' %}In Cellar
+                        {% elif wine.status == 'consumed' %}Consumed{% if wine.date_consumed %} ({{ wine.date_consumed.strftime('%b %d, %Y') }}){% endif %}
+                        {% elif wine.status == 'wishlist' %}Wish List
+                        {% endif %}
+                    </td>
+                    <td style="font-weight:bold;width:120px;background:var(--cream-dark);">Rating:</td>
+                    <td>{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }} / 100</span>{% else %}-{% endif %}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Drink Window:</td>
+                    <td>{{ wine.drinking_window_display }}
+                        {% if wine.is_ready_to_drink and wine.status == 'cellar' %} <span class="wine-tag ready">Ready!</span>{% endif %}
+                    </td>
+                    <td style="font-weight:bold;background:var(--cream-dark);">Date Added:</td>
+                    <td>{{ wine.date_added.strftime('%b %d, %Y') if wine.date_added else '-' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Tasting Notes -->
+<div class="panel">
+    <div class="panel-header" style="display:flex;justify-content:space-between;align-items:center;">
+        <span>Tasting Notes</span>
+        <a href="{{ url_for('add_tasting_note', wine_id=wine.id) }}" style="color:var(--gold);font-size:11px;">+ Add Note</a>
+    </div>
+    <div class="panel-body">
+        {% if tasting_notes %}
+        {% for note in tasting_notes %}
+        <div class="tasting-card">
+            <div class="tasting-card-header">
+                <span class="tasting-date">{{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else 'No date' }}</span>
+                {% if note.score %}
+                <span class="tasting-score">{{ note.score }} pts</span>
+                {% endif %}
+            </div>
+            {% if note.appearance %}
+            <div class="tasting-section">
+                <div class="tasting-section-label">Appearance:</div>
+                <div class="tasting-section-text">{{ note.appearance }}</div>
+            </div>
+            {% endif %}
+            {% if note.nose %}
+            <div class="tasting-section">
+                <div class="tasting-section-label">Nose:</div>
+                <div class="tasting-section-text">{{ note.nose }}</div>
+            </div>
+            {% endif %}
+            {% if note.palate %}
+            <div class="tasting-section">
+                <div class="tasting-section-label">Palate:</div>
+                <div class="tasting-section-text">{{ note.palate }}</div>
+            </div>
+            {% endif %}
+            {% if note.finish %}
+            <div class="tasting-section">
+                <div class="tasting-section-label">Finish:</div>
+                <div class="tasting-section-text">{{ note.finish }}</div>
+            </div>
+            {% endif %}
+            {% if note.overall %}
+            <div class="tasting-section">
+                <div class="tasting-section-label">Overall:</div>
+                <div class="tasting-section-text">{{ note.overall }}</div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-muted" style="text-align:center; padding:10px;">
+            No tasting notes yet. <a href="{{ url_for('add_tasting_note', wine_id=wine.id) }}">Add one!</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

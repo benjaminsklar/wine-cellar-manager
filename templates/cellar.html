@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}{{ status_label }} - WineCellarManager{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ status_label }}</h1>
+    <div class="page-actions">
+        <a href="{{ url_for('add_wine') }}" class="btn btn-primary btn-sm">+ Add Wine</a>
+        <a href="{{ url_for('quick_entry') }}" class="btn btn-secondary btn-sm">Quick Entry</a>
+    </div>
+</div>
+
+<!-- Status Tabs -->
+<div class="tabs">
+    <a href="{{ url_for('cellar', status='cellar') }}" class="tab {{ 'active' if status == 'cellar' }}">In Cellar</a>
+    <a href="{{ url_for('cellar', status='on_order') }}" class="tab {{ 'active' if status == 'on_order' }}">On Order</a>
+    <a href="{{ url_for('cellar', status='wishlist') }}" class="tab {{ 'active' if status == 'wishlist' }}">Wish List</a>
+    <a href="{{ url_for('cellar', status='consumed') }}" class="tab {{ 'active' if status == 'consumed' }}">Consumed</a>
+    <a href="{{ url_for('ready_to_drink') }}" class="tab">Ready to Drink</a>
+</div>
+
+<!-- Filters -->
+<div class="filter-bar">
+    <form method="GET" action="{{ url_for('cellar') }}">
+        <input type="hidden" name="status" value="{{ status }}">
+        <div class="filter-row">
+            <div class="form-group">
+                <label>Search</label>
+                {{ search_form.query(class="form-control", placeholder="Name, producer...") }}
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                {{ search_form.wine_type(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label>Appellation</label>
+                {{ search_form.appellation(class="form-control", placeholder="e.g. Napa Valley") }}
+            </div>
+            <div class="form-group">
+                <label>Varietal</label>
+                {{ search_form.varietal(class="form-control", placeholder="e.g. Cabernet") }}
+            </div>
+            <div class="form-group">
+                <label>Sort By</label>
+                {{ search_form.sort_by(class="form-control") }}
+            </div>
+            <div class="form-group" style="flex: 0;">
+                <label>&nbsp;</label>
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if wines %}
+<div class="info-box">
+    <strong>{{ wines|length }}</strong> wine{{ 's' if wines|length != 1 }} found.
+    {% if status == 'cellar' %}
+    Total: <strong>{{ wines|sum(attribute='quantity') }}</strong> bottle{{ 's' if wines|sum(attribute='quantity') != 1 }}.
+    Value: <strong>${{ "%.0f"|format(wines|selectattr('price')|sum(attribute='price')) }}</strong>.
+    {% endif %}
+</div>
+
+<table class="wine-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Vintage</th>
+            <th>Producer</th>
+            <th>Type</th>
+            <th>Appellation</th>
+            <th>Varietal</th>
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Price</th>
+            {% if status == 'cellar' %}
+            <th>Stored</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for wine in wines %}
+        <tr>
+            <td>
+                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-name-link">{{ wine.name }}</a>
+                {% if wine.on_order %}<br><span style="color:#993300;font-size:10px;font-weight:bold;">ON ORDER</span>{% endif %}
+            </td>
+            <td>{{ wine.vintage or 'NV' }}</td>
+            <td>{{ wine.producer }}</td>
+            <td>{{ wine.wine_type }}</td>
+            <td>{{ wine.appellation or '-' }}</td>
+            <td>{{ wine.varietals_display or '-' }}</td>
+            <td>{{ wine.size_display }}</td>
+            <td>{{ wine.quantity }}</td>
+            <td>{% if wine.price %}${{ "%.0f"|format(wine.price) }}{% else %}-{% endif %}</td>
+            {% if status == 'cellar' %}
+            <td>{{ wine.stored or '-' }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+    <span class="empty-state-icon">&#127863;</span>
+    <h3>No wines here yet</h3>
+    <p>Start adding wines to your collection.</p>
+    <a href="{{ url_for('add_wine') }}" class="btn btn-primary">Add Your First Wine</a>
+</div>
+{% endif %}
+{% endblock %}

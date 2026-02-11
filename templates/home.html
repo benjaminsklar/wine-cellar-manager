@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}WineCellarManager - Your Personal Wine Collection{% endblock %}
+
+{% block layout %}
+<!-- Home page: full width, no sidebar -->
+<div class="hero">
+    <h1>&#127863; Manage Your Wine Collection</h1>
+    <p>
+        Whether you have several bottles or several thousand, WineCellarManager
+        is the indispensable software for consulting and managing your wine collection.
+        Keep track of your inventory, know which wine to drink at the right time, and much more.
+    </p>
+    <div class="hero-actions">
+        <a href="{{ url_for('register') }}" class="btn btn-gold btn-lg">Register Now - It's Free!</a>
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Sign In</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <span class="feature-icon">&#127870;</span>
+        <h3>Track Your Cellar</h3>
+        <p>Manage your wine inventory. Know exactly what you have, where it's stored, and how much it's worth.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">&#9200;</span>
+        <h3>Ready to Drink</h3>
+        <p>Set drinking windows and know when your bottles reach their optimal maturity.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">&#128221;</span>
+        <h3>Tasting Notes</h3>
+        <p>Record detailed tasting notes with appearance, nose, palate, and finish for every wine.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">&#128202;</span>
+        <h3>Cellar Statistics</h3>
+        <p>Visualize your collection with breakdowns by color, region, varietal. Track your cellar's value.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">&#128269;</span>
+        <h3>Smart Search</h3>
+        <p>Find any wine in your collection instantly. Filter by color, vintage, varietal, region, and rating.</p>
+    </div>
+    <div class="feature-card">
+        <span class="feature-icon">&#128230;</span>
+        <h3>Import & Export</h3>
+        <p>Quickly add wines with Quick Entry, or export your entire collection as a CSV file.</p>
+    </div>
+</div>
+
+<div style="max-width: 960px; margin: 0 auto; padding: 0 10px;">
+    <div class="panel">
+        <div class="panel-header">&#8594; 10 Good Reasons to Use This Site</div>
+        <div class="panel-body">
+            <ol style="margin-left: 20px; font-size: 11px; line-height: 1.8;">
+                <li>This will help you find what you have in your cellar</li>
+                <li>This will identify which wines you should drink soon</li>
+                <li>This will allow you to update your inventory in only a few clicks</li>
+                <li>This will help you keep track of your pending orders</li>
+                <li>This will help you record and share tasting notes</li>
+                <li>This will help you keep a balanced cellar</li>
+                <li>This will show you detailed statistics about your collection</li>
+                <li>This will allow you to record your tasting sessions</li>
+                <li>This will help you learn more about wine and wine regions</li>
+                <li>This is free and fun to use!</li>
+            </ol>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; margin-bottom: 15px;">
+        <div class="panel" style="flex: 1;">
+            <div class="panel-header">&#8594; Sign In</div>
+            <div class="panel-body">
+                <form method="POST" action="{{ url_for('login') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" name="username" class="form-control" style="width: 200px;">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" name="password" class="form-control" style="width: 200px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel" style="flex: 1;">
+            <div class="panel-header">&#8594; New Here?</div>
+            <div class="panel-body">
+                <p>Start building your virtual wine cellar and keep track of your inventory,
+                   know which wine to drink at the right time, and much more.</p>
+                <p>Adding wines to your collection is just a couple of clicks.</p>
+                <a href="{{ url_for('register') }}" class="btn btn-gold">Register Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Ready to Drink - WineCellarManager{% endblock %}
+
+{% block content %}
+<h1>&#127863; Ready to Drink</h1>
+<p class="text-muted" style="font-size:11px;">Wines currently in their optimal drinking window ({{ current_year }}).</p>
+
+<!-- Status Tabs -->
+<div class="tabs">
+    <a href="{{ url_for('cellar', status='cellar') }}" class="tab">In Cellar</a>
+    <a href="{{ url_for('cellar', status='on_order') }}" class="tab">On Order</a>
+    <a href="{{ url_for('cellar', status='wishlist') }}" class="tab">Wish List</a>
+    <a href="{{ url_for('cellar', status='consumed') }}" class="tab">Consumed</a>
+    <a href="{{ url_for('ready_to_drink') }}" class="tab active">Ready to Drink</a>
+</div>
+
+{% if wines %}
+<div class="info-box">
+    <strong>{{ wines|length }}</strong> wine{{ 's' if wines|length != 1 }} ready to enjoy now.
+</div>
+
+<table class="wine-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Vintage</th>
+            <th>Producer</th>
+            <th>Type</th>
+            <th>Varietal</th>
+            <th>Qty</th>
+            <th>Rating</th>
+            <th>Drinking Window</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wine in wines %}
+        <tr>
+            <td>
+                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-name-link">{{ wine.name }}</a>
+            </td>
+            <td>{{ wine.vintage or 'NV' }}</td>
+            <td>{{ wine.producer }}</td>
+            <td>{{ wine.wine_type }}</td>
+            <td>{{ wine.varietals_display or '-' }}</td>
+            <td>{{ wine.quantity }}</td>
+            <td>{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% else %}-{% endif %}</td>
+            <td><span class="wine-tag ready">{{ wine.drinking_window_display }}</span></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+    <span class="empty-state-icon">&#9200;</span>
+    <h3>No wines ready right now</h3>
+    <p>Set drinking windows when adding wines to see them here.</p>
+    <a href="{{ url_for('cellar') }}" class="btn btn-primary">Go to Cellar</a>
+</div>
+{% endif %}
+{% endblock %}

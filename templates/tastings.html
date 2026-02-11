@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Tasting Notes - WineCellarManager{% endblock %}
+
+{% block content %}
+<h1>My Tasting Notes</h1>
+<p class="text-muted" style="font-size:11px;">All your tasting notes in one place.</p>
+
+{% if notes %}
+{% for note in notes %}
+<div class="tasting-card">
+    <div class="tasting-card-header">
+        <div>
+            <a href="{{ url_for('wine_detail', wine_id=note.wine.id) }}" class="wine-name-link" style="font-size: 12px;">
+                {{ note.wine.vintage or 'NV' }} {{ note.wine.name }}
+            </a>
+            <br>
+            <span style="color:#888;font-size:10px;">{{ note.wine.producer }} &middot; {{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else 'No date' }}</span>
+        </div>
+        {% if note.score %}
+        <span class="tasting-score">{{ note.score }} pts</span>
+        {% endif %}
+    </div>
+    {% if note.nose %}
+    <div class="tasting-section">
+        <div class="tasting-section-label">Nose:</div>
+        <div class="tasting-section-text">{{ note.nose }}</div>
+    </div>
+    {% endif %}
+    {% if note.palate %}
+    <div class="tasting-section">
+        <div class="tasting-section-label">Palate:</div>
+        <div class="tasting-section-text">{{ note.palate }}</div>
+    </div>
+    {% endif %}
+    {% if note.overall %}
+    <div class="tasting-section">
+        <div class="tasting-section-label">Overall:</div>
+        <div class="tasting-section-text">{{ note.overall }}</div>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-state">
+    <span class="empty-state-icon">&#128221;</span>
+    <h3>No tasting notes yet</h3>
+    <p>Record your first tasting note from any wine's detail page.</p>
+    <a href="{{ url_for('cellar') }}" class="btn btn-primary">Go to Cellar</a>
+</div>
+{% endif %}
+{% endblock %}

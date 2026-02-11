@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Sign In - WineCellarManager{% endblock %}
+
+{% block layout %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h1>&#127863; Welcome Back</h1>
+        <p class="subtitle">Sign in to manage your wine cellar</p>
+
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username(class="form-control", placeholder="Enter your username") }}
+                {% for error in form.username.errors %}
+                <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(class="form-control", placeholder="Enter your password") }}
+                {% for error in form.password.errors %}
+                <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Sign In</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="{{ url_for('register') }}">Create one now</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

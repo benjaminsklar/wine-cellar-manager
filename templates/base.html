@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Wine Cellar Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Site Header Banner -->
+    <div class="site-header">
+        <div class="site-header-inner">
+            <div>
+                <a href="{{ url_for('home') }}" class="site-logo">
+                    <span class="wine-icon">&#127863;</span>WineCellarManager
+                </a>
+                <div class="site-tagline">A Community of Wine Lovers</div>
+            </div>
+            <div class="header-right">
+                {% if current_user.is_authenticated %}
+                Welcome <strong>{{ current_user.username }}</strong>!
+                | <a href="{{ url_for('cellar') }}">My Cellar</a>
+                | <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                Welcome guest!
+                | <a href="{{ url_for('login') }}">Please login</a>
+                | <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation -->
+    {% if current_user.is_authenticated %}
+    <div class="topnav">
+        <div class="topnav-inner">
+            <a href="{{ url_for('home') }}" class="{{ 'active' if request.endpoint == 'home' }}">Home</a>
+            <a href="{{ url_for('cellar') }}" class="{{ 'active' if request.endpoint == 'cellar' and request.args.get('status', 'cellar') == 'cellar' }}">My Cellar</a>
+            <a href="{{ url_for('add_wine') }}" class="{{ 'active' if request.endpoint == 'add_wine' }}">Add Wine</a>
+            <a href="{{ url_for('search') }}" class="{{ 'active' if request.endpoint == 'search' }}">Search</a>
+            <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Statistics</a>
+            <a href="{{ url_for('tasting_list') }}" class="{{ 'active' if request.endpoint == 'tasting_list' }}">Tastings</a>
+            <a href="{{ url_for('export_cellar') }}">Export</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="alerts">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            <span>{{ message }}</span>
+            <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% block layout %}
+    {% if current_user.is_authenticated %}
+    <div class="page-wrapper">
+        <!-- Sidebar -->
+        <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('show')">&#9776; Menu</button>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-search">
+                <form method="GET" action="{{ url_for('search') }}">
+                    <input type="text" name="query" placeholder="Search wines...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Manage My Cellar</div>
+                <a href="{{ url_for('cellar', status='cellar') }}" class="{{ 'active' if request.endpoint == 'cellar' and request.args.get('status', 'cellar') == 'cellar' }}">Wines in Cellar</a>
+                <a href="{{ url_for('ready_to_drink') }}" class="{{ 'active' if request.endpoint == 'ready_to_drink' }}">Ready to Drink</a>
+                <a href="{{ url_for('cellar', status='on_order') }}" class="{{ 'active' if request.args.get('status') == 'on_order' }}">Wines on Order</a>
+                <a href="{{ url_for('cellar', status='consumed') }}" class="{{ 'active' if request.args.get('status') == 'consumed' }}">Wines Consumed</a>
+                <a href="{{ url_for('cellar', status='wishlist') }}" class="{{ 'active' if request.args.get('status') == 'wishlist' }}">Wish List</a>
+                <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Cellar Statistics</a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Add Wines</div>
+                <a href="{{ url_for('add_wine') }}" class="{{ 'active' if request.endpoint == 'add_wine' }}">Add Wine</a>
+                <a href="{{ url_for('quick_entry') }}" class="{{ 'active' if request.endpoint == 'quick_entry' }}">Quick Entry</a>
+                <a href="{{ url_for('export_cellar') }}">Export Cellar</a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Tasting Tools</div>
+                <a href="{{ url_for('tasting_list') }}" class="{{ 'active' if request.endpoint == 'tasting_list' }}">Tasting Notes</a>
+                <a href="{{ url_for('search') }}" class="{{ 'active' if request.endpoint == 'search' }}">Advanced Search</a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">About</div>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% else %}
+    {% block content_public %}{% endblock %}
+    {% endif %}
+    {% endblock %}
+
+    <footer class="footer">
+        <p>Copyright &copy; 2026 WineCellarManager.com &mdash; All Rights Reserved. |
+        <a href="{{ url_for('home') }}">Home</a> |
+        <a href="{{ url_for('register') }}">Register</a></p>
+    </footer>
+
+    <script>
+        // Auto-dismiss alerts after 5 seconds
+        document.querySelectorAll('.alert').forEach(function(alert) {
+            setTimeout(function() { alert.remove(); }, 5000);
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

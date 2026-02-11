@@ -467,8 +467,18 @@ def api_wines():
 def init_db():
     with app.app_context():
         db.create_all()
+        # Auto-seed if DB is empty (handles Render's ephemeral /tmp)
+        from models import User
+        if not User.query.first():
+            try:
+                from seed import seed_database
+                seed_database()
+            except Exception as e:
+                print(f"Seed error: {e}")
 
+
+# Always initialize on import (needed for gunicorn)
+init_db()
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True, port=5000)

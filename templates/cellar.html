@@ -2,33 +2,42 @@
 {% block title %}{{ status_label }} - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<!-- Title row matching original -->
+<!-- Title row -->
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr class="header"><td class="title"><b>{{ status_label }}</b></td></tr>
 </table>
 
-<!-- Wine Finder / Filter bar -->
+<!-- Wine Finder / Filter bar matching original exactly -->
 <form method="GET" action="{{ url_for('cellar') }}">
 <input type="hidden" name="status" value="{{ status }}">
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<table cellpadding="2" cellspacing="0" border="0">
 <tbody>
 <tr>
     <td class="smallfieldvalue" nowrap>Wine Finder</td>
-    <td class="smallfieldvalue">
-        {{ search_form.query(class="form-control", style="width:200px;display:inline;font-size:11px;", placeholder="") }}
+</tr>
+<tr>
+    <td class="smallfieldvalue" nowrap>
+        {{ search_form.query(style="font-size:11px;width:200px;", placeholder="") }}
     </td>
 </tr>
 <tr>
-    <td class="smallfieldvalue" nowrap>Sorted by</td>
-    <td class="smallfieldvalue">
-        {{ search_form.sort_by(style="font-size:11px;display:inline;") }}
-        {{ search_form.sort_order(style="font-size:11px;display:inline;") }}
+    <td class="smallfieldvalue" nowrap>
+        <span style="font-size:11px;">Sorted by</span>
+        {{ search_form.sort_by(style="font-size:11px;") }}
+        &nbsp;
+        {{ search_form.sort_order(style="font-size:11px;") }}
         &nbsp;
         <span style="font-size:11px;">Any Type/Color</span>
-        {{ search_form.wine_type(style="font-size:11px;display:inline;") }}
+        {{ search_form.wine_type(style="font-size:11px;") }}
         &nbsp;
         <span style="font-size:11px;">Any Varietal</span>
-        {{ search_form.varietal(style="font-size:11px;display:inline;width:100px;", placeholder="") }}
+        {{ search_form.varietal(style="font-size:11px;width:80px;", placeholder="") }}
+        &nbsp;
+        <span style="font-size:11px;">Any Region</span>
+        {{ search_form.appellation(style="font-size:11px;width:80px;", placeholder="") }}
+        &nbsp;
+        <span style="font-size:11px;">Any Vintage</span>
+        {{ search_form.min_vintage(style="font-size:11px;width:50px;", placeholder="") }}
         &nbsp;
         <input type="submit" value="Search">
     </td>
@@ -37,36 +46,39 @@
 </table>
 </form>
 
-<!-- Page info -->
+<!-- Page info with Next/All pagination -->
 <table cellpadding="2" cellspacing="0" border="0" width="100%">
 <tr>
     <td class="smallfieldvalue">
         {% if wines %}
-        Page 1 of 1 &ndash; {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
+        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
         {% endif %}
     </td>
     <td class="smallfieldvalue" style="text-align:right;">
-        <a href="#" style="font-size:10px;">Printable View</a>
+        <a href="#" style="font-size:10px;">Printable View</a>&nbsp;
+        <a href="#" style="font-size:10px;">Customize this view</a>
     </td>
 </tr>
 </table>
 
 {% if wines %}
-<!-- Wine table matching original exactly -->
+<!-- Wine table matching original -->
 <table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tbody>
-<tr class="subhead">
-    <td style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='name') }}">Name</a></td>
-    <td style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='producer') }}">Producer</a></td>
-    <td style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='appellation') }}">Appellation</a></td>
-    <td style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='varietal') }}">Varietal</a></td>
-    <td>Qty</td>
-    <td>Maturity</td>
-    <td>Best From</td>
-    <td>Best Until</td>
-    <td><a href="{{ url_for('cellar', status=status, sort_by='rating') }}">Rating</a></td>
-    <td style="text-align:right;"><a href="{{ url_for('cellar', status=status, sort_by='price') }}">Price</a></td>
+<thead>
+<tr class="subhead" onclick="sortColumnWithHold(event)">
+    <td type="String" class="subhead" style="text-align:left;">Name</td>
+    <td type="String" class="subhead" style="text-align:left;">Producer</td>
+    <td type="String" class="subhead" style="text-align:left;">Appellation</td>
+    <td type="String" class="subhead" style="text-align:left;">Varietal</td>
+    <td type="Number" class="subhead">Qty</td>
+    <td type="String" class="subhead">Maturity</td>
+    <td type="Number" class="subhead" nowrap>Best From</td>
+    <td type="Number" class="subhead" nowrap>Best Until</td>
+    <td type="String" class="subhead" nowrap>Rating</td>
+    <td type="String" class="subhead">Price</td>
 </tr>
+</thead>
+<tbody>
 {% for wine in wines %}
 <tr class="{{ 'odditem' if loop.index is odd else 'evenitem' }}">
     <td>
@@ -84,6 +96,15 @@
 </tr>
 {% endfor %}
 </tbody>
+</table>
+
+<!-- Bottom pagination -->
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr>
+    <td class="smallfieldvalue">
+        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+    </td>
+</tr>
 </table>
 {% else %}
 <p class="smalltext" style="padding:10px;">No wines found. <a href="{{ url_for('add_wine') }}">Add Wine</a> to get started.</p>

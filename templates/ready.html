@@ -1,27 +1,53 @@
 {% extends "base.html" %}
-{% block title %}Ready to Drink - ManageYourCellar.com{% endblock %}
+{% block title %}Ready to Drink Wines - ManageYourCellar.com{% endblock %}
 
 {% block content %}
+<!-- Title row -->
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
-<tr class="header"><td class="title"><b>Ready to Drink</b></td></tr>
+<tr class="header"><td class="title"><b>Ready to Drink Wines</b></td></tr>
 </table>
-<p class="smalltext" style="padding:2px 0;">Wines in their optimal drinking window ({{ current_year }}). {{ wines|length }} wine{{ 's' if wines|length != 1 }} ready to enjoy now.</p>
+
+<!-- Wine Finder -->
+<table cellpadding="2" cellspacing="0" border="0">
+<tbody>
+<tr>
+    <td class="smallfieldvalue" nowrap>Wine Finder</td>
+</tr>
+</tbody>
+</table>
+
+<!-- Page info -->
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr>
+    <td class="smallfieldvalue">
+        {% if wines %}
+        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
+        {% endif %}
+    </td>
+    <td class="smallfieldvalue" style="text-align:right;">
+        <a href="#" style="font-size:10px;">Printable View</a>&nbsp;
+        <a href="#" style="font-size:10px;">Customize this view</a>
+    </td>
+</tr>
+</table>
 
 {% if wines %}
 <table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tbody>
+<thead>
 <tr class="subhead">
-    <td style="text-align:left;">Name</td>
-    <td style="text-align:left;">Producer</td>
-    <td style="text-align:left;">Appellation</td>
-    <td style="text-align:left;">Varietal</td>
-    <td>Qty</td>
-    <td>Maturity</td>
-    <td>Best From</td>
-    <td>Best Until</td>
-    <td>Rating</td>
-    <td style="text-align:right;">Price</td>
+    <td type="String" class="subhead" style="text-align:left;">Name</td>
+    <td type="String" class="subhead" style="text-align:left;">Producer</td>
+    <td type="String" class="subhead" style="text-align:left;">Appellation</td>
+    <td type="String" class="subhead" style="text-align:left;">Varietal</td>
+    <td type="Number" class="subhead">Qty</td>
+    <td type="String" class="subhead">Maturity</td>
+    <td type="Number" class="subhead" nowrap>Best From</td>
+    <td type="Number" class="subhead" nowrap>Best Until</td>
+    <td type="String" class="subhead" nowrap>Rating</td>
+    <td type="String" class="subhead">Price</td>
 </tr>
+</thead>
+<tbody>
 {% for wine in wines %}
 <tr class="{{ 'odditem' if loop.index is odd else 'evenitem' }}">
     <td>
@@ -39,6 +65,10 @@
 </tr>
 {% endfor %}
 </tbody>
+</table>
+
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr><td class="smallfieldvalue"><b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }}</td></tr>
 </table>
 {% else %}
 <p class="smalltext" style="padding:10px;">No wines ready right now. Set drinking windows when adding wines to see them here.</p>

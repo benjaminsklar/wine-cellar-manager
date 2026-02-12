@@ -42,10 +42,19 @@ img { border: 0; }
 .smalllabel { white-space: nowrap; font-size: 10px; font-family: Verdana, Sans-Serif; font-weight: bold; color: #ffffff; }
 .rightlabel { font-size: 11px; font-family: Verdana, Sans-Serif; font-weight: bold; color: #ffffff; text-align: right; }
 
+/* ─── Logo ─── */
+td.logotext { font-size: 9px; font-family: Verdana, Sans-Serif; font-weight: bold; color: #990000; text-align: center; vertical-align: middle; }
+td.logotext a { text-decoration: none; }
+td.logotext a.logo { font-size: 9px; font-family: Verdana, Sans-Serif; font-weight: bold; color: #990000; text-decoration: none; }
+td.logodot { text-align: center; vertical-align: middle; background-color: #990000; width: 12px; height: 12px; }
+td.logodotwhite { text-align: center; vertical-align: middle; background-color: white; }
+
 /* ─── Header ─── */
 .headertitle { font-family: Verdana, Sans-Serif; font-weight: bold; color: #990000; }
+.headersubtitle { font-family: Verdana, Sans-Serif; font-weight: bold; font-style: italic; color: #990000; }
 td.headertitle { font-size: 150%; font-family: Verdana, Sans-Serif; font-weight: bold; color: #990000; text-align: center; padding-right: 100px; }
-td.headertitle a { text-decoration: none; }
+td.headertitle a { text-decoration: none; color: #990000; }
+td.headersubtitle { font-size: 12px; font-family: Verdana, Sans-Serif; font-weight: bold; font-style: italic; color: #990000; text-align: right; padding-right: 10px; }
 
 tr.headerbar { background-color: #990000; font-size: 11px; font-family: Verdana, Sans-Serif; }
 tr.headerbar a { text-decoration: none; }
@@ -69,10 +78,19 @@ div.footer a { text-decoration: none; color: #ffffff; }
 div.footer a:hover { color: #EEEE88; }
 
 /* ─── Titles ─── */
+td.toptitle { background-color: #DCDCDC; font-size: 13px; font-family: Verdana, Sans-Serif; width: 100%; }
 td.title { background-color: #DCDCDC; font-size: 12px; font-family: Verdana, Sans-Serif; width: 100%; }
+td.titlepaddingtop { height: 12px; width: 100%; }
+td.titlepaddingbottom { height: 6px; width: 100%; }
 td.welcometitle { background-color: #DCDCDC; color: black; font-size: 11px; font-weight: bold; font-family: Verdana, Sans-Serif; vertical-align: top; width: 100%; }
 td.welcometitle a { color: black; text-decoration: none; }
 td.welcometitle a:hover { color: #323232; }
+
+td.leftsmallfieldlabel { font-size: 11px; font-family: Verdana, Sans-Serif; color: #990000; text-align: left; }
+.redsmalltext { font-size: 11px; font-family: Verdana, Sans-Serif; color: #990000; text-align: left; }
+.smalledit { font-size: 11px; font-family: Verdana, Sans-Serif; color: #990000; }
+.smalledit a { text-decoration: none; color: #990000; }
+.smalledit a:hover { text-decoration: underline; }
 
 /* ─── Table Rows ─── */
 tr.header { background-color: #DCDCDC; font-size: 12px; font-family: Verdana, Sans-Serif; width: 100%; }

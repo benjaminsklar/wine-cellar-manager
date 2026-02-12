@@ -8,24 +8,71 @@
 </head>
 <body>
 <div class="page-container">
-    <!-- Logo Row -->
+
+    <!-- Top Row: Logo Box + Title + Subtitle -->
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tr>
-            <td class="headertitle" style="text-align:left;">
-                <a href="{{ url_for('home') }}" style="color:#990000;text-decoration:none;font-size:150%;font-weight:bold;font-family:Verdana,Sans-Serif;">ManageYourCellar.COM</a>
-            </td>
-            <td class="headertitle" style="text-align:right;font-style:italic;color:#990000;">
-                <i>A Community of Wine Lovers</i>
-            </td>
-        </tr>
+    <tr>
+        <td align="left" valign="top">
+            <table cellpadding="1" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td>
+                    <!-- MANAGE YOUR CELLAR .COM Logo Grid -->
+                    <table border="3" bordercolor="#990000" cellspacing="0" align="left">
+                    <tr><td>
+                        <table cellpadding="2" cellspacing="0" border="0">
+                        <tr>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">N</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">G</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td>
+                        </tr>
+                        <tr>
+                            <td class="logodot">&nbsp;</td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">Y</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">U</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td>
+                            <td class="logodot">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td>
+                        </tr>
+                        <tr>
+                            <td class="logodot">&nbsp;</td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
+                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
+                            <td class="logodot">&nbsp;</td>
+                            <td class="logodot">&nbsp;</td>
+                        </tr>
+                        </table>
+                    </td></tr>
+                    </table>
+                </td>
+                <td class="headertitle">
+                    <a href="{{ url_for('home') }}">ManageYourCellar.COM</a>
+                </td>
+                <td class="headersubtitle">
+                    <i>A Community of Wine Lovers</i>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
     </table>
 
     <!-- Header Bar (#990000) -->
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr class="headerbar">
             <td class="label">
-                &nbsp;{% if current_user.is_authenticated %}Welcome
-{{ current_user.username }}!{% else %}Welcome guest!{% endif %}
+                &nbsp;{% if current_user.is_authenticated %}Welcome {{ current_user.username }}!{% else %}Welcome guest!{% endif %}
             </td>
             <td class="rightlabel">
                 <a href="{{ url_for('home') }}" class="label">Home</a>
@@ -127,7 +174,7 @@
 
 <!-- Footer -->
 <div class="footer">
-    <a href="#">Privacy Policy</a> - Copyright &copy; 2010 <a href="{{ url_for('home') }}">Manage Your Cellar - Wine Cellar Software</a>, All Rights Reserved.
+    <a href="#">Privacy Policy</a> &nbsp;-&nbsp; Copyright &copy; 2010 <a href="{{ url_for('home') }}">Manage Your Cellar - Wine Cellar Software</a>, All Rights Reserved.
 </div>
 
 <script>

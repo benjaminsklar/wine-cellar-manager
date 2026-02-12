@@ -359,7 +359,38 @@ def wine_detail(wine_id):
         flash('Access denied.', 'danger')
         return redirect(url_for('cellar'))
     tasting_notes = wine.tasting_notes.order_by(TastingNote.tasting_date.desc()).all()
-    return render_template('wine_detail.html', wine=wine, tasting_notes=tasting_notes)
+
+    # Get consumption records linked to this wine
+    consumed_copies = []
+    total_acquired = wine.original_quantity or wine.quantity
+    total_consumed = 0
+    parent = None
+
+    if wine.status == 'cellar':
+        consumed_copies = wine.consumed_copies.order_by(Wine.date_consumed.asc()).all()
+        total_consumed = sum(c.quantity for c in consumed_copies)
+    elif wine.status == 'consumed' and wine.parent_wine_id:
+        # This is a consumed wine - show the parent's transaction data
+        parent = Wine.query.get(wine.parent_wine_id)
+        if parent:
+            total_acquired = parent.original_quantity or parent.quantity
+            consumed_copies = parent.consumed_copies.order_by(Wine.date_consumed.asc()).all()
+            total_consumed = sum(c.quantity for c in consumed_copies)
+    elif wine.status == 'consumed':
+        # Standalone consumed wine (fully consumed, no cellar entry)
+        total_acquired = wine.quantity
+        total_consumed = wine.quantity
+
+    actual_in_cellar = total_acquired - total_consumed if wine.status == 'cellar' else (
+        (parent.quantity if parent else 0) if wine.status == 'consumed' and wine.parent_wine_id else 0
+    )
+
+    return render_template('wine_detail.html', wine=wine, tasting_notes=tasting_notes,
+                           consumed_copies=consumed_copies,
+                           total_acquired=total_acquired,
+                           total_consumed=total_consumed,
+                           actual_in_cellar=actual_in_cellar,
+                           parent_wine=parent)
 
 
 @app.route('/wine/<int:wine_id>/edit', methods=['GET', 'POST'])
@@ -520,7 +551,8 @@ def consume_wine(wine_id):
             status='consumed', rating=score if score else wine.rating,
             date_consumed=consume_date,
             drink_from=int(from_year) if from_year else wine.drink_from,
-            drink_to=int(to_year) if to_year else wine.drink_to
+            drink_to=int(to_year) if to_year else wine.drink_to,
+            parent_wine_id=wine.id
         )
         db.session.add(consumed)
         db.session.flush()
@@ -1020,6 +1052,23 @@ def api_wines():
 def init_db():
     with app.app_context():
         db.create_all()
+        # Ensure new columns exist (for SQLite upgrades)
+        import sqlite3
+        db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+        db_path = db_uri.replace('sqlite:///', '')
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("PRAGMA table_info(wines)")
+            cols = [row[1] for row in cursor.fetchall()]
+            if 'parent_wine_id' not in cols:
+                cursor.execute("ALTER TABLE wines ADD COLUMN parent_wine_id INTEGER REFERENCES wines(id)")
+            if 'original_quantity' not in cols:
+                cursor.execute("ALTER TABLE wines ADD COLUMN original_quantity INTEGER")
+            conn.commit()
+            conn.close()
+        except Exception:
+            pass
         # Auto-seed if DB is empty (handles Render's ephemeral /tmp)
         from models import User
         if not User.query.first():

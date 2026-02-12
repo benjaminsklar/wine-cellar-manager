@@ -1,0 +1,8514 @@
+[
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 31, 2018",
+        "quantity": 1,
+        "price": 108,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "323163",
+    "wine_name": "2015 Almaviva (Proprietary Blend) (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 11, 2010",
+        "quantity": 2,
+        "price": 49.95,
+        "from": "calwine.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "137464",
+    "wine_name": "2006 Don Melchor Cabernet Sauvignon Private Reserve (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 4, 2020",
+        "quantity": 3,
+        "price": 18.99,
+        "from": "Wine buyer"
+      },
+      {
+        "type": "acquired",
+        "date": "January 25, 2021",
+        "quantity": 3,
+        "price": 18.99,
+        "from": "Wine buyer"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 20, 2021",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "November 26, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 17, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 25, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "343603",
+    "wine_name": "2019 Laberinto-Sauvignon Blanc Maule Valley (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 13, 2010",
+        "quantity": 2,
+        "price": 36.99,
+        "from": "Wine Library\n\n\nwinelibrary.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 12, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "117627",
+    "wine_name": "2005 Gran Elias Mora Toro (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 25, 2022",
+        "quantity": 1,
+        "price": 49,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "353515",
+    "wine_name": "2015 Contino Rioja Gran Reserva (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 15, 2021",
+        "quantity": 3,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 25, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 15, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "345614",
+    "wine_name": "2015 Chateau Bardoulet Saint-Emillion Grand Cru (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 29, 2015",
+        "quantity": 3,
+        "price": 31.01,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 4, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "281576",
+    "wine_name": "2010 Le Petit Haut-Lafitte (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2008",
+        "quantity": 2,
+        "price": 18.99,
+        "from": "Cellar & Loft"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139848",
+    "wine_name": "2005 Ch\u00e2teau Clos de la Chesnaie (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 4, 2011",
+        "quantity": 3,
+        "price": 14.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 21, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 10, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "199308",
+    "wine_name": "2009 Ch\u00e2teau La Pervenche (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2008",
+        "quantity": 2,
+        "price": 16.99,
+        "from": "Cellar & Loft"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139849",
+    "wine_name": "2005 Ch\u00e2teau Vieux Montagne (750ml)"
+  },
+  {
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "329132",
+    "wine_name": "2014 Ch\u00e2teau Clos Ren\u00e9 Pomerol (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 3, 2022",
+        "quantity": 1,
+        "price": 29,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "357076",
+    "wine_name": "2019 Ch\u00e2teau Lafleur du Roy Pomerol (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 30, 2021",
+        "quantity": 3,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 3, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "347518",
+    "wine_name": "2019 J. Leb\u00e8gue Saint-Emilion (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 3, 2007",
+        "quantity": 2,
+        "price": 35.99,
+        "from": "Cellar & Loft"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "22816",
+    "wine_name": "2002 Ch\u00e2teau Faug\u00e8res (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 9, 2014",
+        "quantity": 3,
+        "price": 22.96,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 2, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "242057",
+    "wine_name": "2010 Ch\u00e2teau Haut-Gravet (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 3, 2008",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 2
+      }
+    ],
+    "wine_id": "23200",
+    "wine_name": "2002 Ch\u00e2teau La Confession (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 3, 2009",
+        "quantity": 1,
+        "price": 49.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "28941",
+    "wine_name": "2005 Ch\u00e2teau La Gaffeli\u00e8re (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 5,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 29, 2015",
+        "quantity": 1,
+        "price": 30,
+        "from": "jj buckley's"
+      },
+      {
+        "type": "acquired",
+        "date": "October 29, 2015",
+        "quantity": 3,
+        "price": 30,
+        "from": "jj buckley's"
+      },
+      {
+        "type": "acquired",
+        "date": "December 10, 2020",
+        "quantity": 2,
+        "price": 30,
+        "from": "jj buckley's"
+      },
+      {
+        "type": "acquired",
+        "date": "December 10, 2020",
+        "quantity": 1,
+        "price": 30
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 29, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 17, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 19, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 10, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 10, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "140263",
+    "wine_name": "2006 Ch\u00e2teau Laforge (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 17, 2010",
+        "quantity": 1,
+        "price": 29.99,
+        "from": "liquor loft"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "28916",
+    "wine_name": "2005 Ch\u00e2teau Laroque (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 13, 2010",
+        "quantity": 2,
+        "price": 36.99,
+        "from": "Wine Library\n\n\nwinelibrary.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "132019",
+    "wine_name": "2006 Ch\u00e2teau Sansonnet (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 4,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 1, 2012",
+        "quantity": 3,
+        "price": 35.99,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "November 1, 2012",
+        "quantity": 3,
+        "price": 35.99
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 1, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 1, 2012",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "March 24, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "158973",
+    "wine_name": "2009 Ch\u00e2teau Cantemerle (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 3,
+        "price": 19.9,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 17, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 10, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "332606",
+    "wine_name": "2016 Ch\u00e2teau Lanessan Haut Medoc (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 29, 2015",
+        "quantity": 3,
+        "price": 62.59,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 29, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "195023",
+    "wine_name": "2010 Ch\u00e2teau Cantenac-Brown (750ml) RATED"
+  },
+  {
+    "acquired": 8,
+    "consumed": 5,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 7, 2019",
+        "quantity": 4,
+        "price": 25,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "December 18, 2019",
+        "quantity": 4,
+        "price": 25,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 18, 2019",
+        "quantity": 4
+      },
+      {
+        "type": "consumed",
+        "date": "December 18, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "335972",
+    "wine_name": "2016 Ch\u00e2teau d'Arsac Margaux (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 4,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 31, 2010",
+        "quantity": 3,
+        "price": 24.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 31, 2010",
+        "quantity": 3,
+        "price": 24.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 1, 2012",
+        "quantity": 3
+      },
+      {
+        "type": "consumed",
+        "date": "March 18, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "136393",
+    "wine_name": "2006 Ch\u00e2teau Dauzac (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 22, 2017",
+        "quantity": 2,
+        "price": 42.95,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "319263",
+    "wine_name": "2014 Ch\u00e2teau Malescot Saint-Exup\u00e9ry (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 29, 2015",
+        "quantity": 3,
+        "price": 32.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 1, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "285980",
+    "wine_name": "2011 Ch\u00e2teau Tayac Margaux (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 26, 2022",
+        "quantity": 1,
+        "price": 263,
+        "from": "Lenny"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "37463",
+    "wine_name": "1994 Pavillon Rouge du Ch\u00e2teau Margaux (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 9, 2025",
+        "quantity": 1,
+        "price": 146,
+        "from": "Auggie Kattato"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "363705",
+    "wine_name": "2020 Ch\u00e2teau Pontet Canet (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 18, 2021",
+        "quantity": 3,
+        "price": 25,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "December 2, 2023",
+        "quantity": 1,
+        "price": 25
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 24, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 20, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "348450",
+    "wine_name": "2018 Ch\u00e2teau Coutet Barsac (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 9, 2021",
+        "quantity": 1,
+        "price": 32.5,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "November 9, 2021",
+        "quantity": 2,
+        "price": 32.5,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "December 2, 2023",
+        "quantity": 1,
+        "price": 22,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 6, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 12, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 12, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "1594",
+    "wine_name": "2003 Ch\u00e2teau Guiraud (375ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 12, 2023",
+        "quantity": 3,
+        "price": 35,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 12, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "362816",
+    "wine_name": "2014 Ch\u00e2teau Suduiraut (375ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 22, 2017",
+        "quantity": 3,
+        "price": 39.87,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "319264",
+    "wine_name": "2015 Bourgogne Blanc Domaine Leroy (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 26, 2018",
+        "quantity": 1,
+        "price": 130,
+        "from": "No Limit Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "325490",
+    "wine_name": "2014 Corton-Charlemagne Grand Cru Domaine Pavelot (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 18, 2011",
+        "quantity": 3,
+        "price": 24.81,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 4, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "203750",
+    "wine_name": "2005 Savigny-L\u00e8s-Beaune Premier Cru Les Peuillets Domaine Jean Guiton (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 26, 2018",
+        "quantity": 1,
+        "price": 24.5,
+        "from": "No Limit Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "325481",
+    "wine_name": "2015 Bourgogne Aligote Domaine Betrand Machard de Gramont (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 26, 2018",
+        "quantity": 1,
+        "price": 25,
+        "from": "No Limit Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "325483",
+    "wine_name": "2014 Bourgogne Aligote Domaine Pavelot (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 20, 2020",
+        "quantity": 3,
+        "price": 22,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 23, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 24, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "337496",
+    "wine_name": "2017 Chablis Domaine Besson (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 6, 2020",
+        "quantity": 3,
+        "price": 26,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "343653",
+    "wine_name": "2017 Chablis Joseph Roche Premier Cru Vaucoupin (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 14, 2020",
+        "quantity": 4,
+        "price": 18.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 14, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 14, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "340875",
+    "wine_name": "2019 Chablis Lamblin & Fils (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 1,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 5, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "September 5, 2018",
+        "quantity": 4,
+        "price": 22.88,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 5, 2018",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "325075",
+    "wine_name": "2015 Chablis 1er Cru Montmains (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2017",
+        "quantity": 2,
+        "price": 31,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 12, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "318283",
+    "wine_name": "2015 Chablis Premier Cru Domaine Drouhin Vaudon (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 4, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "January 4, 2022",
+        "quantity": 2,
+        "price": 36,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 4, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 9, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "352711",
+    "wine_name": "2018 Chablis Premier Cru Mont de Milieu J Moreau & Fils (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 28, 2013",
+        "quantity": 3,
+        "price": 23.51,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 28, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 18, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "250278",
+    "wine_name": "2009 Montagny Premier Cru Les Coeres Maison Deux Montille (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2010",
+        "quantity": 1,
+        "price": 20,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "139842",
+    "wine_name": "2005 Beaune Premier Cru Bastion Blanc Maison Chanson (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 17, 2013",
+        "quantity": 2,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 18, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "238743",
+    "wine_name": "2009 Chassagne-Montrachet Ch\u00e2teau de Chassagne-Montrachet (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 3,
+        "price": 62.5,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 31, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "332608",
+    "wine_name": "2017 Chassagne-Montrachet Domaine Blain-Gagnard (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 4, 2013",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 19, 2015",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 19, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 19, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "243797",
+    "wine_name": "2009 Chassagne-Montrachet Maison Bader-Mimeur (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 2,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 28, 2011",
+        "quantity": 5,
+        "price": 29.71,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "June 20, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 31, 2016",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "190774",
+    "wine_name": "2008 Chassagne-Montrachet Premier Cru Les Macherelles Domaine Jean-Marc Boillot (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 17, 2013",
+        "quantity": 2,
+        "price": 36.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 23, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "220803",
+    "wine_name": "2006 Chassagne-Montrachet Premier Cru Cailleret Domaine Louis Latour (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 22, 2013",
+        "quantity": 3,
+        "price": 27.71,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 5, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 20, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "241322",
+    "wine_name": "2008 Chassagne-Montrachet Premier Cru Les Embraz\u00e9es Domaine Vincent & Sophie Morey (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 12, 2020",
+        "quantity": 2,
+        "price": 49.95,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 13, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "341531",
+    "wine_name": "2017 Meursault Les Clous Domaine Bouchard P\u00e8re & Fils (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 28, 2018",
+        "quantity": 2,
+        "price": 49,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "327275",
+    "wine_name": "2015 Meursault 1er Cru La Goutte d'Or (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 9, 2025",
+        "quantity": 1,
+        "price": 130,
+        "from": "Domaine du Ch\u00e2teau de Puligny-Montrachet"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "371256",
+    "wine_name": "2023 Olivier Leflaive Puligny-Montrachet Ch\u00e2teau de Puligny-Montrachet (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 17, 2012",
+        "quantity": 2,
+        "price": 34.41,
+        "from": "Domaine C\u00e9cile Chassagne\n\n\nle-camassot.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "218286",
+    "wine_name": "2008 Puligny-Montrachet Ch\u00e2teau de Chassagne-Montrachet (750ml)"
+  },
+  {
+    "acquired": 30,
+    "consumed": 28,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 15,
+        "price": 22.12,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 15
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 18, 2010",
+        "quantity": 15
+      },
+      {
+        "type": "consumed",
+        "date": "February 11, 2011",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "May 12, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 26, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 6, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 2, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 14, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 17, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 7, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 31, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 19, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 6, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 15, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "162969",
+    "wine_name": "2007 Puligny-Montrachet Domaine Jean-Marc Boillot (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 1,
+        "price": 39.43,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "187020",
+    "wine_name": "2008 Puligny-Montrachet Premier Cru Champ Canet Domaine Jean-Marc Boillot (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 1,
+        "price": 35.61,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "187018",
+    "wine_name": "2008 Puligny-Montrachet Premier Cru La Garenne Domaine Jean-Marc Boillot (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 5, 2014",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "266435",
+    "wine_name": "2008 Puligny-Montrachet Premier Cru Sous Le Puits Domaine Louis Latour (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2010",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "139829",
+    "wine_name": "2004 Savigny-L\u00e8s Beaune Premier Cru La Dominode Maison Chanson (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 26, 2011",
+        "quantity": 1,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "May 26, 2011",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 26, 2011",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "188368",
+    "wine_name": "2007 Volnay Premier Cru Clos de la Chapelle Monopole Maison Louis Boillot (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 3, 2013",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "239406",
+    "wine_name": "2009 Morey Saint-Denis Premier Cru Les Monts Luisants Domaine des Monts Luisants (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 20, 2010",
+        "quantity": 2,
+        "price": 59.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 3, 2013",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 21, 2011",
+        "quantity": 2
+      }
+    ],
+    "wine_id": "172513",
+    "wine_name": "2005 Morey Saint-Denis Premier Cru Les Monts Luisants Domaine Michel Magnien (750ml)"
+  },
+  {
+    "acquired": 13,
+    "consumed": 10,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2010",
+        "quantity": 13,
+        "price": 23.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 6
+      },
+      {
+        "type": "consumed",
+        "date": "April 18, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 16, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 31, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 6, 2013",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139820",
+    "wine_name": "2005 Pouilly-Fuiss\u00e9 Domaine Larochette Manciat (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 29, 2015",
+        "quantity": 1,
+        "price": 28,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "292742",
+    "wine_name": "2011 Pouilly-Fuiss\u00e9 Les Crays Eric Forest (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 14, 2016",
+        "quantity": 3,
+        "price": 14.99
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "299143",
+    "wine_name": "2014 Saint-V\u00e9ran Ernest Meurgey-Perron (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 31, 2018",
+        "quantity": 2,
+        "price": 45,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "323164",
+    "wine_name": "Barons de Rothschild Brut Champagne (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2010",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 3, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139825",
+    "wine_name": "Champagne Bonnaire Brut Blanc de Blancs Grand Cru (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 26, 2013",
+        "quantity": 4,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 26, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 22, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "244991",
+    "wine_name": "Champagne Charles de Monrency Brut R\u00e9serve (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 22, 2011",
+        "quantity": 2,
+        "price": 38.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 22, 2011",
+        "quantity": 2,
+        "price": 38.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 22, 2011",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "June 2, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "185587",
+    "wine_name": "2000 Champagne Charles Ellner Prestige Brut (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 13, 2010",
+        "quantity": 2,
+        "price": 54,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "November 27, 2012",
+        "quantity": 3,
+        "price": 34.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 2, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 2, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 17, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 4, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "86405",
+    "wine_name": "Champagne de Venoge Brut Ros\u00e9 (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 10, 2012",
+        "quantity": 2,
+        "price": 29.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "December 25, 2013",
+        "quantity": 4,
+        "price": 29.97,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 4, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 7, 2018",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "May 13, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 19, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "90827",
+    "wine_name": "Champagne Diebolt-Vallois Brut Tradition (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 29, 2014",
+        "quantity": 3,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 4, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 14, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "11681",
+    "wine_name": "Champagne Gardet Brut (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 13, 2012",
+        "quantity": 2,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 17, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "215645",
+    "wine_name": "Champagne Lallier Grand Cru Brut Grande R\u00e9serve (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "Stage Party Silent Auction"
+      },
+      {
+        "type": "acquired",
+        "date": "November 27, 2017",
+        "quantity": 1,
+        "price": 55.55,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "6768",
+    "wine_name": "Champagne Laurent Perrier Brut Cuv\u00e9e Ros\u00e9 (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 28, 2017",
+        "quantity": 1,
+        "price": 135,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "297355",
+    "wine_name": "2006 Champagne Mo\u00ebt & Chandon Cuv\u00e9e Dom P\u00e9rignon (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 8, 2021",
+        "quantity": 1,
+        "price": 159,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "350305",
+    "wine_name": "2010 Champagne Mo\u00ebt & Chandon Cuv\u00e9e Dom P\u00e9rignon (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 13, 2016",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 31, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "180151",
+    "wine_name": "2002 Champagne Mo\u00ebt & Chandon Grand Vintage Brut (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 14, 2024",
+        "quantity": 3,
+        "price": 33,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "363369",
+    "wine_name": "Champagne Paul Berthelot Cuvee Eminence 1er Cru NV (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 31, 2016",
+        "quantity": 2,
+        "price": 46,
+        "from": "Garth/Bremers"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 23, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "6501",
+    "wine_name": "Champagne Perrier-Jou\u00ebt Grand Brut (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 26, 2019",
+        "quantity": 3,
+        "price": 24.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 12, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 19, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "204673",
+    "wine_name": "Champagne Philippe Pri\u00e9 Brut (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 1,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 18, 2022",
+        "quantity": 4,
+        "price": 32,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 25, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "352894",
+    "wine_name": "Champagne R\u00e9my Massin & Fils Champagne Tradition (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 3, 2010",
+        "quantity": 1,
+        "price": 44.99,
+        "from": "Seneca Liquor"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "43555",
+    "wine_name": "Champagne Veuve Clicquot Brut La Grande Dame (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 25, 2016",
+        "quantity": 1,
+        "price": 89.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "September 10, 2019",
+        "quantity": 1,
+        "price": 89.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 23, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "92892",
+    "wine_name": "Champagne Veuve Clicquot Brut Yellow Label (1.5l) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 31, 2018",
+        "quantity": 2,
+        "price": 56
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "151177",
+    "wine_name": "2008 Champagne Veuve Clicquot Brut Yellow Label (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "Maison Veuve Clicquot Ponsardin\n\n\nveuve-clicquot.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "110591",
+    "wine_name": "1998 Champagne Veuve Clicquot Vintage R\u00e9serve (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 2,
+        "price": 58.95,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 31, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "315932",
+    "wine_name": "2008 Champagne Veuve Clicquot Vintage Ros\u00e9 (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 5, 2021",
+        "quantity": 2,
+        "price": 95,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "345386",
+    "wine_name": "Mod Selection Champagne Brut Grand Reserve (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 25, 2022",
+        "quantity": 1,
+        "price": 74.95,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "353516",
+    "wine_name": "2018 Stags' Leap Winery The Leap SLD Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 10, 2020",
+        "quantity": 3,
+        "price": 9.99,
+        "from": "Wine buyer"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "337811",
+    "wine_name": "2017 The Seeker Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 3,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 20, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "August 20, 2015",
+        "quantity": 4,
+        "price": 14.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 20, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 12, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 16, 2016",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "289058",
+    "wine_name": "2014 C\u00f4tes du Roussillon Blanc Domaine Lafage Cuv\u00e9e Centenaire (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 8, 2019",
+        "quantity": 4,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 5, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 31, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "334216",
+    "wine_name": "2018 Sancerre Domaine Cherrier & Fils Les 7 Hommes (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 4, 2011",
+        "quantity": 2,
+        "price": 54.98,
+        "from": "JJBuckley"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "65284",
+    "wine_name": "2005 Ch\u00e2teauneuf-du-Pape Domaine de la Vieille Julienne (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 20, 2013",
+        "quantity": 1,
+        "price": 13.59,
+        "from": "seneca liquors"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "207135",
+    "wine_name": "2010 C\u00f4tes du Rh\u00f4ne R\u00e9serve Domaine Grand Veneur (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 3, 2010",
+        "quantity": 6,
+        "price": 27.99,
+        "from": "WineChateau.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 12, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 1, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 20, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 21, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 24, 2018",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139819",
+    "wine_name": "2003 Le Marchesine Franciacorta Brut Ros\u00e9 (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 3, 2021",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "July 13, 2021",
+        "quantity": 2
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 4, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 13, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 31, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "349271",
+    "wine_name": "2016 Cordella Brunello di Montalcino (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 1, 2012",
+        "quantity": 2,
+        "price": 34.5
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "231796",
+    "wine_name": "2007 Fanti-San Filippo Brunello di Montalcino (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 3,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 8, 2010",
+        "quantity": 6,
+        "price": 48.97,
+        "from": "WineChateau.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 22, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 7, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 27, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "116939",
+    "wine_name": "2004 Fanti-San Filippo Brunello di Montalcino Le Lucere (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2017",
+        "quantity": 2,
+        "price": 49,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 5, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "318286",
+    "wine_name": "2011 Il Marroneto Brunello di Montalcino (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 1, 2015",
+        "quantity": 3,
+        "price": 67.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 21, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "283367",
+    "wine_name": "2010 Il Poggione Brunello di Montalcino (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 31, 2023",
+        "quantity": 3,
+        "price": 47.5,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 14, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "359272",
+    "wine_name": "2016 La Gerla Brunello di Montalcino (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 22, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "August 22, 2017",
+        "quantity": 3,
+        "price": 34.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 22, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 30, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 25, 2018",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "315635",
+    "wine_name": "2012 La Magia Brunello di Montalcino (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 31, 2010",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 31, 2010",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 31, 2010",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "January 12, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "166825",
+    "wine_name": "2004 Piancornello Brunello di Montalcino Riserva (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 22, 2015",
+        "quantity": 1,
+        "price": 99.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "295135",
+    "wine_name": "2010 San Polino Brunello di Montalcino Helichrysum (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 25, 2017",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 7, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "314533",
+    "wine_name": "2011 Tenuta Vitanza Brunello di Montalcino Riserva Andretta (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 31, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "May 31, 2018",
+        "quantity": 2,
+        "price": 59,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 29, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "101788",
+    "wine_name": "2005 Valdicava Brunello di Montalcino (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 6,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 19, 2016",
+        "quantity": 6,
+        "price": 30.95,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 12, 2016",
+        "quantity": 1,
+        "price": 30.95,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 10, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 12, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 31, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 27, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 12, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 18, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "298054",
+    "wine_name": "2010 Ruffino Chianti Classico Riserva Ducale Oro (750ml) RATED"
+  },
+  {
+    "wine_id": "332602",
+    "wine_name": "2014 Ruffino Chianti Classico Riserva Ducale Oro (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "336147",
+    "wine_name": "2015 Viticcio Chianti Classico Riserva Viticcio (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "318031",
+    "wine_name": "2015 Erastos Rosso Toscano (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "251627",
+    "wine_name": "2009 Giovanni Chiappini Guado de' Gemoli Bolgheri Superiore (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "298372",
+    "wine_name": "2012 I Balzini Black Label (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "341530",
+    "wine_name": "2016 Le Pupillle Morellino di Scansano Riserva (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "371349",
+    "wine_name": "2023 Petrolo Galatrona (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "323162",
+    "wine_name": "2015 Petrolo Galatrona IGT (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "181217",
+    "wine_name": "2004 Poggio il Castellare Toscana (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "197073",
+    "wine_name": "2008 Sette Ponti Oreno (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "337700",
+    "wine_name": "2013 Terra di Monteverro Toscana (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 1,
+        "price": 21.19
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "332600",
+    "wine_name": "2019 Santa Margherita Alto Adige Pinot Grigio (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 14, 2021",
+        "quantity": 2,
+        "price": 11.99,
+        "from": "Wine buyer"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 10, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "347825",
+    "wine_name": "2020 Rapaura Springs Reserve Sauvignon Blanc (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 22, 2011",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "120862",
+    "wine_name": "2006 Silver Oak Cabernet Sauvignon Alexander Valley (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 1,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 11, 2011",
+        "quantity": 4,
+        "price": 48,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 17, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "194443",
+    "wine_name": "2007 Silver Oak Cabernet Sauvignon Alexander Valley (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 13, 2012",
+        "quantity": 4,
+        "price": 53.61,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "180090",
+    "wine_name": "2008 Silver Oak Cabernet Sauvignon Alexander Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 10, 2013",
+        "quantity": 2,
+        "price": 59.5,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 7, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "228050",
+    "wine_name": "2009 Silver Oak Cabernet Sauvignon Alexander Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 4, 2018",
+        "quantity": 1,
+        "price": 85,
+        "from": "Gift Dwight Vicks"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "320335",
+    "wine_name": "2012 Stonestreet Legacy Alexander Valley (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 14, 2016",
+        "quantity": 5,
+        "price": 39.99,
+        "from": "No Limit Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 20, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 17, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 20, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "304165",
+    "wine_name": "2013 Knez Pinot Noir Cerise Vineyard (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 8, 2021",
+        "quantity": 3,
+        "price": 29,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 18, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 24, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "345235",
+    "wine_name": "2016 Schramsberg Brut Blanc de Noirs (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 49.83,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 8, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 25, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "176544",
+    "wine_name": "2007 Chalk Hill Estate Red (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 19, 2023",
+        "quantity": 1,
+        "price": 200,
+        "from": "Gift-Charles Freeman MD"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "358146",
+    "wine_name": "2006 Diamond Creek Cabernet Sauvignon Volcanic Hill (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 2,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 5, 2011",
+        "quantity": 6,
+        "price": 31.97,
+        "from": "Wine Chateu"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 26, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 12, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "186583",
+    "wine_name": "2007 Summers Cabernet Sauvignon Limited Diamond Mountain District (750ml)"
+  },
+  {
+    "acquired": 11,
+    "consumed": 9,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 13, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "December 13, 2019",
+        "quantity": 4,
+        "price": 24.95,
+        "from": "Wine buyer"
+      },
+      {
+        "type": "acquired",
+        "date": "March 5, 2020",
+        "quantity": 6,
+        "price": 24.95
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 13, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 10, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 12, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 2, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 8, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 5, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 3, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 13, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "336150",
+    "wine_name": "2017 Vineyard Block Estate Block 665 Special Reserve Diamond Mt District (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 18, 2010",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "148997",
+    "wine_name": "2001 Beringer Cabernet Sauvignon Rancho del Oso Vineyard (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "140803",
+    "wine_name": "2001 Beringer Cabernet Sauvignon Steinhauer Ranch (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "42720",
+    "wine_name": "2001 Beringer Single Vineyard Cabernet Sauvignon Bancroft Ranch (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 18, 2010",
+        "quantity": 1,
+        "price": 44.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "91273",
+    "wine_name": "2005 Pine Ridge Cabernet Sauvignon Howell Mountain (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 17, 2019",
+        "quantity": 1,
+        "price": 39.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "335436",
+    "wine_name": "2014 Prim Family Vineyard-Howell Mt Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 21, 2020",
+        "quantity": 2,
+        "price": 30,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 22, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "330403",
+    "wine_name": "2016 Beringer Reserve Cabernet Sauvignon Knights Valley (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 4,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 15, 2012",
+        "quantity": 4,
+        "price": 26.21,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "September 13, 2012",
+        "quantity": 3,
+        "price": 23.21,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 16, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 4, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 2, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 9, 2013",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "226165",
+    "wine_name": "2008 Saintsbury Pinot Noir Stanly Ranch (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2013",
+        "quantity": 3,
+        "price": 34.56,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 1, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 15, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "257901",
+    "wine_name": "2010 Calera Pinot Noir Ryan Vineyard (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 21, 2022",
+        "quantity": 2,
+        "price": 59
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 1, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "356795",
+    "wine_name": "2014 Acumen 'Peak' (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 1, 2022",
+        "quantity": 1,
+        "price": 26.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "November 1, 2022",
+        "quantity": 1,
+        "price": 27.99
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "357041",
+    "wine_name": "2018 Adeptos Napa Valley Reserve Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "139675",
+    "wine_name": "2005 ALTUS Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 12,
+    "consumed": 7,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 11, 2010",
+        "quantity": 12,
+        "price": 35,
+        "from": "JJBuckley"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 23, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 5, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 21, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 27, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 2, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 4, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 7, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "168648",
+    "wine_name": "2006 ALTUS Cabernet Sauvignon (750ml) RATED"
+  },
+  {
+    "acquired": 8,
+    "consumed": 7,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 8,
+        "price": 19.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 23, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 20, 2010",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "January 23, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 26, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 12, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "133003",
+    "wine_name": "2007 Anderson's Conn Valley Prologue Cabernet Sauvignon (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 13, 2021",
+        "quantity": 1,
+        "price": 120,
+        "from": "Gift Dwight Vicks"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "345574",
+    "wine_name": "2013 Audax Napa Valley Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 19, 2013",
+        "quantity": 1,
+        "price": 79.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "226593",
+    "wine_name": "2009 Beaulieu Vineyard Cabernet Sauvignon Georges de Latour Private Reserve (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 19, 2025",
+        "quantity": 1,
+        "price": 165,
+        "from": "Beaulieu Vineyard\n\n\nbvwines.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "357594",
+    "wine_name": "2019 Beaulieu Vineyard Cabernet Sauvignon Georges de Latour Private Reserve (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 15, 2020",
+        "quantity": 2,
+        "price": 30,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 14, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "344783",
+    "wine_name": "2016 Beringer Vineyards Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "36849",
+    "wine_name": "1995 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "1991",
+    "wine_name": "1996 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "7884",
+    "wine_name": "1997 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 3,
+        "price": 80,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 14, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "1993",
+    "wine_name": "1999 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 2,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "61417",
+    "wine_name": "2004 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "102759",
+    "wine_name": "2005 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 14, 2011",
+        "quantity": 2,
+        "price": 59.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "140029",
+    "wine_name": "2006 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 6, 2016",
+        "quantity": 1,
+        "price": 109.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "June 20, 2016",
+        "quantity": 1,
+        "price": 99.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "290586",
+    "wine_name": "2012 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 18, 2022",
+        "quantity": 1,
+        "price": 98,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "325802",
+    "wine_name": "2015 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 10, 2023",
+        "quantity": 1,
+        "price": 116,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "334379",
+    "wine_name": "2016 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 10, 2023",
+        "quantity": 1,
+        "price": 116,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "343015",
+    "wine_name": "2017 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 10, 2023",
+        "quantity": 1,
+        "price": 116,
+        "from": "Last Bottle"
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 2,
+        "price": 85,
+        "from": "Oneiro Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 8, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "351165",
+    "wine_name": "2018 Beringer Private Reserve Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "140802",
+    "wine_name": "2001 Beringer Single Vineyard Cabernet Sauvignon Chabot Vineyard (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 26, 2010",
+        "quantity": 4,
+        "price": 24.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 9, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 14, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "149728",
+    "wine_name": "2006 Brookdale Vineyards Cabernet Sauvignon (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 1, 2010",
+        "quantity": 4,
+        "price": 23,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 5, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 25, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 14, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "153613",
+    "wine_name": "1996 Burgess Cellars Cabernet Sauvignon Library Release Napa Valley (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 27, 2025",
+        "quantity": 1,
+        "price": 80,
+        "from": "Gift Dr Blaker"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "369158",
+    "wine_name": "2021 Cakebread Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 15, 2015",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "281876",
+    "wine_name": "2012 Cakebread Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 30, 2017",
+        "quantity": 4,
+        "price": 68.99,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 19, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 1, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 27, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "309638",
+    "wine_name": "2014 Cakebread Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 19, 2019",
+        "quantity": 1,
+        "price": 78,
+        "from": "Cakebread Cellars\n\n\ncakebread.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "328643",
+    "wine_name": "2016 Cakebread Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 17,
+    "consumed": 6,
+    "in_cellar": 11,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 7, 2014",
+        "quantity": 11,
+        "price": 54.98,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 30, 2014",
+        "quantity": 3,
+        "price": 57.99,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "May 25, 2015",
+        "quantity": 3,
+        "price": 57.99
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 25, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 25, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 25, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 25, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 30, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 13, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "268347",
+    "wine_name": "2012 Caymus Cabernet Sauvignon 40th Anniversary (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 70,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "97654",
+    "wine_name": "2004 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 69.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "54819",
+    "wine_name": "2005 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 69.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "95402",
+    "wine_name": "2006 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 18,
+    "consumed": 15,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 6,
+        "price": 57.99,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "September 20, 2010",
+        "quantity": 12,
+        "price": 57.99,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 18, 2010",
+        "quantity": 6
+      },
+      {
+        "type": "consumed",
+        "date": "September 20, 2010",
+        "quantity": 6
+      },
+      {
+        "type": "consumed",
+        "date": "July 6, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 7, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 13, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "162967",
+    "wine_name": "2008 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 1,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 28, 2011",
+        "quantity": 3,
+        "price": 56.81,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "July 12, 2011",
+        "quantity": 2,
+        "price": 61.49,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 2, 2012",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "188075",
+    "wine_name": "2009 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 23, 2012",
+        "quantity": 1,
+        "price": 59.97,
+        "from": "Wine Chateu"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "226902",
+    "wine_name": "2010 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 2,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 17, 2013",
+        "quantity": 3,
+        "price": 69.99,
+        "from": "Wine Express"
+      },
+      {
+        "type": "acquired",
+        "date": "September 20, 2013",
+        "quantity": 1,
+        "price": 65,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "January 2, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "January 2, 2014",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 2
+      }
+    ],
+    "wine_id": "234989",
+    "wine_name": "2011 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 20, 2015",
+        "quantity": 2,
+        "price": 64.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "287777",
+    "wine_name": "2013 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 8, 2016",
+        "quantity": 2,
+        "price": 64.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "June 23, 2016",
+        "quantity": 1,
+        "price": 64.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "301286",
+    "wine_name": "2014 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 23, 2016",
+        "quantity": 1,
+        "price": 74.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      },
+      {
+        "type": "acquired",
+        "date": "August 24, 2016",
+        "quantity": 1,
+        "price": 74.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 3, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "301689",
+    "wine_name": "2014 Caymus Cabernet Sauvignon Napa Valley (1.0l) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 13, 2017",
+        "quantity": 2,
+        "price": 75,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "316136",
+    "wine_name": "2015 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 19, 2022",
+        "quantity": 1,
+        "price": 90,
+        "from": "Gift Lynn K"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "356758",
+    "wine_name": "2020 Caymus Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 4, 2023",
+        "quantity": 2,
+        "price": 90,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "359313",
+    "wine_name": "2020 Caymus Cabernet Sauvignon Napa Valley (1.0l)"
+  },
+  {
+    "acquired": 12,
+    "consumed": 5,
+    "in_cellar": 7,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 10,
+        "price": 79.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 1,
+        "price": 79.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 3
+      },
+      {
+        "type": "consumed",
+        "date": "June 21, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 20, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "365390",
+    "wine_name": "2022 Caymus Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 2,
+        "price": 89.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "367319",
+    "wine_name": "2022 Caymus Cabernet Sauvignon Napa Valley (1.0l)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 19, 2018",
+        "quantity": 1,
+        "price": 80,
+        "from": "Estate sale  Albany"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "41191",
+    "wine_name": "1991 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2006",
+        "quantity": 1,
+        "price": 110,
+        "from": "J J Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "March 19, 2018",
+        "quantity": 1,
+        "price": 80,
+        "from": "Estate sale  Albany"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "10069",
+    "wine_name": "2000 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 27, 2010",
+        "quantity": 1,
+        "price": 110,
+        "from": "calwine.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "125355",
+    "wine_name": "2007 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 1,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "January 13, 2021",
+        "quantity": 1,
+        "price": 92.61,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 13, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "161964",
+    "wine_name": "2008 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 18, 2011",
+        "quantity": 1,
+        "price": 91.81,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "162687",
+    "wine_name": "2009 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2014",
+        "quantity": 1,
+        "price": 119.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "May 6, 2014",
+        "quantity": 1,
+        "price": 119.98,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "237583",
+    "wine_name": "2011 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 4, 2018",
+        "quantity": 1,
+        "price": 180,
+        "from": "Caymus Vineyards\n\n\ncaymus.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "315131",
+    "wine_name": "2014 Caymus Cabernet Sauvignon Special Selection (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 1,
+        "price": 150,
+        "from": "Oneiro"
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 1,
+        "price": 150
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 1,
+        "price": 150,
+        "from": "Oneiro Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 7, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "371206",
+    "wine_name": "2019 Caymus Special Selection (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 9, 2024",
+        "quantity": 1,
+        "price": 160,
+        "from": "Gift MacIsaac"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "366658",
+    "wine_name": "2019 Celani (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 15, 2015",
+        "quantity": 1,
+        "price": 180,
+        "from": "Celani Family Vineyards\n\n\ncfvineyards.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "293668",
+    "wine_name": "2012 Celani Family Vineyards Cabernet Sauvignon Ardore (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 19, 2018",
+        "quantity": 1,
+        "price": 58,
+        "from": "Celani Family Vineyards\n\n\ncfvineyards.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "327845",
+    "wine_name": "2015 Celani Family Vineyards Tenacious (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2022",
+        "quantity": 2,
+        "price": 38,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "357516",
+    "wine_name": "2019 Cyrus Creek Vineyards Diamond Mountain Cabernet (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 19, 2017",
+        "quantity": 1,
+        "price": 210,
+        "from": "Dominus Estate\n\n\ndominusestate.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "315578",
+    "wine_name": "2014 Dominus Red Wine Napa Valley (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 28, 2023",
+        "quantity": 4,
+        "price": 30,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "362694",
+    "wine_name": "2021 Double Eagle Sauvignon Blanc (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 31, 2023",
+        "quantity": 2,
+        "price": 19.5,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 19, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "359271",
+    "wine_name": "2021 Duckhorn Sauvignon Blanc Napa Valley (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 10, 2012",
+        "quantity": 2,
+        "price": 42.98,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 25, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "209946",
+    "wine_name": "2005 Dunn Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 1, 2012",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 22, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "174941",
+    "wine_name": "2006 Dunn Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 8, 2021",
+        "quantity": 3,
+        "price": 38,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 21, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "350870",
+    "wine_name": "2018 Eisele Vineyard Napa Valley Sauvignon Blanc (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 24, 2023",
+        "quantity": 3,
+        "price": 50,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "362621",
+    "wine_name": "2019 Grgich Hills Estate Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 23, 2012",
+        "quantity": 3,
+        "price": 39.99,
+        "from": "Wine Chateu"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 17, 2013",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "225875",
+    "wine_name": "2008 Grgich Hills Estate Grown Cabernet Sauvignon (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 20, 2015",
+        "quantity": 2,
+        "price": 49.99
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "290084",
+    "wine_name": "2011 Grgich Hills Estate Grown Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 23, 2014",
+        "quantity": 5,
+        "price": 34.71,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 2, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 30, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 7, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 22, 2016",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "231237",
+    "wine_name": "2010 Hall Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 3, 2008",
+        "quantity": 1,
+        "price": 49.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "70614",
+    "wine_name": "2005 Joseph Phelps Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 22, 2009",
+        "quantity": 1,
+        "price": 80,
+        "from": "B-Day Gift from Brian"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "124790",
+    "wine_name": "2006 Kathryn Hall Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 27, 2016",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 8, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 24, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "305812",
+    "wine_name": "2014 Long Meadow Ranch Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 16, 2010",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 16, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 30, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "33194",
+    "wine_name": "2000 Mumm Napa DVX (750ml) RATED"
+  },
+  {
+    "acquired": 13,
+    "consumed": 11,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 22, 2010",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "July 22, 2010",
+        "quantity": 3
+      },
+      {
+        "type": "acquired",
+        "date": "November 13, 2010",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 27, 2010",
+        "quantity": 4,
+        "price": 26.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 22, 2010",
+        "quantity": 3
+      },
+      {
+        "type": "consumed",
+        "date": "December 26, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 28, 2010",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "December 31, 2011",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "December 15, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 19, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 3, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "138755",
+    "wine_name": "2001 Mumm Napa DVX (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 29.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 31, 2011",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "187015",
+    "wine_name": "2005 Mumm Napa DVX Ros\u00e9 (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 16, 2017",
+        "quantity": 1,
+        "price": 270,
+        "from": "Opus One Winery\n\n\nopusonewinery.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "299693",
+    "wine_name": "2013 Opus One Overture (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 13, 2013",
+        "quantity": 1,
+        "price": 94.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "252674",
+    "wine_name": "2010 Robert Mondavi Reserve Cabernet Sauvignon Napa Valley - Signed by Mondavi (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 1,
+        "price": 29.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      },
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 1,
+        "price": 29.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 12, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "332599",
+    "wine_name": "2014 Schramsberg Blanc de Blanc Brut (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 1, 2019",
+        "quantity": 2,
+        "price": 59,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 29, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "333008",
+    "wine_name": "2016 Shafer TD-9 Napa Valley (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 4, 2018",
+        "quantity": 1,
+        "price": 94,
+        "from": "Silver Oak Cellars\n\n\nsilveroak.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "319810",
+    "wine_name": "2013 Silver Oak Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 20, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 2, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "140190",
+    "wine_name": "2007 Snowden Vineyards Cabernet Sauvignon The Ranch (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 31, 2025",
+        "quantity": 4,
+        "price": 49.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "371857",
+    "wine_name": "2021 Stag's Leap Wine Cellars Cabernet Sauvignon Rancho Chimiles Vineyard (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 4,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 17, 2012",
+        "quantity": 6,
+        "price": 34,
+        "from": "Wine Chateu"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 6, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 17, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 17, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 29, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "214865",
+    "wine_name": "2009 Stag's Leap Wine Cellars Cabernet Sauvignon Artemis (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 14, 2013",
+        "quantity": 1,
+        "price": 55,
+        "from": "Gift Leslie Cohen"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "242494",
+    "wine_name": "2010 Stag's Leap Wine Cellars Cabernet Sauvignon Artemis (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 22, 2025",
+        "quantity": 2,
+        "price": 30,
+        "from": "wine slash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "370716",
+    "wine_name": "2023 Stag's Leap Wine Cellars Karia Chardonnay (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 15, 2018",
+        "quantity": 2,
+        "price": 39.99,
+        "from": "Winebuyer.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "321210",
+    "wine_name": "2014 Stags' Leap Winery Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 1,
+        "price": 34.9,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      },
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 2,
+        "price": 34.9,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 20, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "332605",
+    "wine_name": "2015 Stags' Leap Winery Cabernet Sauvignon Napa Valley (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 14, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "November 14, 2023",
+        "quantity": 3,
+        "price": 48,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 2, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 6, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "362402",
+    "wine_name": "2018 Summer's Estate Oakville Reserve Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 10,
+    "consumed": 9,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 20, 2009",
+        "quantity": 10,
+        "price": 19.95,
+        "from": "calwine.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 1, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 2, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 15, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 30, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 30, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 5, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 23, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 21, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 25, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "139821",
+    "wine_name": "2007 Textbook Vineyards Cabernet Sauvignon Fin de Journ\u00e9e (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 24, 2010",
+        "quantity": 3,
+        "price": 35.99,
+        "from": "Gift/bremers"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 22, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 1, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "133514",
+    "wine_name": "2008 The Prisoner (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 30, 2014",
+        "quantity": 3,
+        "price": 29.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 21, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 11, 2016",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "187587",
+    "wine_name": "2007 Vine Cliff Cabernet Sauvignon Napa Valley (750ml) RATED"
+  },
+  {
+    "wine_id": "112961",
+    "wine_name": "2006 Ghost Block Estate Cabernet Sauvignon Oakville (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "52108",
+    "wine_name": "2005 Robert Mondavi Cabernet Sauvignon Oakville (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "320173",
+    "wine_name": "2014 Robert Mondavi Cabernet Sauvignon Oakville (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "254111",
+    "wine_name": "2012 Belle Glos Pinot Noir Dairyman Vineyard (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "223108",
+    "wine_name": "2009 Gary Farrell Pinot Noir Russian River Valley (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "206761",
+    "wine_name": "2006 Marimar Torres Cristina Pinot Noir Don Miguel Vineyard (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "253844",
+    "wine_name": "2011 Sonoma Acres Pinot Noir (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "120076",
+    "wine_name": "2006 Zmor Pinot Noir (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "355613",
+    "wine_name": "2015 Maxville Hall Cabernet Sauvignon Sacrashe Vineyard Rutherford (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "276468",
+    "wine_name": "2012 Round Pond Estate Cabernet Sauvignon Rutherford (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "370715",
+    "wine_name": "2021 Rutherford Hill AJT Collection Napa Valley (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 6, 2024",
+        "quantity": 4,
+        "price": 45,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 8, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 29, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 4, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "366040",
+    "wine_name": "2019 Rutherford Hill Cabernet Sauvignon-Stags Leap District (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 27, 2018",
+        "quantity": 2,
+        "price": 29.95,
+        "from": "Winebuyer.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 14, 2018",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "320125",
+    "wine_name": "2014 Vineyard Block Estate Block 313 Cabernet Sauvignon Rutherford (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 1,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 26, 2022",
+        "quantity": 4,
+        "price": 30.83,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 19, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "354951",
+    "wine_name": "2020 Belle Glos Pinot Noir Balade Santa Rita Mills (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 3,
+        "price": 18.86,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 8, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "127757",
+    "wine_name": "2008 Melville Estate Pinot Noir Verna's Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 11,
+    "consumed": 7,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 20, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "June 16, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "June 28, 2011",
+        "quantity": 1,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 20, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 16, 2011",
+        "quantity": 5
+      },
+      {
+        "type": "consumed",
+        "date": "October 18, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "182192",
+    "wine_name": "2009 Belle Glos Pinot Noir Las Alturas Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 22, 2013",
+        "quantity": 3,
+        "price": 33.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 22, 2013",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "230218",
+    "wine_name": "2011 Belle Glos Pinot Noir Las Alturas Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2013",
+        "quantity": 3,
+        "price": 34.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "257908",
+    "wine_name": "2012 Belle Glos Pinot Noir Las Alturas Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 11,
+    "consumed": 9,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 20, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJBuckley"
+      },
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "May 12, 2011",
+        "quantity": 3,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "June 28, 2011",
+        "quantity": 2,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 7, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 16, 2011",
+        "quantity": 3
+      },
+      {
+        "type": "consumed",
+        "date": "June 26, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 30, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 30, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 26, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 4, 2012",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "182624",
+    "wine_name": "2009 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 10,
+    "consumed": 8,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 7, 2012",
+        "quantity": 6,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "April 17, 2012",
+        "quantity": 4,
+        "price": 26.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "June 4, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 22, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 28, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 11, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 11, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 17, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 18, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 18, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "215202",
+    "wine_name": "2010 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 2,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 22, 2013",
+        "quantity": 4,
+        "price": 33.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 24, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "233611",
+    "wine_name": "2011 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 27, 2013",
+        "quantity": 3,
+        "price": 34.91
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "249478",
+    "wine_name": "2012 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 16, 2014",
+        "quantity": 2,
+        "price": 39.09,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "268842",
+    "wine_name": "2013 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 3,
+        "price": 32,
+        "from": "Oneiro Fine Wines"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "371205",
+    "wine_name": "2023 Belle Glos Pinot Noir Clark & Telephone Vineyard (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 7, 2010",
+        "quantity": 1,
+        "from": "J J Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "March 22, 2010",
+        "quantity": 1,
+        "price": 45.99
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 22, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "140387",
+    "wine_name": "2007 Roessler Cellars Pinot Noir La Encantada Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 28, 2011",
+        "quantity": 2,
+        "price": 24.91,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 21, 2011",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "182193",
+    "wine_name": "2009 Belle Glos Pinot Noir Taylor Lane Vineyard (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 22, 2010",
+        "quantity": 6,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 18, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 27, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 19, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 12, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 24, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "40113",
+    "wine_name": "2005 Keller Estate Pinot Noir La Cruz Vineyard Sonoma Coast (750ml) RATED"
+  },
+  {
+    "acquired": 22,
+    "consumed": 20,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 21, 2009",
+        "price": 19.99,
+        "from": "Keller Estate\n\n\nkellerestate.com"
+      },
+      {
+        "type": "acquired",
+        "date": "March 22, 2010",
+        "quantity": 6
+      },
+      {
+        "type": "acquired",
+        "date": "June 21, 2010",
+        "quantity": 6,
+        "price": 18.79,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "August 24, 2010",
+        "quantity": 4
+      },
+      {
+        "type": "acquired",
+        "date": "December 30, 2010",
+        "quantity": 5,
+        "price": 18.49,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "May 31, 2022",
+        "quantity": 1,
+        "price": 18.49,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 4
+      },
+      {
+        "type": "consumed",
+        "date": "March 16, 2010",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "June 21, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 28, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 18, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 20, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 31, 2011",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "September 12, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 28, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 18, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 28, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 8, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 14, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 31, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 31, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "131906",
+    "wine_name": "2006 Keller Estate Pinot Noir La Cruz Vineyard Sonoma Coast (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "February 22, 2013",
+        "quantity": 2,
+        "price": 24.91
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 18, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "204578",
+    "wine_name": "2009 Landmark Grand Detour Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 3,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 7, 2010",
+        "quantity": 6,
+        "price": 35.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 7, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 12, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 26, 2017",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "150363",
+    "wine_name": "2007 Roessler Cellars Pinot Noir Gap's Crown Vineyard (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "140388",
+    "wine_name": "2007 Roessler Cellars Pinot Noir Griffin's Lair Vineyard (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 18, 2010",
+        "quantity": 3,
+        "price": 39.82,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 20, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "143739",
+    "wine_name": "2008 Sojourn Cellars Pinot Noir Gap's Crown Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 9,
+    "consumed": 8,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 26, 2010",
+        "quantity": 5,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      },
+      {
+        "type": "acquired",
+        "date": "November 4, 2010",
+        "quantity": 4
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 26, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 2, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 21, 2011",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 23, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 25, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 1, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 21, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 4, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "151427",
+    "wine_name": "2005 Kunde Estate Reserve Cabernet Sauvignon Sonoma Valley (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 2, 2011",
+        "quantity": 4,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 25, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 20, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 18, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "135139",
+    "wine_name": "2006 Kunde Estate Reserve Cabernet Sauvignon Sonoma Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 3, 2017",
+        "quantity": 1,
+        "price": 19.99
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "166586",
+    "wine_name": "2007 Kunde Estate Reserve Cabernet Sauvignon Sonoma Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "91128",
+    "wine_name": "2001 Beringer Cabernet Sauvignon Marston Ranch (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 24, 2018",
+        "quantity": 5,
+        "price": 31.85,
+        "from": "Vivino"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 31, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 22, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 8, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 11, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "322315",
+    "wine_name": "2015 Bello Family Vineyards Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "64672",
+    "wine_name": "2001 Beringer Single Vineyard Cabernet Sauvignon Home Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 12, 2025",
+        "quantity": 1,
+        "price": 160,
+        "from": "Ehlers Estate\n\n\nehlersestate.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "367419",
+    "wine_name": "2022 Ehlers Estate 1886 Cabernet Sauvignon St Helena (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 31, 2025",
+        "quantity": 4,
+        "price": 49.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "371859",
+    "wine_name": "2021 Stag's Leap Wine Cellars Series Cabernet Sauvignon Battuello Vineyard (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 20, 2013",
+        "quantity": 3,
+        "price": 57.65,
+        "from": "JJ Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 15, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 4, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "260204",
+    "wine_name": "2010 Cliff Lede Vineyards Cabernet Sauvignon Stags Leap District (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 19, 2022",
+        "quantity": 1,
+        "price": 106,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "354836",
+    "wine_name": "2019 Stag's Leap Wine Cellars Cabernet Sauvignon Fay Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "112993",
+    "wine_name": "2005 Stag's Leap Wine Cellars Cabernet Sauvignon S.L.V. Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 3,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 4, 2023",
+        "quantity": 3,
+        "price": 30,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "April 27, 2023",
+        "quantity": 2,
+        "price": 30,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "June 1, 2023",
+        "quantity": 2,
+        "price": 30,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "May 14, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 31, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 14, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "359314",
+    "wine_name": "2019 Stag's Leap Wine Cellars Hands of Time (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "August 31, 2018",
+        "quantity": 5,
+        "price": 37.86,
+        "from": "Vivino"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 31, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 22, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 13, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 19, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "325008",
+    "wine_name": "2014 Stags Leap The Investor Red Blend Napa Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 25, 2016",
+        "quantity": 2,
+        "price": 38.7,
+        "from": "Wine Library\n\n\nwinelibrary.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 1,
+        "price": 38.7,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 19, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 29, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "303717",
+    "wine_name": "2013 Stags' Leap Winery Cabernet Sauvignon Stags Leap District (750ml) RATED"
+  },
+  {
+    "acquired": 18,
+    "consumed": 16,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 8, 2021",
+        "quantity": 5,
+        "price": 36,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "January 18, 2022",
+        "quantity": 10,
+        "price": 36,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "December 25, 2022",
+        "quantity": 1,
+        "price": 36,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "October 31, 2024",
+        "quantity": 2,
+        "price": 36
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 17, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 13, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 21, 2022",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "November 21, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 29, 2024",
+        "quantity": 4
+      },
+      {
+        "type": "consumed",
+        "date": "November 25, 2024",
+        "quantity": 3
+      },
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "June 25, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 2, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "350864",
+    "wine_name": "2018 Stags' Leap Winery Cabernet Sauvignon Stags Leap District (750ml) RATED"
+  },
+  {
+    "acquired": 15,
+    "consumed": 12,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 17, 2021",
+        "quantity": 5,
+        "price": 25,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "July 13, 2021",
+        "quantity": 2,
+        "price": 25,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "October 3, 2021",
+        "quantity": 1,
+        "price": 25
+      },
+      {
+        "type": "acquired",
+        "date": "October 8, 2021",
+        "quantity": 2,
+        "price": 25,
+        "from": "WineSlash"
+      },
+      {
+        "type": "acquired",
+        "date": "January 18, 2022",
+        "quantity": 5,
+        "price": 25,
+        "from": "WineSlash"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 3, 2021",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "October 3, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 26, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 13, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 25, 2022",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "March 16, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 29, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 31, 2024",
+        "quantity": 2
+      }
+    ],
+    "wine_id": "348998",
+    "wine_name": "2018 Stags' Leap Winery Merlot Stags Leap District (750ml)"
+  },
+  {
+    "acquired": 8,
+    "consumed": 7,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 27, 2018",
+        "quantity": 2,
+        "price": 27.95,
+        "from": "Winebuyer.com"
+      },
+      {
+        "type": "acquired",
+        "date": "March 15, 2018",
+        "quantity": 2,
+        "price": 27.95,
+        "from": "Winebuyer.com"
+      },
+      {
+        "type": "acquired",
+        "date": "June 19, 2018",
+        "quantity": 4,
+        "price": 21.95,
+        "from": "Winebuyer.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 15, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 8, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 26, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 7, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 7, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 9, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 5, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "320124",
+    "wine_name": "2015 Vineyard Block Estate Block 628 Cabernet Sauvignon Yountville (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 12, 2019",
+        "quantity": 3,
+        "price": 25,
+        "from": "jj buckley's"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 14, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 19, 2019",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "332607",
+    "wine_name": "2015 Domaine Drouhin Oregon RoseRock Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 1,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 20, 2015",
+        "quantity": 2,
+        "price": 22.99,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 19, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "288933",
+    "wine_name": "2013 Elouan Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 17, 2012",
+        "quantity": 4,
+        "price": 32.99,
+        "from": "JJ Buckley Fine Wines"
+      },
+      {
+        "type": "acquired",
+        "date": "June 20, 2012",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "June 18, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 20, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 29, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 19, 2016",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "88619",
+    "wine_name": "2007 Domaine Serene Pinot Noir Evenstad Reserve (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 3, 2013",
+        "quantity": 3,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 20, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 9, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "252170",
+    "wine_name": "2009 MacMurray Estate Vineyards Pinot Noir Willamette Valley (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 10, 2013",
+        "quantity": 3,
+        "price": 19.99,
+        "from": "WTSO\n\n\ntillsoldout.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 14, 2013",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 16, 2014",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "252573",
+    "wine_name": "2009 Panther Creek Pinot Noir Freedom Hill Vineyard (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "December 30, 2015",
+        "quantity": 3,
+        "price": 14.99,
+        "from": "Samuel Poljsak"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 25, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 5, 2020",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "295523",
+    "wine_name": "2013 Samuel Robert Pinot Noir Vintner's Reserve (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 10, 2020",
+        "quantity": 3,
+        "price": 25,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "February 7, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 22, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "342090",
+    "wine_name": "2015 Willakenzie Estate Pinot Noir Pierre L\u00e9on (750ml)"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "July 20, 2015",
+        "quantity": 1,
+        "price": 25.59,
+        "from": "Wine Legend\n\n\nwinelegend.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "270044",
+    "wine_name": "2012 Willamette Valley Vineyards Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 1,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 25, 2021",
+        "quantity": 3,
+        "price": 30,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 20, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "345896",
+    "wine_name": "2016 Youngberg Hill J Block Williamette Valley Pinot Noir (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 2, 2009",
+        "quantity": 6,
+        "price": 19.99,
+        "from": "J J Buckley Fine Wines"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 2
+      },
+      {
+        "type": "consumed",
+        "date": "September 24, 2014",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 14, 2019",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 25, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "109119",
+    "wine_name": "2006 Columbia Crest Reserve Cabernet Sauvignon (750ml)"
+  },
+  {
+    "acquired": 4,
+    "consumed": 3,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 3, 2010",
+        "quantity": 4,
+        "price": 33.99,
+        "from": "JJBuckley"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "June 12, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "May 7, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 12, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "162467",
+    "wine_name": "2007 Columbia Crest Reserve Cabernet Sauvignon (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 2,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 1, 2024",
+        "quantity": 6,
+        "price": 60,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 30, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 23, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "366566",
+    "wine_name": "2022 Quilceda Creek Red Wine Columbia Valley (750ml)"
+  },
+  {
+    "acquired": 9,
+    "consumed": 2,
+    "in_cellar": 7,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 8,
+        "price": 170,
+        "from": "Wine Access"
+      },
+      {
+        "type": "acquired",
+        "date": "November 22, 2022",
+        "quantity": 1,
+        "price": 145,
+        "from": "Wine bid auction"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 27, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "4400",
+    "wine_name": "2001 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 12,
+    "consumed": 6,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2007",
+        "quantity": 12,
+        "price": 165,
+        "from": "Wine Access"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 4
+      },
+      {
+        "type": "consumed",
+        "date": "April 25, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 27, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "10868",
+    "wine_name": "2002 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 1,
+    "consumed": 0,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "January 2, 2010",
+        "quantity": 1,
+        "price": 190,
+        "from": "Wine Access"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "19969",
+    "wine_name": "2003 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 0,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2004",
+        "quantity": 5,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "45950",
+    "wine_name": "2004 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 20, 2010",
+        "quantity": 4
+      }
+    ],
+    "wine_id": "79627",
+    "wine_name": "2005 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 2,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2007",
+        "quantity": 6,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "April 25, 2010",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "April 25, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "April 25, 2010",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "111175",
+    "wine_name": "2006 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 12,
+    "consumed": 2,
+    "in_cellar": 10,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 28, 2010",
+        "quantity": 12,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "June 16, 2018",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 1, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "140179",
+    "wine_name": "2007 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 25, 2011",
+        "quantity": 6,
+        "price": 130,
+        "from": "QCC"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "178472",
+    "wine_name": "2008 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 4, 2012",
+        "quantity": 6,
+        "price": 135,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "212343",
+    "wine_name": "2009 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 1,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 15, 2013",
+        "quantity": 6,
+        "price": 135,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 13, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "238968",
+    "wine_name": "2010 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2014",
+        "quantity": 4,
+        "price": 140,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "265690",
+    "wine_name": "2011 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 1,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 6, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "April 6, 2015",
+        "quantity": 6,
+        "price": 157,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 6, 2015",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "281147",
+    "wine_name": "2012 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 4, 2016",
+        "quantity": 6,
+        "price": 157,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "296085",
+    "wine_name": "2013 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 9, 2017",
+        "quantity": 6,
+        "price": 158,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "304573",
+    "wine_name": "2014 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 14, 2018",
+        "quantity": 6,
+        "price": 158,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "319976",
+    "wine_name": "2015 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "April 9, 2019",
+        "quantity": 6,
+        "price": 163,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "328571",
+    "wine_name": "2016 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 1,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 30, 2020",
+        "quantity": 6,
+        "price": 165,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2021",
+        "quantity": 1,
+        "price": 200
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 13, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "336867",
+    "wine_name": "2017 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 30, 2021",
+        "quantity": 6,
+        "price": 145,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "345767",
+    "wine_name": "2018 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 156,
+    "consumed": 150,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 29, 2022",
+        "quantity": 1,
+        "price": 150,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "September 22, 2024",
+        "quantity": 155
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 22, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 27, 2024",
+        "quantity": 149
+      }
+    ],
+    "wine_id": "353260",
+    "wine_name": "2019 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 1,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 27, 2023",
+        "quantity": 6,
+        "price": 150,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 7, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "359079",
+    "wine_name": "2020 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 20, 2024",
+        "quantity": 6,
+        "price": 155,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "364175",
+    "wine_name": "2021 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 1,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "March 24, 2025",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "March 24, 2025",
+        "quantity": 5,
+        "price": 160
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "July 6, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "367963",
+    "wine_name": "2022 Quilceda Creek Cabernet Sauvignon Columbia Valley (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 4,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2004",
+        "quantity": 6,
+        "price": 39.99,
+        "from": "Wine Access"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 2, 2010",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 27, 2017",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 12, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 21, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "33553",
+    "wine_name": "2003 Quilceda Creek Red Wine Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 8,
+    "consumed": 5,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "June 2, 2005",
+        "quantity": 6,
+        "price": 49.99,
+        "from": "Wine Access"
+      },
+      {
+        "type": "acquired",
+        "date": "March 29, 2022",
+        "quantity": 2,
+        "price": 49.99,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "August 16, 2015",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 4, 2016",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 12, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "June 12, 2020",
+        "quantity": 2
+      }
+    ],
+    "wine_id": "61999",
+    "wine_name": "2004 Quilceda Creek Red Wine Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 4,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 15, 2020",
+        "quantity": 5,
+        "price": 55,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "January 31, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 28, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "August 31, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 29, 2022",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "343017",
+    "wine_name": "2018 Quilceda Creek Red Wine Columbia Valley (750ml)"
+  },
+  {
+    "acquired": 7,
+    "consumed": 6,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2021",
+        "quantity": 6,
+        "price": 45,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "November 7, 2021",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 4, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 9, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "October 28, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 4, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 22, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "351496",
+    "wine_name": "2019 Quilceda Creek Red Wine Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 5,
+    "consumed": 2,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2022",
+        "quantity": 4,
+        "price": 55,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "November 7, 2022",
+        "quantity": 1,
+        "price": 55,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "February 8, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "357138",
+    "wine_name": "2020 Quilceda Creek Red Wine Columbia Valley (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 5,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 25, 2023",
+        "quantity": 5,
+        "price": 60,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "December 29, 2024",
+        "quantity": 1,
+        "price": 60
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 9, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "July 4, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "November 29, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 29, 2024",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 3, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "362638",
+    "wine_name": "2021 Quilceda Creek Red Wine Columbia Valley (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "November 7, 2025",
+        "quantity": 6,
+        "price": 60,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "371204",
+    "wine_name": "2023 Quilceda Creek Red Wine Columbia Valley (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 11, 2023",
+        "quantity": 2,
+        "price": 150,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "359795",
+    "wine_name": "2020 Quilceda Creek Cabernet Sauvignon Palengat (750ml)"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 29, 2025",
+        "quantity": 2,
+        "price": 155,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "368867",
+    "wine_name": "2022 Quilceda Creek Cabernet Sauvignon Palengat (750ml)"
+  },
+  {
+    "wine_id": "359796",
+    "wine_name": "2020 Quilceda Creek Cabernet Sauvignon Tchelistcheff (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "368868",
+    "wine_name": "2022 Quilceda Creek Cabernet Sauvignon Tchelistcheff (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "365140",
+    "wine_name": "2021 Quilceda Creek Palengat Cabernet Sauvignon (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "251401",
+    "wine_name": "2010 Quilceda Creek Palengat Proprietary Red (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "366257",
+    "wine_name": "2021 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml)",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "60530",
+    "wine_name": "2004 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "wine_id": "92447",
+    "wine_name": "2005 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED",
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "error": "Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"http://www.manageyourcellar.com/wi"
+  },
+  {
+    "acquired": 0,
+    "consumed": 0,
+    "in_cellar": 0,
+    "acq_events": [],
+    "consumed_events": [],
+    "wine_id": "126080",
+    "wine_name": "2006 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 3,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 18, 2010",
+        "quantity": 6,
+        "price": 125,
+        "from": "QCC"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "December 9, 2012",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "January 18, 2022",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 22, 2024",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "161092",
+    "wine_name": "2007 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 3,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 29, 2011",
+        "quantity": 6,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "September 23, 2023",
+        "quantity": 1,
+        "price": 125
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 23, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 23, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "December 26, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "197160",
+    "wine_name": "2008 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 7,
+    "consumed": 1,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 16, 2012",
+        "quantity": 6,
+        "price": 125,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 17, 2013",
+        "quantity": 1
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 17, 2013",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "230647",
+    "wine_name": "2009 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 0,
+    "in_cellar": 6,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 17, 2013",
+        "quantity": 6,
+        "price": 115,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "253817",
+    "wine_name": "2010 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml)"
+  },
+  {
+    "acquired": 6,
+    "consumed": 1,
+    "in_cellar": 5,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 28, 2014",
+        "quantity": 6,
+        "price": 115,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "September 24, 2023",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "276005",
+    "wine_name": "2011 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 27, 2015",
+        "quantity": 4,
+        "price": 115,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "290269",
+    "wine_name": "2012 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 31, 2016",
+        "quantity": 4,
+        "price": 137,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "304935",
+    "wine_name": "2013 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 6,
+    "consumed": 2,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 30, 2017",
+        "quantity": 6,
+        "price": 140,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "March 24, 2023",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "September 11, 2025",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "315559",
+    "wine_name": "2014 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 4,
+    "consumed": 0,
+    "in_cellar": 4,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 23, 2018",
+        "quantity": 4,
+        "price": 159,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "325602",
+    "wine_name": "2015 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 3,
+    "consumed": 0,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 3, 2022",
+        "quantity": 3,
+        "price": 150,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "355916",
+    "wine_name": "2019 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml) RATED"
+  },
+  {
+    "acquired": 2,
+    "consumed": 0,
+    "in_cellar": 2,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "September 29, 2023",
+        "quantity": 2,
+        "price": 150,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [],
+    "wine_id": "361454",
+    "wine_name": "2020 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml)"
+  },
+  {
+    "acquired": 12,
+    "consumed": 9,
+    "in_cellar": 3,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "October 13, 2025",
+        "quantity": 3,
+        "price": 183,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 13, 2025",
+        "quantity": 3,
+        "price": 183,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 13, 2025",
+        "quantity": 3,
+        "price": 183,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      },
+      {
+        "type": "acquired",
+        "date": "October 13, 2025",
+        "quantity": 3,
+        "price": 183,
+        "from": "Quilceda Creek Vintners\n\n\nquilcedacreek.com"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 13, 2025",
+        "quantity": 9
+      }
+    ],
+    "wine_id": "370643",
+    "wine_name": "2022 Quilceda Creek Cabernet Sauvignon Galitzine Vineyard (750ml)"
+  },
+  {
+    "acquired": 3,
+    "consumed": 2,
+    "in_cellar": 1,
+    "acq_events": [
+      {
+        "type": "acquired",
+        "date": "May 12, 2020",
+        "quantity": 3,
+        "price": 45,
+        "from": "Last Bottle"
+      }
+    ],
+    "consumed_events": [
+      {
+        "type": "consumed",
+        "date": "October 28, 2020",
+        "quantity": 1
+      },
+      {
+        "type": "consumed",
+        "date": "March 5, 2021",
+        "quantity": 1
+      }
+    ],
+    "wine_id": "339605",
+    "wine_name": "2014 Andrew Will Proprietary Red Champoux Vineyard (750ml)"
+  }
+]

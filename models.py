@@ -76,6 +76,13 @@ class Wine(db.Model):
     # Rating (1-100 scale)
     rating = db.Column(db.Integer)
 
+    # Transaction linkage: consumed wines link back to their cellar parent
+    parent_wine_id = db.Column(db.Integer, db.ForeignKey('wines.id'), nullable=True)
+    original_quantity = db.Column(db.Integer)  # total originally acquired
+
+    # Relationships
+    consumed_copies = db.relationship('Wine', backref=db.backref('parent_wine', remote_side='Wine.id'),
+                                       lazy='dynamic', foreign_keys='Wine.parent_wine_id')
     tasting_notes = db.relationship('TastingNote', backref='wine', lazy='dynamic', cascade='all, delete-orphan')
 
     @property
@@ -173,6 +180,21 @@ class Wine(db.Model):
             name_with_size += f' ({self.size_ml}ml)'
         parts.append(name_with_size)
         return parts
+
+    @property
+    def total_acquired(self):
+        """Total bottles originally acquired (from original_quantity or current quantity)."""
+        return self.original_quantity or self.quantity
+
+    @property
+    def total_consumed(self):
+        """Total bottles consumed (count from linked consumed copies)."""
+        return sum(c.quantity for c in self.consumed_copies.all())
+
+    @property
+    def actual_in_cellar(self):
+        """Actual bottles remaining in cellar."""
+        return self.total_acquired - self.total_consumed
 
     @property
     def has_rating(self):

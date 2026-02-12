@@ -726,6 +726,101 @@ def _seed_bread_user():
     print(f"  - Set ratings for {rating_count} wines, drink windows for {window_count} wines")
     print(f"  - Added {len(on_order_wines)} wines on order")
 
+    # Apply transaction data (acquisition dates, consumption linkage)
+    _apply_transaction_data(user.id)
+
+
+def _apply_transaction_data(user_id):
+    """Apply scraped transaction data to set acquisition dates and link consumed wines."""
+    import json
+    import os
+    import re
+    from datetime import datetime as _dt
+
+    txn_path = os.path.join(os.path.dirname(__file__), 'wine_transactions.json')
+    if not os.path.exists(txn_path):
+        print("  - wine_transactions.json not found, skipping transaction data")
+        return
+
+    with open(txn_path) as f:
+        txns = json.load(f)
+
+    def parse_wine_name(full_name):
+        full_name = re.sub(r'\s*RATED\s*$', '', full_name.strip())
+        m = re.match(r'^(\d{4})\s+(.+?)\s*\(\d+(?:\.\d+)?(?:ml|l)\)\s*$', full_name)
+        if m:
+            return int(m.group(1)), m.group(2).strip()
+        m2 = re.match(r'^(\d{4})\s+(.+?)$', full_name)
+        if m2:
+            name = re.sub(r'\s*\(\d+(?:\.\d+)?(?:ml|l)\)\s*$', '', m2.group(2).strip()).strip()
+            return int(m2.group(1)), name
+        return None, re.sub(r'\s*\(\d+(?:\.\d+)?(?:ml|l)\)\s*$', '', full_name).strip()
+
+    def parse_date(ds):
+        if not ds:
+            return None
+        try:
+            return _dt.strptime(ds, '%B %d, %Y').date()
+        except ValueError:
+            return None
+
+    def norm(name):
+        return re.sub(r'\s+', ' ', (name or '').lower().strip())
+
+    cellar_wines = Wine.query.filter_by(user_id=user_id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
+    consumed_wines = Wine.query.filter_by(user_id=user_id, status='consumed').all()
+
+    cellar_lookup = {}
+    for w in cellar_wines:
+        cellar_lookup[(w.vintage, norm(w.name))] = w
+
+    matched = 0
+    for txn in txns:
+        if 'error' in txn:
+            continue
+        vintage, name = parse_wine_name(txn['wine_name'])
+        key = (vintage, norm(name))
+        wine = cellar_lookup.get(key)
+        if not wine:
+            for ckey, cw in cellar_lookup.items():
+                if ckey[0] == vintage and norm(name).startswith(ckey[1][:20]):
+                    wine = cw
+                    break
+        if not wine:
+            continue
+        matched += 1
+
+        acq_events = txn.get('acq_events', [])
+        if acq_events:
+            first_acq = acq_events[0]
+            acq_date = parse_date(first_acq.get('date'))
+            if acq_date:
+                wine.acq_date = acq_date
+            if first_acq.get('price'):
+                wine.price = first_acq['price']
+            if first_acq.get('from'):
+                wine.acq_from = first_acq['from'].split('\n')[0].strip()
+
+        wine.original_quantity = txn.get('acquired', wine.quantity)
+        if txn.get('in_cellar', 0) > 0:
+            wine.quantity = txn['in_cellar']
+
+    # Link consumed wines to cellar parents
+    linked = 0
+    for cw in consumed_wines:
+        if cw.parent_wine_id:
+            continue
+        key = (cw.vintage, norm(cw.name))
+        parent = cellar_lookup.get(key)
+        if parent:
+            cw.parent_wine_id = parent.id
+            linked += 1
+
+    db.session.flush()
+    print(f"  - Applied transaction data: {matched} matched, {linked} consumed wines linked")
+
 
 def _import_consumed_wines(user_id):
     """Import consumed wines from the scraped original site data."""

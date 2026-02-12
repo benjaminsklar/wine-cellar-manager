@@ -108,13 +108,13 @@ Personal Transactions:
 <tr>
 
 <td class="leftsmallfieldlabel">You have Acquired:</td>
-<td class="smallfieldvalue">{{ wine.quantity }}</td>
+<td class="smallfieldvalue">{{ total_acquired }}</td>
 <td></td>
 <td class="leftsmallfieldlabel">Consumed:</td>
-<td class="smallfieldvalue">0</td>
+<td class="smallfieldvalue">{{ total_consumed }}</td>
 <td></td>
 <td class="leftsmallfieldlabel">Actual Quantity in Cellar:</td>
-<td class="smallfieldvalue">{{ wine.quantity }}</td>
+<td class="smallfieldvalue">{{ actual_in_cellar }}</td>
  
 <td></td>
 <td colspan="8" class="smallfieldvalue">(Click <i>Remove from Cellar</i> to consume)</td>
@@ -124,6 +124,7 @@ Personal Transactions:
 </td></tr>
 
 
+<!-- Acquisition event -->
 <tr><td class="smallfieldvalue" colspan="1">
 <span class="redsmalltext">
 <b>acquired:</b>
@@ -133,7 +134,7 @@ Personal Transactions:
 on {{ wine.acq_date.strftime('%B %d, %Y') }}
 {% endif %}
 
-, quantity {{ wine.quantity }}
+, quantity {{ total_acquired }}
 
 {% if wine.price %} at US${{ "%.2f"|format(wine.price) }}{% endif %}
 
@@ -171,6 +172,33 @@ From
 
 </td>
 </tr>
+
+<!-- Consumption events -->
+{% for consumed in consumed_copies %}
+<tr><td class="smallfieldvalue" colspan="1">
+<span class="redsmalltext">
+<b>consumed:</b>
+</span>
+
+{% if consumed.date_consumed %}
+on {{ consumed.date_consumed.strftime('%B %d, %Y') }}
+{% endif %}
+
+, quantity {{ consumed.quantity }}
+
+&nbsp;
+<span class="smalledit">
+<a href="{{ url_for('edit_wine', wine_id=consumed.id) }}">[Edit</a>
+-
+<a href="{{ url_for('delete_wine', wine_id=consumed.id) }}">Delete]</a></span>
+
+</td></tr>
+
+<tr>
+<td colspan="1">
+</td>
+</tr>
+{% endfor %}
 
 
 {% if tasting_notes %}

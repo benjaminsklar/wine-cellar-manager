@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+{% block title %}Remove from Cellar - ManageYourCellar.com{% endblock %}
+
+{% block content %}
+<table cellpadding="2" cellspacing="0" border="0" width="100%" height="100%">
+
+<tr><td colspan="4" class="title">
+{{ wine.vintage or 'NV' }}
+{{ wine.name }}
+({{ wine.size_ml or 750 }}ml)
+</td></tr>
+<tr><td colspan="4" class="titlepaddingbottom"></td></tr>
+
+<tr>
+<td width="10%" class="smallfieldlabel">Producer:</td>
+<td class="smallfieldvalue" colspan="3">
+{{ wine.producer }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Appellation:</td>
+<td class="smallfieldvalue" colspan="3">
+{{ wine.appellation or '' }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Varietal:</td>
+<td class="smallfieldvalue">
+{{ wine.varietals_display or '' }}
+</td>
+<td width="25%" class="smallfieldlabel">Type:</td>
+<td width="30%" class="smallfieldvalue">
+{{ wine.wine_type|lower }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Maturity:</td>
+<td class="smallfieldvalue">
+{{ wine.maturity_display or '' }}</td>
+
+<td class="smallfieldlabel">Rating:</td>
+<td class="smallfieldvalue">
+{{ wine.rating_text }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Est. Price:</td>
+<td class="smallfieldvalue" colspan="3">
+{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+</tr>
+
+
+<form name="eventForm" method="POST" action="{{ url_for('consume_wine', wine_id=wine.id) }}">
+
+<tr><td colspan="4" class="titlepaddingtop"></td></tr>
+<tr><td colspan="4" class="title">
+Removal 
+
+Information:
+
+
+</td></tr>
+<tr><td colspan="4" class="titlepaddingbottom"></td></tr>
+
+<tr>
+<td class="smallfieldlabel">Date:</td>
+<td colspan="3">
+<input type="text" name="year" maxlength="4" size="4" value="{{ today.year }}">/
+<input type="text" name="month" maxlength="2" size="2" value="{{ '%02d'|format(today.month) }}">/
+<input type="text" name="day" maxlength="2" size="2" value="{{ '%02d'|format(today.day) }}">
+</td>
+</tr>
+
+
+<tr><td class="smallfieldlabel" nowrap>Bottle Vintage:</td>
+<td class="smallfieldvalue"><input type="text" name="bottleVintage" maxlength="10" size="6" value="{{ wine.vintage or '' }}"></td></tr>
+<tr><td class="smallfieldlabel" nowrap>Bottle Size (ml):</td>
+<td class="smallfieldvalue"><input type="text" name="bottleSize" maxlength="10" size="6" value="{{ wine.size_ml or 750 }}"></td></tr>
+
+
+<tr>
+<td class="smallfieldlabel">Quantity:</td>
+<td class="smallfieldvalue" colspan="3"><input type="text" name="quantity" maxlength="20" size="10" value="1"> (blank if this is not an acquisition)</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel" nowrap>
+Gave/Sold To:</td>
+<td colspan="3" class="leftsmallfieldlabel">
+<input type="text" name="otherPartyName" maxlength="75" size="28" value="">
+For <input type="text" name="price" maxlength="20" size="10" value="0">
+</td>
+</tr>
+<tr><td class="smallfieldlabel">Or Consumed:</td>
+<td colspan="3" class="smallfieldvalue"><input type="checkbox" name="isConsumed" value="on" checked>
+</td></tr>
+
+
+<tr><td class="smallfieldlabel" nowrap>Label URL:</td>
+<td class="smallfieldvalue"><input type="text" name="labelUrl" maxlength="150" size="40" value=""> (URL to wine label image)</td></tr>
+
+
+<tr><td colspan="4" class="titlepaddingtop"></td></tr>
+<tr><td colspan="4" class="title">
+Additional Consumption Information:</td></tr>
+<tr><td colspan="4" class="titlepaddingbottom"></td></tr>
+
+
+<tr>
+<td class="smallfieldlabel">Occasion:</td>
+<td colspan="3"><input type="text" name="occasion" maxlength="70" size="40" value=""></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Meal:</td>
+<td colspan="3"><input type="text" name="meal" maxlength="70" size="40" value=""></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Participants:</td>
+<td colspan="3"><input type="text" name="participants" maxlength="70" size="40" value=""></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Recommended Food Pairing:</td>
+<td colspan="3"><input type="text" name="foodPairing" maxlength="70" size="40" value=""></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Sight:</td>
+<td colspan="3" class="smallfieldvalue">
+<select name="color"><option value="">select color</option>
+<option value="0">dark</option>
+<option value="1">deep</option>
+<option value="2">bright</option>
+<option value="3">pale</option>
+<option value="4">evolved</option>
+<option value="5">cloudy</option></select>
+</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Smell:</td>
+<td colspan="1" class="smallfieldvalue">
+<select name="nose"><option value="">select nose</option>
+<option value="0">intense</option>
+<option value="1">complex</option>
+<option value="2">fragrant</option>
+<option value="3">discreet</option>
+<option value="4">closed</option>
+<option value="5">corky</option></select>
+</td>
+<td colspan="1" class="smallfieldvalue">
+<select name="multipleAromas" multiple size="3"><option value="">select (multiple) aromas</option>
+<option value="0">mineral</option>
+<option value="1">buttery</option>
+<option value="2">nutty</option>
+<option value="3">floral</option>
+<option value="4">herbal</option>
+<option value="5">spicy</option>
+<option value="6">woody</option>
+<option value="7">sweet</option>
+<option value="8">citrus fruit</option>
+<option value="9">tropical fruit</option>
+<option value="10">tree fruit</option>
+<option value="11">red berry</option>
+<option value="12">black berry</option>
+<option value="13">dried fruit</option></select>
+</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Taste:</td>
+<td colspan="1" class="smallfieldvalue">
+<select name="acidity"><option value="">select acidity</option>
+<option value="0">green</option>
+<option value="1">crisp</option>
+<option value="2">lively</option>
+<option value="3">supple</option>
+<option value="4">flat</option></select>
+</td>
+<td colspan="1" class="smallfieldvalue">
+<select name="sweetness"><option value="">select sweetness</option>
+<option value="0">dry</option>
+<option value="1">medium dry</option>
+<option value="2">sweet</option></select>
+</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel"></td>
+<td colspan="1" class="smallfieldvalue">
+<select name="body"><option value="">select body</option>
+<option value="0">tannic</option>
+<option value="1">alcoholic</option>
+<option value="2">full-bodied</option>
+<option value="3">firm</option>
+<option value="4">medium-bodied</option>
+<option value="5">light-bodied</option>
+<option value="6">thin</option></select>
+</td>
+<td colspan="1" class="smallfieldvalue">
+<select name="finish"><option value="">select finish</option>
+<option value="0">short</option>
+<option value="1">medium</option>
+<option value="2">persistent</option>
+<option value="3">very persistent</option></select>
+</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Overall:</td>
+<td colspan="3" class="smallfieldvalue">
+<select name="overall"><option value="">select overall impression</option>
+<option value="0">well balanced</option>
+<option value="1">elegant</option>
+<option value="2">rich</option>
+<option value="3">bold</option>
+<option value="8">pleasant</option>
+<option value="4">easy</option>
+<option value="5">weak</option>
+<option value="7">slighly unbalanced</option>
+<option value="6">unbalanced</option></select>
+</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Rating:</td>
+<td colspan="3" class="smallfieldvalue">
+
+<select name="starRating"><option value="">select rating</option>
+<option value="5 stars">5 stars</option>
+<option value="4.5 stars">4.5 stars</option>
+<option value="4 stars">4 stars</option>
+<option value="3.5 stars">3.5 stars</option>
+<option value="3 stars">3 stars</option>
+<option value="2.5 stars">2.5 stars</option>
+<option value="2 stars">2 stars</option>
+<option value="1.5 stars">1.5 stars</option>
+<option value="1 star">1 star</option></select>
+
+or <input type="text" name="pointRating" maxlength="7" size="5" value=""> points
+</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Best:</td>
+<td class="smallfieldvalue" colspan="3">
+<input type="checkbox" name="drinkNow" value="on">Now or
+<span class="redsmalltext">From:</span> 
+<input type="text" name="fromYear" maxlength="4" size="4" value="">
+<span class="redsmalltext">Through:</span> 
+<input type="text" name="toYear" maxlength="4" size="4" value="">
+</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel" valign="top">
+
+Description:
+
+</td>
+<td colspan="3"><textarea name="description" cols="45" rows="6"></textarea></td>
+</tr>
+
+
+<tr><td colspan="4"></td></tr>
+
+<tr>
+<td colspan="4">
+
+<input type="submit" name="submitAction" value="Save">
+
+
+<input type="submit" name="submitAction" value="Cancel">
+
+</td>
+</tr>
+
+</form>
+
+</table>
+{% endblock %}

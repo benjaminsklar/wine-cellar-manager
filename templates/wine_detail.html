@@ -166,9 +166,7 @@ From
 <td colspan="1">
 
 {% if wine.status == 'cellar' %}
-<form method="POST" action="{{ url_for('consume_wine', wine_id=wine.id) }}" style="display:inline;" onsubmit="return confirm('Mark a bottle as consumed?')">
-<input type="submit" name="submitAction" value="Remove from Cellar" title="Consume this wine">
-</form>
+<input type="submit" name="submitAction" value="Remove from Cellar" title="Consume this wine" onclick="window.location='{{ url_for('consume_wine', wine_id=wine.id) }}'; return false;">
 {% endif %}
 
 <input type="submit" name="submitAction" value="Add a Valuation" title="Add a valuation to this wine for your overall cellar valuation">

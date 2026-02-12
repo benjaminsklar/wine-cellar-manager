@@ -308,15 +308,120 @@ def delete_wine(wine_id):
     return redirect(url_for('cellar'))
 
 
-@app.route('/wine/<int:wine_id>/consume', methods=['POST'])
+@app.route('/wine/<int:wine_id>/consume', methods=['GET', 'POST'])
 @login_required
 def consume_wine(wine_id):
     wine = Wine.query.get_or_404(wine_id)
     if wine.user_id != current_user.id:
         flash('Access denied.', 'danger')
         return redirect(url_for('cellar'))
-    if wine.quantity > 1:
-        wine.quantity -= 1
+
+    if request.method == 'GET':
+        # Show the Remove from Cellar form (matching original site's flow)
+        return render_template('consume_form.html', wine=wine, today=date.today())
+
+    # POST: process the consumption form
+    submit_action = request.form.get('submitAction', '')
+    if submit_action == 'Cancel':
+        return redirect(url_for('wine_detail', wine_id=wine.id))
+
+    # Parse consumption date
+    try:
+        year = int(request.form.get('year', date.today().year))
+        month = int(request.form.get('month', date.today().month))
+        day = int(request.form.get('day', date.today().day))
+        consume_date = date(year, month, day)
+    except (ValueError, TypeError):
+        consume_date = date.today()
+
+    # Parse quantity
+    try:
+        qty = int(request.form.get('quantity', 1))
+    except (ValueError, TypeError):
+        qty = 1
+    qty = min(qty, wine.quantity)  # Can't consume more than available
+
+    # Build tasting note description from form fields
+    note_parts = []
+    occasion = request.form.get('occasion', '').strip()
+    meal = request.form.get('meal', '').strip()
+    participants = request.form.get('participants', '').strip()
+    food_pairing = request.form.get('foodPairing', '').strip()
+    description = request.form.get('description', '').strip()
+
+    if occasion:
+        note_parts.append(f'Occasion: {occasion}')
+    if meal:
+        note_parts.append(f'Meal: {meal}')
+    if participants:
+        note_parts.append(f'Participants: {participants}')
+    if food_pairing:
+        note_parts.append(f'Food Pairing: {food_pairing}')
+    if description:
+        note_parts.append(description)
+
+    # Parse tasting descriptors
+    color_map = {
+        '0': 'dark', '1': 'deep', '2': 'bright', '3': 'pale', '4': 'evolved', '5': 'cloudy'
+    }
+    nose_map = {
+        '0': 'intense', '1': 'complex', '2': 'fragrant', '3': 'discreet', '4': 'closed', '5': 'corky'
+    }
+    aroma_map = {
+        '0': 'mineral', '1': 'buttery', '2': 'nutty', '3': 'floral', '4': 'herbal',
+        '5': 'spicy', '6': 'woody', '7': 'sweet', '8': 'citrus fruit', '9': 'tropical fruit',
+        '10': 'tree fruit', '11': 'red berry', '12': 'black berry', '13': 'dried fruit'
+    }
+    acidity_map = {'0': 'green', '1': 'crisp', '2': 'lively', '3': 'supple', '4': 'flat'}
+    sweetness_map = {'0': 'dry', '1': 'medium dry', '2': 'sweet'}
+    body_map = {
+        '0': 'tannic', '1': 'alcoholic', '2': 'full-bodied', '3': 'firm',
+        '4': 'medium-bodied', '5': 'light-bodied', '6': 'thin'
+    }
+    finish_map = {'0': 'short', '1': 'medium', '2': 'persistent', '3': 'very persistent'}
+    overall_map = {
+        '0': 'well balanced', '1': 'elegant', '2': 'rich', '3': 'bold',
+        '8': 'pleasant', '4': 'easy', '5': 'weak', '7': 'slightly unbalanced', '6': 'unbalanced'
+    }
+
+    appearance = color_map.get(request.form.get('color', ''), '')
+    nose_val = nose_map.get(request.form.get('nose', ''), '')
+    aromas = request.form.getlist('multipleAromas')
+    aroma_text = ', '.join(aroma_map.get(a, '') for a in aromas if a and a in aroma_map)
+    nose_text = '; '.join(filter(None, [nose_val, aroma_text]))
+
+    acidity = acidity_map.get(request.form.get('acidity', ''), '')
+    sweetness = sweetness_map.get(request.form.get('sweetness', ''), '')
+    body = body_map.get(request.form.get('body', ''), '')
+    finish = finish_map.get(request.form.get('finish', ''), '')
+    palate_text = '; '.join(filter(None, [acidity, sweetness, body, finish]))
+
+    overall_impression = overall_map.get(request.form.get('overall', ''), '')
+
+    # Parse rating
+    score = None
+    star_rating = request.form.get('starRating', '')
+    point_rating = request.form.get('pointRating', '').strip()
+    if point_rating:
+        try:
+            score = int(float(point_rating))
+        except ValueError:
+            pass
+    elif star_rating:
+        # Convert star rating to 100-point scale
+        import re
+        star_match = re.match(r'([\d.]+)\s*stars?', star_rating)
+        if star_match:
+            score = int(float(star_match.group(1)) * 20)
+
+    # Parse drinking window
+    from_year = request.form.get('fromYear', '').strip()
+    to_year = request.form.get('toYear', '').strip()
+    drink_now = request.form.get('drinkNow', '')
+
+    # Create consumed wine copy / update original
+    if wine.quantity > qty:
+        wine.quantity -= qty
         # Create a consumed copy
         consumed = Wine(
             user_id=current_user.id,
@@ -326,19 +431,46 @@ def consume_wine(wine_id):
             varietal3=wine.varietal3, varietal4=wine.varietal4,
             size_ml=wine.size_ml, alcohol_pct=wine.alcohol_pct,
             description=wine.description,
-            price=wine.price, quantity=1,
+            price=wine.price, quantity=qty,
             acq_from=wine.acq_from, stored=wine.stored,
-            status='consumed', rating=wine.rating,
-            date_consumed=date.today(),
-            drink_from=wine.drink_from, drink_to=wine.drink_to
+            status='consumed', rating=score if score else wine.rating,
+            date_consumed=consume_date,
+            drink_from=int(from_year) if from_year else wine.drink_from,
+            drink_to=int(to_year) if to_year else wine.drink_to
         )
         db.session.add(consumed)
+        db.session.flush()
+        consumed_wine_id = consumed.id
     else:
         wine.status = 'consumed'
-        wine.date_consumed = date.today()
+        wine.date_consumed = consume_date
+        wine.quantity = qty
+        if score:
+            wine.rating = score
+        if from_year:
+            wine.drink_from = int(from_year)
+        if to_year:
+            wine.drink_to = int(to_year)
+        consumed_wine_id = wine.id
+
+    # Create tasting note if any tasting data was provided
+    overall_text = '; '.join(filter(None, [overall_impression] + note_parts))
+    if any([appearance, nose_text, palate_text, overall_text, score]):
+        note = TastingNote(
+            wine_id=consumed_wine_id,
+            user_id=current_user.id,
+            tasting_date=consume_date,
+            appearance=appearance or None,
+            nose=nose_text or None,
+            palate=palate_text or None,
+            overall=overall_text or None,
+            score=score
+        )
+        db.session.add(note)
+
     db.session.commit()
     flash(f'Enjoyed a bottle of {wine.name}!', 'success')
-    return redirect(url_for('cellar'))
+    return redirect(url_for('wine_detail', wine_id=wine_id))
 
 
 # ─── Tasting Notes ────────────────────────────────────────────────

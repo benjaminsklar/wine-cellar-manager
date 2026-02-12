@@ -2,86 +2,75 @@
 {% block title %}Advanced Search - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>Advanced Search: Query Wine</h1>
-</div>
+<div class="section-title" style="font-size:13px;"><b>Advanced Search: Query Wine</b></div>
 
-<div class="panel">
-    <div class="panel-header">Search Criteria</div>
-    <div class="panel-body">
-        <form method="GET" action="{{ url_for('search') }}">
-            <table class="detail-table">
-                <tr>
-                    <td class="label-cell">Wine Finder:</td>
-                    <td>{{ form.query(class="form-control", placeholder="Enter keywords (producer, region, varietal, vintage)") }}</td>
-                </tr>
-                <tr>
-                    <td class="label-cell">Type/Color:</td>
-                    <td>{{ form.wine_type(class="form-control", style="width:200px;") }}</td>
-                </tr>
-                <tr>
-                    <td class="label-cell">Varietal:</td>
-                    <td>{{ form.varietal(class="form-control", style="width:200px;", placeholder="Any Varietal") }}</td>
-                </tr>
-                <tr>
-                    <td class="label-cell">Appellation:</td>
-                    <td>{{ form.appellation(class="form-control", style="width:200px;", placeholder="Any Appellation") }}</td>
-                </tr>
-                <tr>
-                    <td class="label-cell">Sorted by:</td>
-                    <td>{{ form.sort_by(class="form-control", style="width:200px;") }}</td>
-                </tr>
-                <tr>
-                    <td class="label-cell"></td>
-                    <td><button type="submit" class="btn btn-primary">Search</button></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-</div>
+<form method="GET" action="{{ url_for('search') }}">
+<table class="detail-table" style="margin:4px 0;">
+    <tr>
+        <td class="label-cell">Wine Finder:</td>
+        <td>{{ form.query(class="form-control", style="width:300px;", placeholder="Enter keywords (producer, region, varietal, vintage)") }}</td>
+    </tr>
+    <tr>
+        <td class="label-cell">Sorted by:</td>
+        <td>
+            {{ form.sort_by(class="form-control", style="width:auto;display:inline;") }}
+            {{ form.sort_order(class="form-control", style="width:auto;display:inline;") }}
+        </td>
+    </tr>
+    <tr>
+        <td class="label-cell">Type/Color:</td>
+        <td>{{ form.wine_type(class="form-control", style="width:auto;") }}</td>
+    </tr>
+    <tr>
+        <td class="label-cell">Varietal:</td>
+        <td>{{ form.varietal(class="form-control", style="width:200px;", placeholder="Any Varietal") }}</td>
+    </tr>
+    <tr>
+        <td class="label-cell">Appellation:</td>
+        <td>{{ form.appellation(class="form-control", style="width:200px;", placeholder="Any Appellation") }}</td>
+    </tr>
+    <tr>
+        <td class="label-cell"></td>
+        <td><button type="submit" class="btn btn-secondary">Search</button></td>
+    </tr>
+</table>
+</form>
 
 {% if wines %}
-<div class="panel">
-    <div class="panel-header">Search Results: {{ wines|length }} wine{{ 's' if wines|length != 1 }} found</div>
-    <div class="panel-body" style="padding:0;">
-        <table class="wine-table">
-            <thead>
-                <tr>
-                    <th>Vintage</th>
-                    <th style="text-align:left;">Name</th>
-                    <th style="text-align:left;">Producer</th>
-                    <th style="text-align:left;">Appellation</th>
-                    <th style="text-align:left;">Varietal</th>
-                    <th>Type/Color</th>
-                    <th>Qty</th>
-                    <th>Rating</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for wine in wines %}
-                <tr>
-                    <td style="text-align:center;">{{ wine.vintage or '' }}</td>
-                    <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}{% if wine.size_ml and wine.size_ml != 750 %} ({{ wine.size_display }}){% endif %}</a></td>
-                    <td>{{ wine.producer }}</td>
-                    <td>{{ wine.appellation or '' }}</td>
-                    <td>{{ wine.varietals_display or '' }}</td>
-                    <td style="text-align:center;">{{ wine.wine_type }}</td>
-                    <td style="text-align:center;">{{ wine.quantity }}</td>
-                    <td style="text-align:center;">{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% endif %}</td>
-                    <td style="text-align:right;">{% if wine.price %}${{ "%.2f"|format(wine.price) }}{% endif %}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
+<div class="section-title" style="margin-top:6px;"><b>Search Results: {{ wines|length }} wine{{ 's' if wines|length != 1 }} found</b></div>
+
+<table class="wine-table">
+    <thead>
+        <tr>
+            <th style="text-align:left;">Name</th>
+            <th style="text-align:left;">Producer</th>
+            <th style="text-align:left;">Appellation</th>
+            <th style="text-align:left;">Varietal</th>
+            <th>Maturity</th>
+            <th>Rating</th>
+            <th style="text-align:right;">Est. Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wine in wines %}
+        <tr>
+            <td>
+                {% if wine.vintage %}<span style="font-weight:bold;">{{ wine.vintage }}</span><br>{% endif %}
+                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>
+                {% if wine.has_rating %}<br><span style="font-size:9px;vertical-align:super;color:#990000;">RATED</span>{% endif %}
+            </td>
+            <td>{{ wine.producer }}</td>
+            <td>{{ wine.appellation or '' }}</td>
+            <td>{{ wine.varietals_display or '' }}</td>
+            <td style="text-align:center;">{{ wine.maturity_display or '' }}</td>
+            <td style="text-align:center;">{{ wine.rating_text }}</td>
+            <td style="text-align:right;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% elif form.query.data %}
-<div class="panel">
-    <div class="panel-header">Advanced Search</div>
-    <div class="panel-body">
-        No wine was found for your search. Please try a different search below.
-    </div>
-</div>
+<div class="section-title" style="margin-top:6px;"><b>Advanced Search</b></div>
+<p style="font-size:11px;padding:4px;">No wine was found for your search. Please try a different search below.</p>
 {% endif %}
 {% endblock %}

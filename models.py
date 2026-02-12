@@ -111,6 +111,73 @@ class Wine(db.Model):
             return f"{self.size_ml / 1000:.1f}L"
         return f"{self.size_ml}ml"
 
+    @property
+    def maturity_display(self):
+        """Return maturity text matching ManageYourCellar format."""
+        current_year = date.today().year
+        if not self.drink_from and not self.drink_to:
+            return ''
+        if self.drink_to and current_year > self.drink_to:
+            return 'Mature'
+        if self.drink_from and self.drink_to:
+            if current_year < self.drink_from:
+                return 'Hold'
+            elif current_year >= self.drink_from and current_year <= self.drink_to:
+                mid = (self.drink_from + self.drink_to) / 2
+                if current_year < mid:
+                    return 'Hold/Drink'
+                else:
+                    return 'Drink'
+            else:
+                return 'Drink/Mature'
+        if self.drink_from:
+            if current_year < self.drink_from:
+                return 'Hold'
+            elif current_year >= self.drink_from:
+                return 'Drink'
+        if self.drink_to:
+            if current_year <= self.drink_to:
+                return 'Drink'
+            else:
+                return 'Mature'
+        return ''
+
+    @property
+    def rating_text(self):
+        """Convert numeric rating to text matching ManageYourCellar format."""
+        if not self.rating:
+            return 'n/a'
+        if self.rating >= 96:
+            return 'Outstanding'
+        elif self.rating >= 90:
+            return 'Excellent'
+        elif self.rating >= 85:
+            return 'Very Good'
+        elif self.rating >= 80:
+            return 'Good/Very Good'
+        elif self.rating >= 75:
+            return 'Good'
+        elif self.rating >= 70:
+            return 'Fair'
+        else:
+            return 'Poor'
+
+    @property
+    def name_display(self):
+        """Return name in ManageYourCellar format: vintage\\nName (size)"""
+        parts = []
+        if self.vintage:
+            parts.append(str(self.vintage))
+        name_with_size = self.name
+        if self.size_ml:
+            name_with_size += f' ({self.size_ml}ml)'
+        parts.append(name_with_size)
+        return parts
+
+    @property
+    def has_rating(self):
+        return self.rating is not None
+
     def __repr__(self):
         return f'<Wine {self.vintage} {self.name}>'
 

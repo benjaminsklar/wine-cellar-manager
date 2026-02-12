@@ -2,52 +2,45 @@
 {% block title %}Ready to Drink - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>Ready to Drink</h1>
-</div>
-<p style="font-size:11px;color:#707070;margin-bottom:4px;">Wines in their optimal drinking window ({{ current_year }}).</p>
-
-<div class="tabs">
-    <a href="{{ url_for('cellar', status='cellar') }}" class="tab">In Cellar</a>
-    <a href="{{ url_for('ready_to_drink') }}" class="tab active">Ready to Drink</a>
-    <a href="{{ url_for('cellar', status='on_order') }}" class="tab">On Order</a>
-    <a href="{{ url_for('cellar', status='consumed') }}" class="tab">Consumed</a>
-    <a href="{{ url_for('cellar', status='wishlist') }}" class="tab">Wish List</a>
-</div>
+<div class="section-title" style="font-size:13px;"><b>Ready to Drink</b></div>
+<p style="font-size:11px;color:#707070;margin:2px 0 4px;">Wines in their optimal drinking window ({{ current_year }}).</p>
 
 {% if wines %}
-<div class="info-box"><strong>{{ wines|length }}</strong> wine{{ 's' if wines|length != 1 }} ready to enjoy now.</div>
+<div style="font-size:11px;padding:2px 0;">{{ wines|length }} wine{{ 's' if wines|length != 1 }} ready to enjoy now.</div>
+
 <table class="wine-table">
     <thead>
         <tr>
-            <th>Vintage</th>
             <th style="text-align:left;">Name</th>
             <th style="text-align:left;">Producer</th>
             <th style="text-align:left;">Appellation</th>
             <th style="text-align:left;">Varietal</th>
-            <th>Type/Color</th>
-            <th>Qty</th>
+            <th>Maturity</th>
             <th>Rating</th>
-            <th>Window</th>
+            <th>Drink Window</th>
+            <th style="text-align:right;">Est. Price</th>
         </tr>
     </thead>
     <tbody>
         {% for wine in wines %}
         <tr>
-            <td style="text-align:center;">{{ wine.vintage or '' }}</td>
-            <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a></td>
+            <td>
+                {% if wine.vintage %}<span style="font-weight:bold;">{{ wine.vintage }}</span><br>{% endif %}
+                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>
+                {% if wine.has_rating %}<br><span style="font-size:9px;vertical-align:super;color:#990000;">RATED</span>{% endif %}
+            </td>
             <td>{{ wine.producer }}</td>
             <td>{{ wine.appellation or '' }}</td>
             <td>{{ wine.varietals_display or '' }}</td>
-            <td style="text-align:center;">{{ wine.wine_type }}</td>
-            <td style="text-align:center;">{{ wine.quantity }}</td>
-            <td style="text-align:center;">{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% endif %}</td>
-            <td style="text-align:center;"><span class="wine-tag ready">{{ wine.drinking_window_display }}</span></td>
+            <td style="text-align:center;">{{ wine.maturity_display or 'Drink' }}</td>
+            <td style="text-align:center;">{{ wine.rating_text }}</td>
+            <td style="text-align:center;">{{ wine.drinking_window_display }}</td>
+            <td style="text-align:right;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 {% else %}
-<div class="empty-state"><h3>No wines ready right now</h3><p>Set drinking windows when adding wines to see them here.</p></div>
+<div class="empty-state"><p>No wines ready right now. Set drinking windows when adding wines to see them here.</p></div>
 {% endif %}
 {% endblock %}

@@ -1,16 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Tasting Notes - WineCellarManager.com{% endblock %}
+{% block title %}Tasting Notes - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<h1 style="font-size:16px;">My Tasting Notes</h1>
+<div class="section-title" style="font-size:13px;"><b>My Tasting Notes</b></div>
 
 {% if notes %}
 {% for note in notes %}
 <div class="tasting-card">
     <div class="tasting-header">
         <div>
-            <a href="{{ url_for('wine_detail', wine_id=note.wine.id) }}" class="wine-link">{{ note.wine.vintage or 'NV' }} {{ note.wine.name }}</a>
-            <br><span style="color:#888;font-size:9px;">{{ note.wine.producer }} &middot; {{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else '' }}</span>
+            {% if note.wine.vintage %}<b>{{ note.wine.vintage }}</b> {% endif %}
+            <a href="{{ url_for('wine_detail', wine_id=note.wine.id) }}" class="wine-link">{{ note.wine.name }}</a>
+            <br><span style="color:#707070;font-size:9px;">{{ note.wine.producer }} &middot; {{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else '' }}</span>
         </div>
         {% if note.score %}<span class="tasting-score">{{ note.score }} pts</span>{% endif %}
     </div>
@@ -20,6 +21,6 @@
 </div>
 {% endfor %}
 {% else %}
-<div class="empty-state"><h3>No tasting notes yet</h3><p>Record your first tasting note from any wine's detail page.</p></div>
+<div class="empty-state"><p>No tasting notes yet. Record your first tasting note from any wine's detail page.</p></div>
 {% endif %}
 {% endblock %}

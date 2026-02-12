@@ -103,3 +103,6 @@ class SearchForm(FlaskForm):
         ('wine_type', 'Type/Color'), ('rating', 'Rating'),
         ('price', 'Price'), ('date_added', 'Date Added')
     ], default='name', validators=[Optional()])
+    sort_order = SelectField('Order', choices=[
+        ('asc', 'Ascending'), ('desc', 'Descending')
+    ], default='asc', validators=[Optional()])

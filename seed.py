@@ -590,6 +590,43 @@ def _seed_bread_user():
     db.session.commit()
     print(f"  - Created 'bread' user with {wine_count} wines and {note_count} tasting notes")
 
+    # Propagate tasting note scores to wine ratings
+    all_wines = Wine.query.filter_by(user_id=user.id).all()
+    rating_count = 0
+    for w in all_wines:
+        notes_list = TastingNote.query.filter_by(wine_id=w.id).all()
+        scores = [n.score for n in notes_list if n.score]
+        if scores:
+            w.rating = max(scores)
+            rating_count += 1
+
+    # Compute drink windows based on wine type and vintage
+    from datetime import date as _date
+    window_count = 0
+    for w in all_wines:
+        if w.vintage and not w.drink_from and not w.drink_to:
+            v = w.vintage
+            wtype = (w.wine_type or '').lower()
+            if 'sparkling' in wtype:
+                w.drink_from, w.drink_to = v + 1, v + 10
+            elif 'dessert' in wtype or 'fortified' in wtype:
+                w.drink_from, w.drink_to = v + 2, v + 30
+            elif 'white' in wtype:
+                w.drink_from, w.drink_to = v + 1, v + 7
+            elif 'rosé' in wtype or 'rose' in wtype:
+                w.drink_from, w.drink_to = v + 1, v + 4
+            else:
+                if w.price and w.price > 50:
+                    w.drink_from, w.drink_to = v + 5, v + 20
+                elif w.price and w.price > 25:
+                    w.drink_from, w.drink_to = v + 3, v + 12
+                else:
+                    w.drink_from, w.drink_to = v + 2, v + 8
+            window_count += 1
+
+    db.session.commit()
+    print(f"  - Set ratings for {rating_count} wines, drink windows for {window_count} wines")
+
 
 def _add_note(wine_id, user_id, notes_text):
     """Create a TastingNote from ManageYourCellar CSV notes format."""

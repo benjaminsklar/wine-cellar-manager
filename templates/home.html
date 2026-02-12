@@ -3,7 +3,7 @@
 
 {% block layout %}
 <div class="main-layout">
-    <!-- Sidebar / Navbar (gray #909090) -->
+    <!-- Sidebar (#909090 gray) matching original home page -->
     <div class="sidebar">
         <div class="sb-title">Manage My Cellar:</div>
         <div class="sb-links">
@@ -13,39 +13,47 @@
             <a href="{{ url_for('cellar', status='on_order') }}">Wines on Order</a>
             <a href="{{ url_for('cellar', status='consumed') }}">Wines Consumed</a>
             <a href="{{ url_for('cellar', status='wishlist') }}">Wish List</a>
-            <a href="{{ url_for('stats') }}">Cellar Statistics</a>
-            <a href="{{ url_for('best_values') }}">Best Wine Values</a>
-            <a href="{{ url_for('add_wine') }}">Add Wine</a>
-            <a href="{{ url_for('quick_entry') }}">Quick Entry</a>
-            <a href="{{ url_for('cellar_import') }}">Cellar Import</a>
-            <a href="{{ url_for('export_cellar') }}">Cellar Export</a>
             {% else %}
             <a href="{{ url_for('login') }}">Wines in Cellar</a>
             <a href="{{ url_for('login') }}">Ready to Drink</a>
             <a href="{{ url_for('login') }}">Wines on Order</a>
             <a href="{{ url_for('login') }}">Wines Consumed</a>
             <a href="{{ url_for('login') }}">Wish List</a>
+            {% endif %}
+        </div>
+        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('stats') }}">Cellar Statistics</a>
+            <a href="{{ url_for('best_values') }}">Best Wine Values</a>
+            {% else %}
             <a href="{{ url_for('login') }}">Cellar Statistics</a>
             <a href="{{ url_for('login') }}">Best Wine Values</a>
+            {% endif %}
+        </div>
+        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('add_wine') }}">Add Wine</a>
+            <a href="{{ url_for('quick_entry') }}">Quick Entry</a>
+            <a href="{{ url_for('cellar_import') }}">Cellar Import</a>
+            <a href="{{ url_for('export_cellar') }}">Cellar Export</a>
+            {% else %}
             <a href="{{ url_for('login') }}">Add Wine</a>
             <a href="{{ url_for('login') }}">Quick Entry</a>
             <a href="{{ url_for('login') }}">Cellar Import</a>
             <a href="{{ url_for('login') }}">Cellar Export</a>
             {% endif %}
         </div>
-
-        <div class="sb-title" style="margin-top:6px;">Tasting Tools:</div>
-        <div class="sb-links">
+        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
             {% if current_user.is_authenticated %}
             <a href="{{ url_for('tasting_list') }}">Tasting Notes</a>
             {% else %}
             <a href="{{ url_for('login') }}">Tasting Notes</a>
             {% endif %}
         </div>
-
-        <div class="sb-title" style="margin-top:6px;">About:</div>
+        <div class="sb-title" style="margin-top:4px;">About Us</div>
         <div class="sb-links">
             <a href="{{ url_for('faq') }}">FAQ</a>
+            <a href="{{ url_for('home') }}">Site Map</a>
         </div>
     </div>
 
@@ -93,7 +101,7 @@
                 your inventory, know which wine to drink at the right time, and much more.</p>
                 <p class="desc-text">Adding wines to your collection is just a couple of clicks. And with all
                 the wine knowledge already present in the software, there will be little typing that you will
-                need to do. <a href="{{ url_for('stats') }}">Cellar Statistics</a> will give you a useful one page
+                need to do. Cellar Statistics will give you a useful one page
                 overview of your cellar and even compute the value of your cellar and its ideal size based on
                 your annual consumption.</p>
                 <p class="desc-text">Just <a href="{{ url_for('register') }}">register</a> now and start

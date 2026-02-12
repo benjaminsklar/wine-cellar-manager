@@ -156,18 +156,23 @@ def cellar():
 
     # Sorting
     sort_by = search_form.sort_by.data or 'name'
-    sort_map = {
+    sort_order = search_form.sort_order.data or 'asc'
+    sort_col_map = {
         'name': Wine.name,
-        'vintage': Wine.vintage.desc(),
+        'vintage': Wine.vintage,
         'producer': Wine.producer,
         'appellation': Wine.appellation,
         'varietal': Wine.varietal1,
         'wine_type': Wine.wine_type,
-        'rating': Wine.rating.desc(),
-        'price': Wine.price.desc(),
-        'date_added': Wine.date_added.desc(),
+        'rating': Wine.rating,
+        'price': Wine.price,
+        'date_added': Wine.date_added,
     }
-    query = query.order_by(sort_map.get(sort_by, Wine.name))
+    sort_col = sort_col_map.get(sort_by, Wine.name)
+    if sort_order == 'desc':
+        query = query.order_by(sort_col.desc())
+    else:
+        query = query.order_by(sort_col.asc())
 
     wines = query.all()
 

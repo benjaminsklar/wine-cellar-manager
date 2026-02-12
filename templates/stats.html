@@ -2,12 +2,12 @@
 {% block title %}Cellar Statistics - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<div class="page-header"><h1>Cellar Statistics</h1></div>
+<div class="section-title" style="font-size:13px;"><b>Cellar Statistics</b></div>
 
 <div class="stats-grid">
     <div class="stat-card"><div class="stat-value">{{ total_bottles }}</div><div class="stat-label">Bottles</div></div>
-    <div class="stat-card"><div class="stat-value">${{ "%.0f"|format(total_value) }}</div><div class="stat-label">Value</div></div>
-    <div class="stat-card"><div class="stat-value">${{ "%.0f"|format(avg_price) }}</div><div class="stat-label">Avg Price</div></div>
+    <div class="stat-card"><div class="stat-value">US${{ "%.0f"|format(total_value) }}</div><div class="stat-label">Value</div></div>
+    <div class="stat-card"><div class="stat-value">US${{ "%.0f"|format(avg_price) }}</div><div class="stat-label">Avg Price</div></div>
     <div class="stat-card"><div class="stat-value">{{ consumed_count }}</div><div class="stat-label">Consumed</div></div>
     <div class="stat-card"><div class="stat-value">{{ ready_count }}</div><div class="stat-label">Ready</div></div>
 </div>
@@ -33,8 +33,8 @@
 
 {% if top_rated %}
 <div class="panel mt-2"><div class="panel-header">Top Rated Wines</div><div class="panel-body" style="padding:0;">
-    <table class="wine-table"><thead><tr><th>#</th><th style="text-align:left;">Wine</th><th>Vintage</th><th style="text-align:left;">Varietal</th><th>Rating</th></tr></thead><tbody>
-    {% for wine in top_rated %}<tr><td style="text-align:center;">{{ loop.index }}</td><td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a><br><span style="color:#707070;font-size:9px;">{{ wine.producer }}</span></td><td style="text-align:center;">{{ wine.vintage or '' }}</td><td>{{ wine.varietals_display or '' }}</td><td style="text-align:center;"><span class="wine-tag rating">{{ wine.rating }}</span></td></tr>{% endfor %}
+    <table class="wine-table"><thead><tr><th>#</th><th style="text-align:left;">Wine</th><th style="text-align:left;">Varietal</th><th>Rating</th><th style="text-align:right;">Est. Price</th></tr></thead><tbody>
+    {% for wine in top_rated %}<tr><td style="text-align:center;">{{ loop.index }}</td><td>{% if wine.vintage %}<b>{{ wine.vintage }}</b><br>{% endif %}<a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a><br><span style="color:#707070;font-size:9px;">{{ wine.producer }}</span></td><td>{{ wine.varietals_display or '' }}</td><td style="text-align:center;">{{ wine.rating_text }}</td><td style="text-align:right;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td></tr>{% endfor %}
     </tbody></table>
 </div></div>
 {% endif %}

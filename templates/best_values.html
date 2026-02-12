@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %}Best Wine Values - WineCellarManager.com{% endblock %}
+{% block title %}Best Wine Values - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<h1 style="font-size:16px;">Best Wine Values</h1>
+<div class="section-title" style="font-size:13px;"><b>Best Wine Values</b></div>
 <p class="desc-text">Wines ranked by value score (rating relative to price). Higher value score = better deal.</p>
 
 {% if wines_with_value %}
@@ -10,11 +10,10 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Wine</th>
-            <th>Vintage</th>
-            <th>Producer</th>
-            <th>Type</th>
-            <th>Price</th>
+            <th style="text-align:left;">Name</th>
+            <th style="text-align:left;">Producer</th>
+            <th>Type/Color</th>
+            <th style="text-align:right;">Est. Price</th>
             <th>Rating</th>
             <th>Value Score</th>
         </tr>
@@ -22,22 +21,23 @@
     <tbody>
         {% for wine, score in wines_with_value %}
         <tr>
-            <td>{{ loop.index }}</td>
-            <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a></td>
-            <td>{{ wine.vintage or 'NV' }}</td>
+            <td style="text-align:center;">{{ loop.index }}</td>
+            <td>
+                {% if wine.vintage %}<b>{{ wine.vintage }}</b><br>{% endif %}
+                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>
+            </td>
             <td>{{ wine.producer }}</td>
-            <td>{{ wine.wine_type }}</td>
-            <td>${{ "%.0f"|format(wine.price) }}</td>
-            <td><span class="wine-tag rating">{{ wine.rating }}</span></td>
-            <td><b>{{ "%.1f"|format(score) }}</b></td>
+            <td style="text-align:center;">{{ wine.wine_type }}</td>
+            <td style="text-align:right;">US${{ "%.2f"|format(wine.price) }}</td>
+            <td style="text-align:center;">{{ wine.rating_text }}</td>
+            <td style="text-align:center;"><b>{{ "%.1f"|format(score) }}</b></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 {% else %}
 <div class="empty-state">
-    <h3>No rated wines with prices</h3>
-    <p>Add ratings and prices to your wines to see value rankings here.</p>
+    <p>No rated wines with prices. Add ratings and prices to your wines to see value rankings here.</p>
 </div>
 {% endif %}
 {% endblock %}

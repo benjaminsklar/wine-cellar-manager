@@ -185,7 +185,7 @@ def cellar():
 
     status_labels = {
         'cellar': f"Wines in {current_user.username}'s Cellar",
-        'consumed': 'Wines Consumed',
+        'consumed': 'Consumed Wines',
         'on_order': 'Wines on Order',
         'wishlist': 'Wish List'
     }

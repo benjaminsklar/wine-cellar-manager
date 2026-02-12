@@ -2,74 +2,92 @@
 {% block title %}{{ status_label }} - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<!-- Title row -->
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
-<tr class="header"><td class="title"><b>{{ status_label }}</b></td></tr>
-</table>
+
+<table cellpadding="2" cellspacing="0" width="100%" border="0" valign="top">
+
+<tr><td class="title" colspan="2">
+{{ status_label }}
+</td></tr>
+<tr><td class="titlepaddingbottom" colspan="2"></td></tr>
 
 <!-- Wine Finder / Filter bar matching original exactly -->
 <form method="GET" action="{{ url_for('cellar') }}">
 <input type="hidden" name="status" value="{{ status }}">
-<table cellpadding="2" cellspacing="0" border="0">
-<tbody>
+
+<tr><td class="mediumtext" colspan="2">
+ <input type="text" name="query" maxlength="100" size="50" value="{{ search_form.query.data or 'Wine Finder' }}" onfocus="javascript:if (event.target.value == 'Wine Finder') event.target.value = ''">
+</td>
+</tr>
+<tr><td colspan="2">
+<table cellpadding="2" cellspacing="1" border="0" valign="top">
 <tr>
-    <td class="smallfieldvalue" nowrap>Wine Finder</td>
+<td class="mediumtext">
+
+<select name="sort_by"><option value="">Sorted by</option>
+<option value="name"{% if search_form.sort_by.data == 'name' %} selected{% endif %}>Name</option>
+<option value="vintage"{% if search_form.sort_by.data == 'vintage' %} selected{% endif %}>Vintage</option>
+<option value="producer"{% if search_form.sort_by.data == 'producer' %} selected{% endif %}>Producer</option>
+<option value="appellation"{% if search_form.sort_by.data == 'appellation' %} selected{% endif %}>Appellation</option>
+<option value="varietal"{% if search_form.sort_by.data == 'varietal' %} selected{% endif %}>Varietal</option>
+<option value="wine_type"{% if search_form.sort_by.data == 'wine_type' %} selected{% endif %}>Type/Color</option>
+<option value="rating"{% if search_form.sort_by.data == 'rating' %} selected{% endif %}>Rating</option>
+<option value="price"{% if search_form.sort_by.data == 'price' %} selected{% endif %}>Price</option></select>
+
+</td>
+<td valign="bottom" align="left" nowrap rowspan="2">
+
+<select name="wine_type" size="4"><option value="">Any Type/Color</option>
+<option value="red"{% if search_form.wine_type.data == 'red' %} selected{% endif %}>red</option>
+<option value="sparkling red"{% if search_form.wine_type.data == 'sparkling red' %} selected{% endif %}>sparkling red</option>
+<option value="sweet red"{% if search_form.wine_type.data == 'sweet red' %} selected{% endif %}>sweet red</option>
+<option value="rose"{% if search_form.wine_type.data == 'rose' %} selected{% endif %}>rose</option>
+<option value="sparkling rose"{% if search_form.wine_type.data == 'sparkling rose' %} selected{% endif %}>sparkling rose</option>
+<option value="sweet rose"{% if search_form.wine_type.data == 'sweet rose' %} selected{% endif %}>sweet rose</option>
+<option value="white"{% if search_form.wine_type.data == 'white' %} selected{% endif %}>white</option>
+<option value="sparkling white"{% if search_form.wine_type.data == 'sparkling white' %} selected{% endif %}>sparkling white</option>
+<option value="sweet white"{% if search_form.wine_type.data == 'sweet white' %} selected{% endif %}>sweet white</option>
+<option value="fruit wine"{% if search_form.wine_type.data == 'fruit wine' %} selected{% endif %}>fruit wine</option>
+<option value="liqueur"{% if search_form.wine_type.data == 'liqueur' %} selected{% endif %}>liqueur</option>
+<option value="spirits"{% if search_form.wine_type.data == 'spirits' %} selected{% endif %}>spirits</option></select>
+
+<select name="varietal" size="4"><option value="">Any Varietal</option>
+</select>
+
+</td>
 </tr>
 <tr>
-    <td class="smallfieldvalue" nowrap>
-        {{ search_form.query(style="font-size:11px;width:200px;", placeholder="") }}
-    </td>
+<td class="mediumtext">
+<input type="submit" name="submitAction" value="Search">
+&nbsp;
+<input type="submit" name="submitAction" value="Search Cellar">
+
+</td>
 </tr>
-<tr>
-    <td class="smallfieldvalue" nowrap>
-        <span style="font-size:11px;">Sorted by</span>
-        {{ search_form.sort_by(style="font-size:11px;") }}
-        &nbsp;
-        {{ search_form.sort_order(style="font-size:11px;") }}
-        &nbsp;
-        <span style="font-size:11px;">Any Type/Color</span>
-        {{ search_form.wine_type(style="font-size:11px;") }}
-        &nbsp;
-        <span style="font-size:11px;">Any Varietal</span>
-        {{ search_form.varietal(style="font-size:11px;width:80px;", placeholder="") }}
-        &nbsp;
-        <span style="font-size:11px;">Any Region</span>
-        {{ search_form.appellation(style="font-size:11px;width:80px;", placeholder="") }}
-        &nbsp;
-        <span style="font-size:11px;">Any Vintage</span>
-        {{ search_form.min_vintage(style="font-size:11px;width:50px;", placeholder="") }}
-        &nbsp;
-        <input type="submit" value="Search">
-    </td>
-</tr>
-</tbody>
 </table>
+</td></tr>
 </form>
 
 <!-- Page info with Next/All pagination -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr>
-    <td class="smallfieldvalue">
-        {% if wines %}
-        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
-        {% endif %}
-    </td>
-    <td class="smallfieldvalue" style="text-align:right;">
-        <a href="#" style="font-size:10px;">Printable View</a>&nbsp;
-        <a href="#" style="font-size:10px;">Customize this view</a>
-    </td>
-</tr>
+<tr><td class="smallfieldvalue" colspan="2">
+{% if wines %}
+<b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
+&nbsp;&nbsp;&nbsp;
+<a href="#" style="font-size:10px;">Printable View</a>&nbsp;
+<a href="#" style="font-size:10px;">Customize this view</a>
+{% endif %}
+</td></tr>
+
 </table>
 
 {% if wines %}
-<!-- Wine table matching original -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<!-- Wine table matching original with thead/tbody for client-side sorting -->
+<table cellpadding="2" cellspacing="0" border="0" width="100%" onclick="sortColumnWithHold(event)">
 <thead>
-<tr class="subhead" onclick="sortColumnWithHold(event)">
-    <td type="String" class="subhead" style="text-align:left;">Name</td>
-    <td type="String" class="subhead" style="text-align:left;">Producer</td>
-    <td type="String" class="subhead" style="text-align:left;">Appellation</td>
-    <td type="String" class="subhead" style="text-align:left;">Varietal</td>
+<tr class="subhead">
+    <td type="String" class="subhead">Name</td>
+    <td type="String" class="subhead">Producer</td>
+    <td type="String" class="subhead">Appellation</td>
+    <td type="String" class="subhead">Varietal</td>
     <td type="Number" class="subhead">Qty</td>
     <td type="String" class="subhead">Maturity</td>
     <td type="Number" class="subhead" nowrap>Best From</td>
@@ -109,4 +127,134 @@
 {% else %}
 <p class="smalltext" style="padding:10px;">No wines found. <a href="{{ url_for('add_wine') }}">Add Wine</a> to get started.</p>
 {% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script language="JavaScript">
+
+var ua = navigator.userAgent;
+var browserName = navigator.appName;
+var browserVersion = parseInt(navigator.appVersion);
+
+var isIe = (browserName == "Microsoft Internet Explorer")
+var isWindows = (ua.indexOf("Win") > -1) 
+var isMac = (ua.indexOf("Mac") > -1) 
+
+var ie5 = (isIe && (browserVersion >= 4))
+var ieOnMac = (isIe && isMac)
+var dom = (document.getElementsByTagName) ? true : false;
+
+var arrowUp, arrowDown;
+
+if ((ie5 || dom) && !(ieOnMac)) initSortTable();
+
+function initSortTable() {
+    arrowUp = document.createElement("SPAN");
+    var arrowU = '&nbsp;\u2191';
+    arrowUp.innerHTML = arrowU;
+    arrowUp.className = "arrow";
+
+    arrowDown = document.createElement("SPAN");
+    var arrowD = '&nbsp;\u2193';
+    arrowDown.innerHTML = arrowD;
+    arrowDown.className = "arrow";
+}
+
+
+function sortColumnWithHold(e) {
+    var el = ie5 ? e.srcElement : e.target;
+    var table = getParent(el, "TABLE");
+    var oldCursor = table.style.cursor;
+    var oldClick = table.onclick;
+    table.style.cursor = "wait";
+    table.onclick = null;
+    var fakeEvent = {srcElement : e.srcElement, target : e.target};
+    window.setTimeout(function () {
+        sortColumn(fakeEvent);
+        table.style.cursor = oldCursor;
+        table.onclick = oldClick;
+    }, 100);
+}
+
+
+function sortColumn(e) {
+    var tmp = e.target ? e.target : e.srcElement;
+    var tHeadParent = getParent(tmp, "THEAD");
+    var el = getParent(tmp, "TD");
+
+    if (tHeadParent == null) return;
+        
+    if (el != null) {
+        var p = el.parentNode;
+        var i;
+        el._descending = !Boolean(el._descending);
+        if (tHeadParent.arrow != null) {
+            if (tHeadParent.arrow.parentNode != el) {
+                tHeadParent.arrow.parentNode._descending = null;
+            }
+            tHeadParent.arrow.parentNode.removeChild(tHeadParent.arrow);
+        }
+        if (el._descending) tHeadParent.arrow = arrowUp.cloneNode(true);
+        else tHeadParent.arrow = arrowDown.cloneNode(true);
+        el.appendChild(tHeadParent.arrow);
+        var cells = p.cells;
+        var l = cells.length;
+        for (i = 0; i < l; i++) { if (cells[i] == el) break; }
+        var table = getParent(el, "TABLE");
+        sortTable(table,i,el._descending, el.getAttribute("type"));
+    }
+}
+
+
+function sortTable(tableNode, nCol, bDesc, sType) {
+    var tBody = tableNode.tBodies[0];
+    var trs = tBody.rows;
+    var trl= trs.length;
+    var a = new Array();
+    for (var i = 0; i < trl; i++) { a[i] = trs[i]; }
+    a.sort(compareByColumn(nCol,bDesc,sType));
+    for (var i = 0; i < trl; i++) { tBody.appendChild(a[i]); }
+}
+
+
+function compareByColumn(nCol, bDescending, sType) {
+    var c = nCol;
+    var d = bDescending;
+    var fTypeCast = String;
+    if (sType == "Number") fTypeCast = Number;
+    else if (sType == "Date") fTypeCast = parseDate;
+    else if (sType == "CaseInsensitiveString") fTypeCast = CaseInsensitiveString;
+    return function (n1, n2) {
+        if (fTypeCast(getInnerText(n1.cells[c])) < fTypeCast(getInnerText(n2.cells[c]))) return d ? -1 : +1;
+        if (fTypeCast(getInnerText(n1.cells[c])) > fTypeCast(getInnerText(n2.cells[c]))) return d ? +1 : -1;
+        return 0;
+    };
+}
+
+
+function getInnerText(el) {
+    if (ie5) return el.innerText;
+    var str = "";
+    var cs = el.childNodes;
+    var l = cs.length;
+    for (var i = 0; i < l; i++) {
+        switch (cs[i].nodeType) {
+            case 1: str += getInnerText(cs[i]); break;
+            case 3: str += cs[i].nodeValue; break;
+        }
+    }
+    return str;
+}
+
+function getParent(el, pTagName) {
+    if (el == null) return null;
+    else if (el.nodeType == 1 && el.tagName.toLowerCase() == pTagName.toLowerCase()) return el;
+    else return getParent(el.parentNode, pTagName);
+}
+
+function CaseInsensitiveString(s) { return String(s).toUpperCase(); }
+function parseDate(s) { return Date.parse(s.replace(/\-/g, '/')); }
+
+</script>
 {% endblock %}

@@ -2,43 +2,88 @@
 {% block title %}Ready to Drink Wines - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<!-- Title row -->
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
-<tr class="header"><td class="title"><b>Ready to Drink Wines</b></td></tr>
-</table>
 
-<!-- Wine Finder -->
-<table cellpadding="2" cellspacing="0" border="0">
-<tbody>
-<tr>
-    <td class="smallfieldvalue" nowrap>Wine Finder</td>
+<table cellpadding="2" cellspacing="0" width="100%" border="0" valign="top">
+
+<tr><td class="title" colspan="2">
+Ready to Drink Wines
+</td></tr>
+<tr><td class="titlepaddingbottom" colspan="2"></td></tr>
+
+<!-- Wine Finder / Filter bar matching original exactly -->
+<tr><td class="mediumtext" colspan="2">
+ <input type="text" name="searchtext" maxlength="100" size="50" value="Wine Finder" onfocus="javascript:if (event.target.value == 'Wine Finder') event.target.value = ''">
+</td>
 </tr>
-</tbody>
+<tr><td colspan="2">
+<table cellpadding="2" cellspacing="1" border="0" valign="top">
+<tr>
+<td class="mediumtext">
+
+<select name="sortType"><option value="">Sorted by</option>
+<option value="Name">Name</option>
+<option value="Vintage">Vintage</option>
+<option value="Producer">Producer</option>
+<option value="Appellation">Appellation</option>
+<option value="Varietal">Varietal</option>
+<option value="Type/Color">Type/Color</option>
+<option value="Maturity">Maturity</option>
+<option value="Rating">Rating</option>
+<option value="Price">Price</option></select>
+
+</td>
+<td valign="bottom" align="left" nowrap rowspan="2">
+
+<select name="colorType" size="4"><option value="">Any Type/Color</option>
+<option value="red">red</option>
+<option value="sparkling red">sparkling red</option>
+<option value="sweet red">sweet red</option>
+<option value="rose">rose</option>
+<option value="sparkling rose">sparkling rose</option>
+<option value="sweet rose">sweet rose</option>
+<option value="white">white</option>
+<option value="sparkling white">sparkling white</option>
+<option value="sweet white">sweet white</option>
+<option value="fruit wine">fruit wine</option>
+<option value="liqueur">liqueur</option>
+<option value="spirits">spirits</option></select>
+
+<select name="varietalId" size="4"><option value="">Any Varietal</option>
+</select>
+
+</td>
+</tr>
+<tr>
+<td class="mediumtext">
+<input type="submit" name="submitAction" value="Search">
+&nbsp;
+<input type="submit" name="submitAction" value="Search Cellar">
+
+</td>
+</tr>
 </table>
+</td></tr>
 
 <!-- Page info -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr>
-    <td class="smallfieldvalue">
-        {% if wines %}
-        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
-        {% endif %}
-    </td>
-    <td class="smallfieldvalue" style="text-align:right;">
-        <a href="#" style="font-size:10px;">Printable View</a>&nbsp;
-        <a href="#" style="font-size:10px;">Customize this view</a>
-    </td>
-</tr>
+<tr><td class="smallfieldvalue" colspan="2">
+{% if wines %}
+<b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
+&nbsp;&nbsp;&nbsp;
+<a href="#" style="font-size:10px;">Printable View</a>&nbsp;
+<a href="#" style="font-size:10px;">Customize this view</a>
+{% endif %}
+</td></tr>
+
 </table>
 
 {% if wines %}
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<table cellpadding="2" cellspacing="0" border="0" width="100%" onclick="sortColumnWithHold(event)">
 <thead>
 <tr class="subhead">
-    <td type="String" class="subhead" style="text-align:left;">Name</td>
-    <td type="String" class="subhead" style="text-align:left;">Producer</td>
-    <td type="String" class="subhead" style="text-align:left;">Appellation</td>
-    <td type="String" class="subhead" style="text-align:left;">Varietal</td>
+    <td type="String" class="subhead">Name</td>
+    <td type="String" class="subhead">Producer</td>
+    <td type="String" class="subhead">Appellation</td>
+    <td type="String" class="subhead">Varietal</td>
     <td type="Number" class="subhead">Qty</td>
     <td type="String" class="subhead">Maturity</td>
     <td type="Number" class="subhead" nowrap>Best From</td>
@@ -73,4 +118,105 @@
 {% else %}
 <p class="smalltext" style="padding:10px;">No wines ready right now. Set drinking windows when adding wines to see them here.</p>
 {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script language="JavaScript">
+var ua = navigator.userAgent;
+var browserName = navigator.appName;
+var browserVersion = parseInt(navigator.appVersion);
+var isIe = (browserName == "Microsoft Internet Explorer")
+var isWindows = (ua.indexOf("Win") > -1) 
+var isMac = (ua.indexOf("Mac") > -1) 
+var ie5 = (isIe && (browserVersion >= 4))
+var ieOnMac = (isIe && isMac)
+var dom = (document.getElementsByTagName) ? true : false;
+var arrowUp, arrowDown;
+if ((ie5 || dom) && !(ieOnMac)) initSortTable();
+function initSortTable() {
+    arrowUp = document.createElement("SPAN");
+    arrowUp.innerHTML = '&nbsp;\u2191';
+    arrowUp.className = "arrow";
+    arrowDown = document.createElement("SPAN");
+    arrowDown.innerHTML = '&nbsp;\u2193';
+    arrowDown.className = "arrow";
+}
+function sortColumnWithHold(e) {
+    var el = ie5 ? e.srcElement : e.target;
+    var table = getParent(el, "TABLE");
+    var oldCursor = table.style.cursor;
+    var oldClick = table.onclick;
+    table.style.cursor = "wait";
+    table.onclick = null;
+    var fakeEvent = {srcElement : e.srcElement, target : e.target};
+    window.setTimeout(function () {
+        sortColumn(fakeEvent);
+        table.style.cursor = oldCursor;
+        table.onclick = oldClick;
+    }, 100);
+}
+function sortColumn(e) {
+    var tmp = e.target ? e.target : e.srcElement;
+    var tHeadParent = getParent(tmp, "THEAD");
+    var el = getParent(tmp, "TD");
+    if (tHeadParent == null) return;
+    if (el != null) {
+        var p = el.parentNode;
+        el._descending = !Boolean(el._descending);
+        if (tHeadParent.arrow != null) {
+            if (tHeadParent.arrow.parentNode != el) tHeadParent.arrow.parentNode._descending = null;
+            tHeadParent.arrow.parentNode.removeChild(tHeadParent.arrow);
+        }
+        if (el._descending) tHeadParent.arrow = arrowUp.cloneNode(true);
+        else tHeadParent.arrow = arrowDown.cloneNode(true);
+        el.appendChild(tHeadParent.arrow);
+        var cells = p.cells;
+        var l = cells.length;
+        for (var i = 0; i < l; i++) { if (cells[i] == el) break; }
+        var table = getParent(el, "TABLE");
+        sortTable(table,i,el._descending, el.getAttribute("type"));
+    }
+}
+function sortTable(tableNode, nCol, bDesc, sType) {
+    var tBody = tableNode.tBodies[0];
+    var trs = tBody.rows;
+    var trl= trs.length;
+    var a = new Array();
+    for (var i = 0; i < trl; i++) { a[i] = trs[i]; }
+    a.sort(compareByColumn(nCol,bDesc,sType));
+    for (var i = 0; i < trl; i++) { tBody.appendChild(a[i]); }
+}
+function compareByColumn(nCol, bDescending, sType) {
+    var c = nCol; var d = bDescending;
+    var fTypeCast = String;
+    if (sType == "Number") fTypeCast = Number;
+    else if (sType == "Date") fTypeCast = parseDate;
+    else if (sType == "CaseInsensitiveString") fTypeCast = CaseInsensitiveString;
+    return function (n1, n2) {
+        if (fTypeCast(getInnerText(n1.cells[c])) < fTypeCast(getInnerText(n2.cells[c]))) return d ? -1 : +1;
+        if (fTypeCast(getInnerText(n1.cells[c])) > fTypeCast(getInnerText(n2.cells[c]))) return d ? +1 : -1;
+        return 0;
+    };
+}
+function getInnerText(el) {
+    if (ie5) return el.innerText;
+    var str = "";
+    var cs = el.childNodes;
+    var l = cs.length;
+    for (var i = 0; i < l; i++) {
+        switch (cs[i].nodeType) {
+            case 1: str += getInnerText(cs[i]); break;
+            case 3: str += cs[i].nodeValue; break;
+        }
+    }
+    return str;
+}
+function getParent(el, pTagName) {
+    if (el == null) return null;
+    else if (el.nodeType == 1 && el.tagName.toLowerCase() == pTagName.toLowerCase()) return el;
+    else return getParent(el.parentNode, pTagName);
+}
+function CaseInsensitiveString(s) { return String(s).toUpperCase(); }
+function parseDate(s) { return Date.parse(s.replace(/\-/g, '/')); }
+</script>
 {% endblock %}

@@ -6,175 +6,259 @@
     <title>{% block title %}ManageYourCellar.com{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body link="#990000" vlink="#CC3333">
 <div class="page-container">
 
-    <!-- Top Row: Logo Box + Title + Subtitle -->
-    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-    <tr>
-        <td align="left" valign="top">
-            <table cellpadding="1" cellspacing="0" border="0" width="100%">
-            <tr>
-                <td>
-                    <!-- MANAGE YOUR CELLAR .COM Logo Grid -->
-                    <table border="3" bordercolor="#990000" cellspacing="0" align="left">
-                    <tr><td>
-                        <table cellpadding="2" cellspacing="0" border="0">
-                        <tr>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">N</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">G</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logodot">&nbsp;</td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">Y</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">U</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td>
-                            <td class="logodot">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logodot">&nbsp;</td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
-                            <td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
-                            <td class="logodot">&nbsp;</td>
-                            <td class="logodot">&nbsp;</td>
-                        </tr>
-                        </table>
-                    </td></tr>
-                    </table>
-                </td>
-                <td class="headertitle">
-                    <a href="{{ url_for('home') }}">ManageYourCellar.COM</a>
-                </td>
-                <td class="headersubtitle">
-                    <i>A Community of Wine Lovers</i>
-                </td>
-            </tr>
-            </table>
-        </td>
-    </tr>
-    </table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
 
-    <!-- Header Bar (#990000) -->
-    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tr class="headerbar">
-            <td class="label">
-                &nbsp;{% if current_user.is_authenticated %}Welcome {{ current_user.username }}!{% else %}Welcome guest!{% endif %}
-            </td>
-            <td class="rightlabel">
-                <a href="{{ url_for('home') }}" class="label">Home</a>
-                |
-                {% if current_user.is_authenticated %}
-                <a href="{{ url_for('home') }}" class="label">Contact Us</a>
-                |
-                <a href="{{ url_for('home') }}" class="label">My Account</a>
-                |
-                <a href="{{ url_for('home') }}" class="label">Mobile</a>
-                |
-                <a href="{{ url_for('logout') }}" class="label">Logout</a>
-                {% else %}
-                <a href="{{ url_for('home') }}" class="label">Contact Us</a>
-                |
-                <a href="{{ url_for('register') }}" class="label">Register</a>
-                |
-                <a href="{{ url_for('home') }}" class="label">Mobile</a>
-                |
-                <a href="{{ url_for('login') }}" class="label">Please login</a>
-                {% endif %}
-                &nbsp;
-            </td>
-        </tr>
-    </table>
+<tr><td align="left" valign="top">
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">
-        <span>{{ message }}</span>
-        <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+<table cellpadding="1" cellspacing="0" border="0" width="100%">
+<tr>
+<td>
+<table border="3" bordercolor="#990000" cellspacing="0" align="left">
+<tr>
+<td>
+<table cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">N</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">G</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td></tr>
+<tr>
+<td>
+<table><tr><td height="3" width="2" class="logodot"></td></tr></table>
+</td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">Y</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">U</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td>
+<td>
+<table><tr><td height="3" width="2" class="logodot"></td></tr></table>
+</td></tr>
+<tr>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">E</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">L</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">A</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">R</a></td></tr>
+<tr><td>
+<table><tr><td height="3" width="2" class="logodot"></td></tr></table>
+</td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">.</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">C</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">O</a></td>
+<td class="logotext"><a href="{{ url_for('home') }}" class="logo">M</a></td>
+<td>
+<table><tr><td height="3" width="2" class="logodot"></td></tr></table>
+</td></tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td class="manageyourcellar" width="100%" background="{{ url_for('static', filename='images/vigne.jpg') }}">
+<table cellpadding="2" cellspacing="0" border="0" bordercolor="white" width="100%" height="100%">
+<tr><td></td></tr>
+<tr>
+<td class="headertitle">
+<a href="{{ url_for('home') }}" class="headertitle">ManageYourCellar.COM</a>
+</td>
+</tr>
+<tr>
+<td class="headersubtitle">
+<a href="{{ url_for('home') }}" class="headersubtitle">A Community of Wine Lovers</a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table cellpadding="1" cellspacing="0" width="100%" border="0">
 
-    {% block layout %}
-    <table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
-        <tr>
-            <!-- Sidebar (#909090) -->
-            <td valign="top" class="navbar">
-                <table cellpadding="2" cellspacing="0" border="0">
-                    <!-- Wine Finder -->
-                    <tr>
-                        <td class="label" nowrap>
-                            <form method="GET" action="{{ url_for('search') }}" style="display:inline;">
-                                <input type="text" name="query" maxlength="100" size="11" value="Wine Finder" onfocus="if(this.value=='Wine Finder')this.value=''">
-                                <input type="submit" value="Go">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr class="navbaritem"><td class="label" nowrap>
-                        <a href="{{ url_for('search') }}" class="label">More Search Options</a>
-                    </td></tr>
+<tr><td></td></tr>
+<tr width="100%" class="headerbar">
 
-                    <tr><td class="labelplus">Manage My Cellar:</td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines in Cellar</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('ready_to_drink') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Ready to Drink</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='on_order') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines on Order</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='consumed') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines Consumed</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='wishlist') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wish List</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Recommended</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Book</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('stats') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Statistics</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('best_values') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Best Wine Values</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('add_wine') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Add Wine</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('quick_entry') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Quick Entry</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar_import') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Import</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('export_cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Export</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('search') }}" class="smalllabel">Find Business</a></td></tr>
+<td class="label">
+&nbsp;Welcome
+{% if current_user.is_authenticated %}{{ current_user.username }}!{% else %}guest!{% endif %}
 
-                    <tr><td class="labelplus">My Wine Buddies:</td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">View Other Cellars</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Create Group</a></td></tr>
+</td>
+<td class="rightlabel">
+<a href="{{ url_for('home') }}" class="label">Home</a>
+|
+<a href="{{ url_for('home') }}" class="label">Contact Us</a>
+{% if current_user.is_authenticated %}
+|
+<a href="{{ url_for('home') }}" class="label">My Account</a>
+|
+<a href="{{ url_for('home') }}" class="label">Mobile</a>
+|
+<a href="{{ url_for('logout') }}" class="label">Logout</a>
+{% else %}
+|
+<a href="{{ url_for('register') }}" class="label">Register</a>
+|
+<a href="{{ url_for('home') }}" class="label">Mobile</a>
+|
+<a href="{{ url_for('login') }}" class="label">Please login</a>
+{% endif %}
+&nbsp;</td>
 
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('tasting_list') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Tasting Tools</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('tasting_list') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Tasting Reports</a></td></tr>
+</tr>
+<tr><td colspan="2"></td></tr>
+</table>
+</td>
+</tr>
+</table>
 
-                    <tr><td class="titlepaddingtop"></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('faq') }}" class="smalllabel">About Us</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('faq') }}" class="smalllabel">FAQ</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">Site Map</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('home') }}" class="label">Invite a Friend</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">My Wine Blog</a></td></tr>
-                    <tr class="navbaritem"><td class="navbaritem">&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">Wine Links</a></td></tr>
-                </table>
-            </td>
+</td></tr>
 
-            <!-- Content -->
-            <td height="100%" width="100%" class="content">
-                {% block content %}{% endblock %}
-            </td>
-        </tr>
-    </table>
-    {% endblock %}
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<tr><td>
+{% for category, message in messages %}
+<div class="alert alert-{{ category }}">
+    <span>{{ message }}</span>
+    <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
 </div>
+{% endfor %}
+</td></tr>
+{% endif %}
+{% endwith %}
+
+{% block layout %}
+<tr><td align="left" valign="top" width="100%" height="550">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<tr>
+<!-- Sidebar (#909090) -->
+<td valign="top" class="navbar">
+
+<table cellpadding="2" cellspacing="0" border="0">
+
+<!-- Wine Finder in sidebar -->
+<tr>
+<td class="label" nowrap>
+<form method="GET" action="{{ url_for('search') }}" style="display:inline;">
+<input type="text" name="query" maxlength="100" size="11" value="Wine Finder" onfocus="if(this.value=='Wine Finder')this.value=''">
+<input type="submit" value="Go">
+</form>
+</td></tr>
+
+<tr class="navbaritem"><td class="label" nowrap>
+<a href="{{ url_for('search') }}" class="label">More Search Options</a>
+</td></tr>
+
+<tr><td class="labelplus">
+Manage My Cellar:
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines in Cellar</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('ready_to_drink') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Ready to Drink</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='on_order') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines on Order</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='consumed') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wines Consumed</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='wishlist') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Wish List</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Recommended</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar', status='cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Book</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('stats') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Statistics</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('best_values') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Best Wine Values</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('add_wine') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Add Wine</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('quick_entry') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Quick Entry</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar_import') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Import</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('export_cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Cellar Export</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('search') }}" class="smalllabel">Find Business</a>
+</td></tr>
+
+<tr><td class="labelplus">
+My Wine Buddies:
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">View Other Cellars</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('cellar') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Create Group</a>
+</td></tr>
+
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('tasting_list') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Tasting Tools</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{% if current_user.is_authenticated %}{{ url_for('tasting_list') }}{% else %}{{ url_for('login') }}{% endif %}" class="smalllabel">Tasting Reports</a>
+</td></tr>
+
+<tr><td class="titlepaddingtop"></td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('faq') }}" class="smalllabel">About Us</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('faq') }}" class="smalllabel">FAQ</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">Site Map</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('home') }}" class="label">Invite a Friend</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">My Wine Blog</a>
+</td></tr>
+<tr class="navbaritem"><td class="navbaritem">
+&nbsp;<a href="{{ url_for('home') }}" class="smalllabel">Wine Links</a>
+</td></tr>
+</table>
+</td>
+
+<!-- Content -->
+<td class="content">
+{% block content %}{% endblock %}
+</td>
+</tr>
+</table>
+
+</td></tr>
+{% endblock %}
+
+<tr><td height="4"></td></tr>
 
 <!-- Footer -->
-<div class="footer">
-    <a href="#">Privacy Policy</a> &nbsp;-&nbsp; Copyright &copy; 2010 <a href="{{ url_for('home') }}">Manage Your Cellar - Wine Cellar Software</a>, All Rights Reserved.
+<tr><td width="100%" height="20" class="footer">
+<a href="#" class="label">Privacy Policy</a>
+&nbsp; - &nbsp; Copyright &copy; 2010
+<a href="{{ url_for('home') }}" class="label">Manage Your Cellar - Wine Cellar Software</a>, All Rights Reserved.
+</td></tr>
+
+</table>
 </div>
 
 <script>

@@ -2,142 +2,189 @@
 {% block title %}{{ wine.name }} - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<!-- Title matching original: "2015 Almaviva (Proprietary Blend) (750ml)  [Edit - Printable View]" -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<table cellpadding="2" cellspacing="0" border="0" width="100%" height="100%">
 <tr>
-<td class="toptitle">
+<td colspan="3" class="toptitle">
 {{ wine.vintage or 'NV' }}
 {{ wine.name }}
 ({{ wine.size_ml or 750 }}ml)
+
 <span class="smalledit">
 &nbsp;
+
 <a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
 -
 <a href="{{ url_for('wine_detail', wine_id=wine.id) }}">Printable View]</a>
+
 </span>
+
 </td>
 </tr>
-</table>
 
+<tr><td class="titlepaddingbottom"></td></tr>
+
+<tr><td>
 <table cellpadding="0" cellspacing="0" border="0">
 <tr><td>
 <table cellpadding="2" cellspacing="0" border="0">
 <tr>
-    <td class="smallfieldlabel">Producer:</td>
-    <td class="smallfieldvalue" nowrap>{{ wine.producer }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel">Appellation:</td>
-    <td class="smallfieldvalue">{{ wine.appellation or '' }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel">Type:</td>
-    <td class="smallfieldvalue">{{ wine.wine_type|lower }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel">Varietal:</td>
-    <td class="smallfieldvalue">{{ wine.varietals_display or '' }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel">Maturity:</td>
-    <td class="smallfieldvalue">{{ wine.maturity_display or 'n/a' }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel" valign="top">Rating:</td>
-    <td class="smallfieldvalue" valign="top">{{ wine.rating_text }}</td>
-</tr>
-<tr>
-    <td class="smallfieldlabel">Est. Price:</td>
-    <td class="smallfieldvalue">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
-</tr>
-</table>
-</td></tr>
-</table>
 
-<!-- Action buttons -->
-<table cellpadding="2" cellspacing="0" border="0">
-<tr><td>
-<form method="POST" action="{{ url_for('add_tasting_note', wine_id=wine.id) }}" style="display:inline;">
-    <input type="submit" value="Rate this Wine" title="Rate this wine to add a tasting note and update its rating and maturity">
-</form>
+<td rowspan="7"></td>
+
+<td width="10%" class="smallfieldlabel">Producer:</td>
+<td class="smallfieldvalue" nowrap>
+{{ wine.producer }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Appellation:</td>
+<td class="smallfieldvalue">
+{{ wine.appellation or '' }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Type:</td>
+<td class="smallfieldvalue">
+{{ wine.wine_type|lower }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Varietal:</td>
+<td class="smallfieldvalue">
+{{ wine.varietals_display or '' }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Maturity:</td>
+<td class="smallfieldvalue">{{ wine.maturity_display or '' }}</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel" valign="top">Rating:</td>
+<td class="smallfieldvalue" valign="top">{{ wine.rating_text }}</td>
+</tr>
+
+<tr>
+
+<td class="smallfieldlabel">Est. Price:</td>
+<td class="smallfieldvalue" colspan="1">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+
+</tr>
+
+</table>
+</td>
+<td>&nbsp;</td>
+
+</tr>
+</table></td></tr>
+
+
+<tr><td colspan="1" valign="center">
+
+<input type="submit" name="submitAction" value="Rate this Wine" title="Rate this wine to add a tasting note and update its rating and maturity" onclick="window.location='{{ url_for('add_tasting_note', wine_id=wine.id) }}'; return false;">
+
 {% if wine.status != 'cellar' %}
-<form method="POST" action="{{ url_for('edit_wine', wine_id=wine.id) }}" style="display:inline;">
-    <input type="submit" value="Add to Cellar" title="Add this wine to your cellar">
-</form>
+<input type="submit" name="submitAction" value="Add to Cellar" title="Add this wine to your cellar">
 {% endif %}
-<form method="POST" action="{{ url_for('edit_wine', wine_id=wine.id) }}" style="display:inline;">
-    <input type="submit" value="Add to Wish List" title="Add this wine to your wish list">
-</form>
-<input type="submit" value="Recommend" title="Share this wine with a friend">
+
+<input type="submit" name="submitAction" value="Add to Wish List" title="Add this wine to your wish list">
+
+<input type="submit" name="submitAction" value="Recommend" title="Share this wine with a friend">
+
 </td></tr>
-</table>
 
-<!-- Personal Transactions -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr><td class="titlepaddingbottom"></td></tr>
-<tr><td class="title">Personal Transactions:</td></tr>
-<tr><td class="titlepaddingbottom"></td></tr>
-</table>
 
+
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+<tr><td colspan="1" class="title">
+Personal Transactions:
+</td></tr>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+
+<tr><td class="smallfieldvalue" colspan="1">
 <table cellpadding="2" cellspacing="0" border="0">
 <tr>
-    <td class="leftsmallfieldlabel">You have Acquired:</td>
-    <td class="smallfieldvalue">{{ wine.quantity }}</td>
-    <td>&nbsp;</td>
-    <td class="leftsmallfieldlabel">Consumed:</td>
-    <td class="smallfieldvalue">0</td>
-    <td>&nbsp;</td>
-    <td class="leftsmallfieldlabel">Actual Quantity in Cellar:</td>
-    <td class="smallfieldvalue">{{ wine.quantity }}</td>
-    <td>&nbsp;</td>
-    <td class="smallfieldvalue">(Click <i>Remove from Cellar</i> to consume)</td>
+
+<td class="leftsmallfieldlabel">You have Acquired:</td>
+<td class="smallfieldvalue">{{ wine.quantity }}</td>
+<td></td>
+<td class="leftsmallfieldlabel">Consumed:</td>
+<td class="smallfieldvalue">0</td>
+<td></td>
+<td class="leftsmallfieldlabel">Actual Quantity in Cellar:</td>
+<td class="smallfieldvalue">{{ wine.quantity }}</td>
+ 
+<td></td>
+<td colspan="8" class="smallfieldvalue">(Click <i>Remove from Cellar</i> to consume)</td>
+
 </tr>
 </table>
+</td></tr>
 
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr><td class="smallfieldvalue">
-<span class="redsmalltext"><b>acquired:</b></span>
-{% if wine.acq_date %}on {{ wine.acq_date.strftime('%b %d, %Y') }}{% endif %}
+
+<tr><td class="smallfieldvalue" colspan="1">
+<span class="redsmalltext">
+<b>acquired:</b>
+</span>
+
+{% if wine.acq_date %}
+on {{ wine.acq_date.strftime('%B %d, %Y') }}
+{% endif %}
+
 , quantity {{ wine.quantity }}
+
 {% if wine.price %} at US${{ "%.2f"|format(wine.price) }}{% endif %}
+
 &nbsp;
 <span class="smalledit">
 <a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
 -
-<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a>
-</span>
-</td></tr>
-{% if wine.acq_from %}
-<tr><td class="smallfieldvalue">From {{ wine.acq_from }}</td></tr>
-{% endif %}
-{% if wine.stored %}
-<tr><td class="smallfieldvalue">Stored: {{ wine.stored }}</td></tr>
-{% endif %}
-</table>
+<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
 
-<!-- Remove from Cellar / Add Valuation buttons -->
-<table cellpadding="2" cellspacing="0" border="0">
-<tr><td>
+</td></tr>
+
+{% if wine.acq_from %}
+<tr><td colspan="1" class="smallfieldvalue">
+
+From 
+
+{{ wine.acq_from }}
+
+</td></tr>
+{% endif %}
+
+{% if wine.stored %}
+<tr><td colspan="1" class="smallfieldvalue">Stored: {{ wine.stored }}</td></tr>
+{% endif %}
+
+
+<tr>
+<td colspan="1">
+
 {% if wine.status == 'cellar' %}
 <form method="POST" action="{{ url_for('consume_wine', wine_id=wine.id) }}" style="display:inline;" onsubmit="return confirm('Mark a bottle as consumed?')">
-    <input type="submit" value="Remove from Cellar" title="Consume this wine">
+<input type="submit" name="submitAction" value="Remove from Cellar" title="Consume this wine">
 </form>
 {% endif %}
-<form method="POST" action="{{ url_for('edit_wine', wine_id=wine.id) }}" style="display:inline;">
-    <input type="submit" value="Add a Valuation" title="Add a valuation to this wine">
-</form>
-</td></tr>
-</table>
 
-<!-- Tasting Notes Section -->
+<input type="submit" name="submitAction" value="Add a Valuation" title="Add a valuation to this wine for your overall cellar valuation">
+
+</td>
+</tr>
+
+
 {% if tasting_notes %}
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr><td class="titlepaddingbottom"></td></tr>
-<tr><td class="title">Tasting Notes:</td></tr>
-<tr><td class="titlepaddingbottom"></td></tr>
-</table>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+<tr><td colspan="1" class="title">
+Tasting Notes:
+</td></tr>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+
 {% for note in tasting_notes %}
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
 <tr><td class="smallfieldvalue">
 <span class="redsmalltext"><b>{{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else 'No date' }}</b></span>
 {% if note.score %} - {{ note.score }} points{% endif %}
@@ -145,7 +192,29 @@
 {% if note.overall %}
 <tr><td class="smallfieldvalue">{{ note.overall }}</td></tr>
 {% endif %}
-</table>
 {% endfor %}
 {% endif %}
+
+<!-- Availability section -->
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+<tr><td colspan="1" class="title">
+Availability:
+</td></tr>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+
+<tr><td class="leftsmallfieldlabel">
+Locate a store with
+<a href="http://www.wine-searcher.com/find/{{ wine.name|urlencode }}/{{ wine.vintage or '' }}/USA/USD" target="_blank">
+Wine-Searcher</a>
+</td></tr>
+
+<tr><td class="leftsmallfieldlabel" colspan="1">
+<a href="http://www.google.com/search?q={{ wine.vintage or '' }}+{{ wine.name|urlencode }}+nose+palate" target="_blank">
+search ratings
+</a>
+</td></tr>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+
+
+</table>
 {% endblock %}

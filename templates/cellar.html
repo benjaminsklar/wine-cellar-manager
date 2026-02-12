@@ -1,50 +1,43 @@
 {% extends "base.html" %}
-{% block title %}{{ status_label }} - WineCellarManager.com{% endblock %}
+{% block title %}{{ status_label }} - ManageYourCellar.com{% endblock %}
 
 {% block content %}
 <div class="page-header">
-    <h1 style="font-size:16px;">{{ status_label }}</h1>
-    <div class="page-actions">
-        <a href="{{ url_for('add_wine') }}" class="btn btn-primary btn-sm">+ Add Wine</a>
-        <a href="{{ url_for('quick_entry') }}" class="btn btn-secondary btn-sm">Quick Entry</a>
-    </div>
+    <h1>{{ status_label }}</h1>
 </div>
 
 <div class="tabs">
     <a href="{{ url_for('cellar', status='cellar') }}" class="tab {{ 'active' if status == 'cellar' }}">In Cellar</a>
+    <a href="{{ url_for('ready_to_drink') }}" class="tab {{ 'active' if request.endpoint == 'ready_to_drink' }}">Ready to Drink</a>
     <a href="{{ url_for('cellar', status='on_order') }}" class="tab {{ 'active' if status == 'on_order' }}">On Order</a>
-    <a href="{{ url_for('cellar', status='wishlist') }}" class="tab {{ 'active' if status == 'wishlist' }}">Wish List</a>
     <a href="{{ url_for('cellar', status='consumed') }}" class="tab {{ 'active' if status == 'consumed' }}">Consumed</a>
-    <a href="{{ url_for('ready_to_drink') }}" class="tab">Ready to Drink</a>
+    <a href="{{ url_for('cellar', status='wishlist') }}" class="tab {{ 'active' if status == 'wishlist' }}">Wish List</a>
 </div>
 
+<!-- Filter bar matching original's search -->
 <div class="filter-bar">
     <form method="GET" action="{{ url_for('cellar') }}">
         <input type="hidden" name="status" value="{{ status }}">
         <div class="filter-row">
-            <div class="form-group">
-                <label>Search</label>
-                {{ search_form.query(class="form-control", placeholder="Name, producer...") }}
+            <div class="form-group" style="flex:2;">
+                <label>Wine Finder:</label>
+                {{ search_form.query(class="form-control", placeholder="Keywords...") }}
             </div>
             <div class="form-group">
-                <label>Type</label>
+                <label>Type/Color:</label>
                 {{ search_form.wine_type(class="form-control") }}
             </div>
             <div class="form-group">
-                <label>Appellation</label>
-                {{ search_form.appellation(class="form-control", placeholder="e.g. Napa Valley") }}
+                <label>Varietal:</label>
+                {{ search_form.varietal(class="form-control", placeholder="Any Varietal") }}
             </div>
             <div class="form-group">
-                <label>Varietal</label>
-                {{ search_form.varietal(class="form-control", placeholder="e.g. Cabernet") }}
-            </div>
-            <div class="form-group">
-                <label>Sort By</label>
+                <label>Sorted by:</label>
                 {{ search_form.sort_by(class="form-control") }}
             </div>
             <div class="form-group" style="flex:0;">
                 <label>&nbsp;</label>
-                <button type="submit" class="btn btn-primary">Go</button>
+                <button type="submit" class="btn btn-secondary">Search</button>
             </div>
         </div>
     </form>
@@ -52,53 +45,49 @@
 
 {% if wines %}
 <div class="info-box">
-    <strong>{{ wines|length }}</strong> wine{{ 's' if wines|length != 1 }} found.
+    <strong>{{ wines|length }}</strong> wine{{ 's' if wines|length != 1 }} &mdash;
+    <strong>{{ wines|sum(attribute='quantity') }}</strong> bottle{{ 's' if wines|sum(attribute='quantity') != 1 }}
     {% if status == 'cellar' %}
-    Total: <strong>{{ wines|sum(attribute='quantity') }}</strong> bottles.
-    Value: <strong>${{ "%.0f"|format(wines|selectattr('price')|sum(attribute='price')) }}</strong>.
+    &mdash; Value: <strong>${{ "%.0f"|format(wines|selectattr('price')|sum(attribute='price')) }}</strong>
     {% endif %}
 </div>
 
 <table class="wine-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Vintage</th>
-            <th>Producer</th>
-            <th>Type</th>
-            <th>Appellation</th>
-            <th>Varietal</th>
-            <th>Size</th>
+            <th><a href="{{ url_for('cellar', status=status, sort_by='vintage') }}">Vintage</a></th>
+            <th style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='name') }}">Name</a></th>
+            <th style="text-align:left;"><a href="{{ url_for('cellar', status=status, sort_by='producer') }}">Producer</a></th>
+            <th style="text-align:left;">Appellation</th>
+            <th style="text-align:left;">Varietal</th>
+            <th>Type/Color</th>
             <th>Qty</th>
-            <th>Price</th>
-            {% if status == 'cellar' %}<th>Stored</th>{% endif %}
+            <th><a href="{{ url_for('cellar', status=status, sort_by='rating') }}">Rating</a></th>
+            <th>Storage</th>
+            <th><a href="{{ url_for('cellar', status=status, sort_by='price') }}">Price</a></th>
         </tr>
     </thead>
     <tbody>
         {% for wine in wines %}
         <tr>
-            <td>
-                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a>
-                {% if wine.on_order %}<br><span style="color:#930;font-size:9px;font-weight:bold;">ON ORDER</span>{% endif %}
-            </td>
-            <td>{{ wine.vintage or 'NV' }}</td>
+            <td style="text-align:center;">{{ wine.vintage or '' }}</td>
+            <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}{% if wine.size_ml and wine.size_ml != 750 %} ({{ wine.size_display }}){% endif %}</a></td>
             <td>{{ wine.producer }}</td>
-            <td>{{ wine.wine_type }}</td>
-            <td>{{ wine.appellation or '-' }}</td>
-            <td>{{ wine.varietals_display or '-' }}</td>
-            <td>{{ wine.size_display }}</td>
-            <td>{{ wine.quantity }}</td>
-            <td>{% if wine.price %}${{ "%.0f"|format(wine.price) }}{% else %}-{% endif %}</td>
-            {% if status == 'cellar' %}<td>{{ wine.stored or '-' }}</td>{% endif %}
+            <td>{{ wine.appellation or '' }}</td>
+            <td>{{ wine.varietals_display or '' }}</td>
+            <td style="text-align:center;">{{ wine.wine_type }}</td>
+            <td style="text-align:center;">{{ wine.quantity }}</td>
+            <td style="text-align:center;">{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% endif %}</td>
+            <td>{{ wine.stored or '' }}</td>
+            <td style="text-align:right;">{% if wine.price %}${{ "%.2f"|format(wine.price) }}{% endif %}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 {% else %}
 <div class="empty-state">
-    <h3>No wines here yet</h3>
-    <p>Start adding wines to your collection.</p>
-    <a href="{{ url_for('add_wine') }}" class="btn btn-primary">Add Your First Wine</a>
+    <h3>No wines found</h3>
+    <p><a href="{{ url_for('add_wine') }}">Add Wine</a> to get started.</p>
 </div>
 {% endif %}
 {% endblock %}

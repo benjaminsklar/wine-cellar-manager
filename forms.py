@@ -87,15 +87,19 @@ class SearchForm(FlaskForm):
         csrf = False
 
     query = StringField('Search', validators=[Optional()])
-    wine_type = SelectField('Type', choices=[
-        ('', 'All Types'), ('Red', 'Red'), ('White', 'White'), ('Rosé', 'Rosé'),
-        ('Sparkling', 'Sparkling'), ('Dessert', 'Dessert'), ('Fortified', 'Fortified')
+    wine_type = SelectField('Type/Color', choices=[
+        ('', 'Any Type/Color'),
+        ('Red', 'red'), ('White', 'white'), ('Rosé', 'rose'),
+        ('Sparkling', 'sparkling white'), ('Dessert', 'sweet white'),
+        ('Fortified', 'fortified')
     ], validators=[Optional()])
     appellation = StringField('Appellation', validators=[Optional()])
     varietal = StringField('Varietal', validators=[Optional()])
     min_vintage = IntegerField('Min Vintage', validators=[Optional()])
     max_vintage = IntegerField('Max Vintage', validators=[Optional()])
-    sort_by = SelectField('Sort By', choices=[
+    sort_by = SelectField('Sorted by', choices=[
         ('name', 'Name'), ('vintage', 'Vintage'), ('producer', 'Producer'),
-        ('rating', 'Rating'), ('price', 'Price'), ('date_added', 'Date Added')
+        ('appellation', 'Appellation'), ('varietal', 'Varietal'),
+        ('wine_type', 'Type/Color'), ('rating', 'Rating'),
+        ('price', 'Price'), ('date_added', 'Date Added')
     ], default='name', validators=[Optional()])

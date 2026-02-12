@@ -1,412 +1,344 @@
 /* ═══════════════════════════════════════════════════════════════
-   Wine Cellar Manager – Classic Wine Community Styles
+   WineCellarManager – Exact match to ManageYourCellar.com CSS
+   Based on: /winecellar/winecellar/assets/styles/myc.css
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Reset ───────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    color: #333;
-    background: #E8E0D0;
-    line-height: 1.45;
+    font-family: Verdana, Sans-Serif;
+    background-color: white;
+    color: black;
+    font-size: 13px;
 }
 
-a { color: #8B0000; text-decoration: none; }
-a:hover { text-decoration: underline; color: #B22222; }
+a { color: #990000; text-decoration: none; }
+a:hover { text-decoration: underline; color: #990000; }
 
-img { border: 0; max-width: 100%; }
-
-h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; color: #600; font-weight: normal; }
+img { border: 0; }
 
 /* ─── Page Container ──────────────────────────────────────────── */
 .page-container {
-    width: 980px;
+    width: 960px;
     margin: 0 auto;
-    background: #FFF;
-    border-left: 1px solid #C8B898;
-    border-right: 1px solid #C8B898;
-    min-height: 100vh;
+    background: white;
 }
 
-/* ─── Top Banner ──────────────────────────────────────────────── */
+/* ─── Top Banner / Header Bar ─────────────────────────────────── */
+/* tr.headerbar: background-color:#990000 */
 .top-banner {
-    background: #6B0012;
-    background: linear-gradient(to bottom, #7B0018 0%, #550008 100%);
-    border-bottom: 3px solid #C8A23C;
-    padding: 0;
+    background-color: #990000;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
 }
+
+.top-banner a { text-decoration: none; color: #FFFFFF; }
+.top-banner a:hover { color: #EEEE88; }
 
 .top-banner-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 12px;
+    padding: 4px 8px;
 }
 
+/* .headertitle: color: #990000 but in header bar it's white */
 .logo-area a {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 24px;
-    color: #FFF;
-    text-decoration: none;
-    letter-spacing: 2px;
+    font-size: 150%;
+    font-family: Verdana, Sans-Serif;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
-.logo-area a:hover { color: #F0D060; }
+.logo-area a:hover { color: #EEEE88; text-decoration: none; }
 
 .logo-subtitle {
-    color: #D4A840;
-    font-size: 10px;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    font-weight: bold;
     font-style: italic;
-    font-family: Georgia, serif;
-    margin-top: 1px;
+    color: #FFFFFF;
 }
 
 .top-links {
-    color: #DDCCAA;
-    font-size: 10px;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    font-weight: bold;
+    color: #FFFFFF;
     text-align: right;
 }
 
-.top-links span { margin: 0 2px; color: #AA9977; }
+.top-links a { color: #FFFFFF; text-decoration: none; }
+.top-links a:hover { color: #EEEE88; }
+.top-links .sep { color: #FFFFFF; margin: 0 2px; }
 
-.top-links a { color: #FFDDAA; text-decoration: none; }
-.top-links a:hover { text-decoration: underline; color: #FFF; }
-
-/* ─── Search Bar ──────────────────────────────────────────────── */
+/* ─── Search Bar (header area below banner) ───────────────────── */
 .search-bar {
-    background: #F5EFE0;
-    border-bottom: 1px solid #D5C8A8;
-    padding: 4px 12px;
+    background-color: #DCDCDC;
+    padding: 3px 8px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
+    font-size: 11px;
 }
 
 .search-bar input[type="text"] {
-    padding: 2px 5px;
+    padding: 2px 4px;
     font-size: 11px;
-    border: 1px solid #AAA;
-    width: 220px;
-    font-family: Verdana, sans-serif;
+    border: 1px solid #909090;
+    font-family: Verdana, Sans-Serif;
+    width: 250px;
 }
 
-.search-bar button, .search-bar input[type="submit"] {
-    padding: 2px 10px;
-    font-size: 10px;
-    background: #6B0012;
-    color: #FFF;
-    border: 1px solid #500;
+.search-bar button {
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
     cursor: pointer;
-    font-family: Verdana, sans-serif;
 }
-
-.search-bar button:hover { background: #8B0020; }
 
 .search-bar .more-options {
-    font-size: 10px;
-    margin-left: 8px;
+    font-size: 11px;
+    margin-left: 6px;
+    color: #990000;
 }
 
 /* ─── Main Layout ─────────────────────────────────────────────── */
 .main-layout {
     display: flex;
-    min-height: 600px;
+    min-height: 500px;
 }
 
-/* ─── Sidebar ─────────────────────────────────────────────────── */
+/* ─── Sidebar / Navbar ────────────────────────────────────────── */
+/* td.navbar: background-color:#909090 */
 .sidebar {
-    width: 180px;
-    min-width: 180px;
-    background: #F5F0E2;
-    border-right: 1px solid #D5C8A8;
+    width: 170px;
+    min-width: 170px;
+    background-color: #909090;
+    vertical-align: top;
+    padding-left: 1px;
+    padding-top: 2px;
     font-size: 11px;
 }
 
-.sb-section { border-bottom: 1px solid #D5C8A8; }
-
+/* td.labelplus: color:#ffffff, bold */
 .sb-title {
-    background: #6B0012;
-    color: #D4A840;
-    padding: 4px 8px;
-    font-size: 10px;
+    white-space: nowrap;
+    font-size: 12px;
+    font-family: Verdana, Sans-Serif;
     font-weight: bold;
-    font-family: Verdana, sans-serif;
-    letter-spacing: 0.3px;
+    color: #FFFFFF;
+    padding: 8px 4px 3px 4px;
 }
 
+.sb-links { padding: 0; }
+
+/* td.navbaritem: color:#ffffff, bold */
 .sb-links a {
     display: block;
-    padding: 3px 8px 3px 14px;
-    color: #600;
-    text-decoration: none;
+    white-space: nowrap;
     font-size: 11px;
-    border-bottom: 1px dotted #E0D8C0;
-    position: relative;
+    font-family: Verdana, Sans-Serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 3px 4px 2px 8px;
+    text-decoration: none;
 }
 
 .sb-links a:hover {
-    background: #EDE6D0;
+    color: #EEEE88;
     text-decoration: none;
 }
 
 .sb-links a.active {
-    background: #EDE6D0;
-    font-weight: bold;
+    color: #EEEE88;
 }
 
 /* ─── Content Area ────────────────────────────────────────────── */
+/* td.content: vertical-align:top, padding-left:5, padding-top:2 */
 .content {
     flex: 1;
-    padding: 10px 14px;
-    background: #FFF;
+    padding: 2px 5px 5px 5px;
+    background: white;
+    vertical-align: top;
+    font-size: 11px;
     min-width: 0;
 }
 
-/* ─── Home Page Content ───────────────────────────────────────── */
+/* ─── Section Titles ──────────────────────────────────────────── */
+/* td.title: background-color:#DCDCDC */
+.section-title, .panel-header {
+    background-color: #DCDCDC;
+    font-size: 12px;
+    font-family: Verdana, Sans-Serif;
+    padding: 2px 5px;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+/* .redtitle: color:#990000, bold, 150% */
+.page-title {
+    font-size: 150%;
+    font-family: Verdana, Sans-Serif;
+    font-weight: bold;
+    color: #990000;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+/* ─── Home Page Layout ────────────────────────────────────────── */
 .home-cols {
     display: flex;
-    gap: 14px;
+    gap: 8px;
 }
 
 .home-main { flex: 1; min-width: 0; }
 
 .home-side {
-    width: 200px;
-    min-width: 200px;
+    width: 190px;
+    min-width: 190px;
 }
 
-/* Featured wine box */
-.featured-wine {
-    margin-bottom: 12px;
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-.featured-wine .arrow-title {
-    color: #8B0000;
+/* Arrow titles */
+.arrow-title {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
+    color: #990000;
+    margin: 6px 0 2px;
+}
+
+.arrow-title a { color: #990000; }
+
+.desc-text {
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    line-height: 150%;
+    text-align: left;
+    vertical-align: top;
     margin-bottom: 4px;
 }
 
-.featured-wine p { margin-bottom: 6px; }
-
-/* Section arrow titles */
-.arrow-title {
-    color: #8B0000;
-    font-weight: bold;
-    font-size: 12px;
-    margin: 10px 0 4px;
+.featured-wine {
+    margin-bottom: 6px;
+    font-size: 11px;
+    line-height: 150%;
+    border-bottom: 1px solid #DCDCDC;
+    padding-bottom: 6px;
 }
 
-.arrow-title a { color: #8B0000; }
+.featured-wine p { margin-bottom: 3px; }
 
-/* Reasons list */
 .reasons-list {
     font-size: 11px;
-    line-height: 1.6;
-    margin: 4px 0 10px 0;
-    padding-left: 6px;
+    line-height: 150%;
+    margin: 2px 0 6px 15px;
+    padding: 0;
 }
 
-.reasons-list li { margin-bottom: 2px; list-style: none; }
-.reasons-list li:before { content: "• "; color: #8B0000; }
+.reasons-list li { margin-bottom: 0; }
 
-/* Recently added */
 .recent-list {
     list-style: none;
     padding: 0;
-    margin: 4px 0;
+    margin: 2px 0;
     font-size: 11px;
 }
 
 .recent-list li {
-    padding: 2px 0;
-    border-bottom: 1px dotted #E0D8C0;
+    padding: 1px 0;
 }
 
-.recent-list li:before { content: "• "; color: #8B0000; }
+.recent-list li:before { content: "• "; color: #990000; }
 
-/* Home login box */
+/* Login box on home page */
 .home-login-box {
-    background: #F5F0E2;
-    border: 1px solid #D5C8A8;
-    padding: 8px;
-    margin-top: 10px;
+    border: 1px #BABABA solid;
+    padding: 6px;
+    margin-bottom: 6px;
+    font-size: 11px;
 }
 
 .home-login-box label {
     display: block;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
     margin-bottom: 1px;
-    margin-top: 4px;
+    margin-top: 3px;
 }
 
 .home-login-box input[type="text"],
 .home-login-box input[type="password"] {
     width: 100%;
-    padding: 2px 4px;
+    padding: 2px 3px;
     font-size: 11px;
-    border: 1px solid #AAA;
-    font-family: Verdana, sans-serif;
-    margin-bottom: 2px;
+    border: 1px solid #909090;
+    font-family: Verdana, Sans-Serif;
 }
 
 .home-login-box .login-btn {
-    margin-top: 4px;
-    padding: 3px 16px;
-    background: #6B0012;
-    color: #FFF;
-    border: 1px solid #500;
-    font-size: 10px;
+    margin-top: 3px;
+    padding: 2px 10px;
+    font-size: 11px;
     cursor: pointer;
-    font-family: Verdana, sans-serif;
+    font-family: Verdana, Sans-Serif;
 }
-
-.home-login-box .login-btn:hover { background: #8B0020; }
 
 .home-login-box .forgot {
     font-size: 10px;
-    margin-top: 4px;
+    margin-top: 3px;
     display: block;
+    color: #990000;
 }
 
-/* Description paragraphs */
-.desc-text {
-    font-size: 11px;
-    line-height: 1.6;
-    margin-bottom: 8px;
-}
+.separator { border: none; border-top: 1px solid #DCDCDC; margin: 6px 0; }
 
-/* ─── Classic Tables ──────────────────────────────────────────── */
+/* ─── Tables (Wine List) ──────────────────────────────────────── */
 .wine-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 11px;
-    margin: 6px 0;
+    margin: 2px 0;
+    border: 0;
 }
 
+/* tr.subhead: background-color:#909090, color:#ffffff, bold, centered */
 .wine-table thead th {
-    background: #6B0012;
-    color: #D4A840;
-    padding: 4px 6px;
-    text-align: left;
-    font-size: 10px;
+    background-color: #909090;
+    color: #FFFFFF;
     font-weight: bold;
-    font-family: Verdana, sans-serif;
-    border: 1px solid #500;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    text-align: center;
+    padding: 2px 4px;
     white-space: nowrap;
 }
 
+.wine-table thead th a { color: #FFFFFF; text-decoration: underline; }
+.wine-table thead th a:hover { color: #EEEE88; }
+
+/* tr.odditem/tr.evenitem: background-color:#FFFFFF */
 .wine-table td {
-    padding: 3px 6px;
-    border: 1px solid #E0D8C0;
+    padding: 2px 4px;
     font-size: 11px;
+    font-family: Verdana, Sans-Serif;
     vertical-align: top;
+    border: 0;
 }
 
-.wine-table tbody tr:nth-child(even) { background: #FAF7F0; }
-.wine-table tbody tr:nth-child(odd) { background: #FFF; }
-.wine-table tbody tr:hover { background: #F0ECDA; }
+.wine-table tbody tr:nth-child(even) { background-color: #FFFFFF; }
+.wine-table tbody tr:nth-child(odd) { background-color: #FFFFFF; }
+.wine-table tbody tr:hover { background-color: #b0b0b0; }
 
 .wine-link {
-    color: #8B0000;
-    font-weight: bold;
+    color: #990000;
     text-decoration: none;
 }
 
 .wine-link:hover { text-decoration: underline; }
 
-/* ─── Forms ───────────────────────────────────────────────────── */
-.form-group { margin-bottom: 6px; }
-
-.form-group label {
-    font-weight: bold;
-    font-size: 11px;
-    color: #333;
-    display: block;
-    margin-bottom: 1px;
-}
-
-.form-control {
-    padding: 3px 5px;
-    border: 1px solid #AAA;
-    font-size: 11px;
-    font-family: Verdana, sans-serif;
-    background: #FFF;
-    color: #333;
-    width: 100%;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: #8B0000;
-    background: #FFFEF8;
-}
-
-select.form-control { padding: 2px 3px; }
-textarea.form-control { resize: vertical; min-height: 60px; }
-
-.form-row { display: flex; gap: 8px; }
-.form-row .form-group { flex: 1; }
-
-.form-error { color: #C00; font-size: 10px; }
-.form-hint { color: #888; font-size: 10px; font-style: italic; }
-
-/* ─── Buttons ─────────────────────────────────────────────────── */
-.btn {
-    display: inline-block;
-    padding: 3px 12px;
-    font-size: 10px;
-    font-family: Verdana, sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    border: 1px solid;
-}
-
-.btn:hover { text-decoration: none; }
-
-.btn-primary { background: #6B0012; color: #FFF; border-color: #500; }
-.btn-primary:hover { background: #8B0020; color: #FFF; }
-.btn-primary:visited { color: #FFF; }
-
-.btn-secondary { background: #E8E0CC; color: #333; border-color: #C8B898; }
-.btn-secondary:hover { background: #DDD5BB; }
-
-.btn-danger { background: #C33; color: #FFF; border-color: #A22; }
-.btn-danger:hover { background: #D44; color: #FFF; }
-
-.btn-success { background: #363; color: #FFF; border-color: #252; }
-.btn-success:hover { background: #484; color: #FFF; }
-
-.btn-sm { padding: 2px 8px; font-size: 10px; }
-.btn-lg { padding: 4px 16px; font-size: 11px; }
-
-/* ─── Panels ──────────────────────────────────────────────────── */
-.panel {
-    border: 1px solid #D5C8A8;
-    margin-bottom: 10px;
-    background: #FFF;
-}
-
-.panel-header {
-    background: #6B0012;
-    color: #D4A840;
-    padding: 4px 8px;
-    font-weight: bold;
-    font-size: 11px;
-    font-family: Verdana, sans-serif;
-}
-
-.panel-body { padding: 8px; }
-
-/* ─── Wine Detail ─────────────────────────────────────────────── */
+/* ─── Detail Table (Wine View) ────────────────────────────────── */
 .detail-table {
     width: 100%;
     border-collapse: collapse;
@@ -414,59 +346,168 @@ textarea.form-control { resize: vertical; min-height: 60px; }
 }
 
 .detail-table td {
-    padding: 3px 6px;
-    border: 1px solid #E0D8C0;
+    padding: 2px 5px;
     vertical-align: top;
 }
 
+/* td.smallfieldlabel / td.fieldlabel: color:#990000, right-aligned */
 .detail-table .label-cell {
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    color: #990000;
+    text-align: right;
     font-weight: bold;
-    background: #F5F0E2;
-    width: 110px;
-    color: #555;
     white-space: nowrap;
+    width: 100px;
 }
+
+/* td.smallfieldvalue: color:black, left-aligned */
+.detail-table .value-cell {
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    color: black;
+    text-align: left;
+}
+
+.detail-table .section-header {
+    background-color: #DCDCDC;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 5px;
+}
+
+/* ─── Forms ───────────────────────────────────────────────────── */
+.form-group { margin-bottom: 3px; }
+
+.form-group label {
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    color: #990000;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1px;
+}
+
+.form-control {
+    padding: 2px 3px;
+    border: 1px solid #909090;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    background: white;
+    color: black;
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #990000;
+}
+
+select.form-control { padding: 2px 2px; }
+textarea.form-control { resize: vertical; min-height: 40px; }
+
+.form-row { display: flex; gap: 6px; }
+.form-row .form-group { flex: 1; }
+
+.form-error { color: red; font-size: 10px; }
+
+/* ─── Buttons ─────────────────────────────────────────────────── */
+.btn {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover { text-decoration: none; }
+
+.btn-primary { background: #990000; color: #FFFFFF; border: 1px solid #660000; }
+.btn-primary:hover { background: #BB0000; color: #FFFFFF; }
+.btn-primary:visited { color: #FFFFFF; }
+
+.btn-secondary { background: #DCDCDC; color: black; border: 1px solid #909090; }
+.btn-secondary:hover { background: #C0C0C0; }
+
+.btn-danger { background: #CC3333; color: #FFFFFF; border: 1px solid #AA2222; }
+.btn-danger:hover { background: #DD4444; color: #FFFFFF; }
+
+.btn-success { background: #336633; color: #FFFFFF; border: 1px solid #225522; }
+.btn-success:hover { background: #448844; color: #FFFFFF; }
+
+.btn-sm { padding: 1px 6px; font-size: 10px; }
+
+/* ─── Panels ──────────────────────────────────────────────────── */
+.panel {
+    margin-bottom: 6px;
+    background: white;
+}
+
+.panel-header {
+    background-color: #DCDCDC;
+    font-size: 12px;
+    font-family: Verdana, Sans-Serif;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+.panel-body { padding: 4px; }
+
+/* ─── Filter / Search Bar ─────────────────────────────────────── */
+.filter-bar {
+    background-color: #DCDCDC;
+    padding: 4px;
+    margin-bottom: 4px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.filter-row .form-group { margin-bottom: 0; flex: 1; min-width: 80px; }
+.filter-row label { font-size: 10px; color: #990000; }
 
 /* ─── Stats ───────────────────────────────────────────────────── */
 .stats-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
+    gap: 4px;
+    margin-bottom: 6px;
 }
 
 .stat-card {
     flex: 1;
-    min-width: 100px;
-    border: 1px solid #D5C8A8;
-    background: #F5F0E2;
-    padding: 8px;
+    min-width: 80px;
+    border: 1px solid #DCDCDC;
+    background: #EDEDED;
+    padding: 4px;
     text-align: center;
 }
 
 .stat-value {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
-    color: #6B0012;
-    font-family: Georgia, serif;
+    color: #990000;
 }
 
 .stat-label {
     font-size: 9px;
-    color: #888;
+    color: #707070;
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 0.3px;
-    margin-top: 1px;
 }
 
-.stats-two-col { display: flex; gap: 10px; }
+.stats-two-col { display: flex; gap: 6px; }
 .stats-two-col > div { flex: 1; }
 
 .breakdown-bar {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     margin-bottom: 2px;
     font-size: 11px;
 }
@@ -475,113 +516,93 @@ textarea.form-control { resize: vertical; min-height: 60px; }
 
 .breakdown-track {
     flex: 1;
-    height: 14px;
-    background: #F0EBD8;
-    border: 1px solid #D5C8A8;
+    height: 12px;
+    background: #EDEDED;
+    border: 1px solid #DCDCDC;
 }
 
 .breakdown-fill {
     height: 100%;
-    background: #6B0012;
+    background: #990000;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 3px;
-    min-width: 16px;
+    padding-right: 2px;
+    min-width: 14px;
 }
 
-.breakdown-fill span { color: #D4A840; font-size: 9px; font-weight: bold; }
+.breakdown-fill span { color: #FFFFFF; font-size: 9px; font-weight: bold; }
 
 /* ─── Tasting Notes ───────────────────────────────────────────── */
 .tasting-card {
-    border: 1px solid #D5C8A8;
-    margin-bottom: 6px;
-    padding: 6px 8px;
-    border-left: 3px solid #6B0012;
-    background: #FFF;
+    border: 1px solid #DCDCDC;
+    margin-bottom: 4px;
+    padding: 4px 5px;
+    background: white;
 }
 
 .tasting-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
-    padding-bottom: 3px;
-    border-bottom: 1px dotted #E0D8C0;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #DCDCDC;
 }
 
-.tasting-date { font-size: 10px; color: #888; font-weight: bold; }
+.tasting-date { font-size: 10px; color: #707070; font-weight: bold; }
 
 .tasting-score {
-    background: #6B0012;
-    color: #D4A840;
-    padding: 1px 6px;
+    background: #990000;
+    color: #FFFFFF;
+    padding: 1px 4px;
     font-size: 10px;
     font-weight: bold;
 }
 
-.tasting-section { margin-bottom: 3px; }
-.tasting-label { font-size: 10px; font-weight: bold; color: #6B0012; }
+.tasting-section { margin-bottom: 2px; }
+.tasting-label { font-size: 10px; font-weight: bold; color: #990000; }
 .tasting-text { font-size: 11px; }
 
 /* ─── Tabs ────────────────────────────────────────────────────── */
 .tabs {
     display: flex;
-    border-bottom: 2px solid #6B0012;
-    margin-bottom: 8px;
-    background: #F5F0E2;
+    border-bottom: 1px solid #909090;
+    margin-bottom: 4px;
+    background: #DCDCDC;
 }
 
 .tab {
-    padding: 4px 10px;
-    color: #600;
+    padding: 2px 8px;
+    color: #990000;
     font-weight: bold;
     font-size: 10px;
     text-decoration: none;
-    border: 1px solid #D5C8A8;
+    border: 1px solid #909090;
     border-bottom: none;
-    background: #F5F0E2;
-    margin-bottom: -2px;
+    background: #DCDCDC;
+    margin-bottom: -1px;
 }
 
-.tab:hover { background: #EDE6D0; text-decoration: none; }
+.tab:hover { background: #C0C0C0; text-decoration: none; }
 
 .tab.active {
-    background: #FFF;
-    border-bottom: 2px solid #FFF;
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
 }
-
-/* ─── Filter Bar ──────────────────────────────────────────────── */
-.filter-bar {
-    background: #F5F0E2;
-    border: 1px solid #D5C8A8;
-    padding: 6px;
-    margin-bottom: 8px;
-}
-
-.filter-row {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    align-items: end;
-}
-
-.filter-row .form-group { margin-bottom: 0; flex: 1; min-width: 90px; }
-.filter-row label { font-size: 10px; }
 
 /* ─── Alerts ──────────────────────────────────────────────────── */
 .alert {
-    padding: 5px 8px;
+    padding: 3px 6px;
     font-size: 11px;
-    border-bottom: 1px solid;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
 }
 
-.alert-success { background: #DFF0D8; color: #3C763D; border-color: #D6E9C6; }
-.alert-danger { background: #F2DEDE; color: #A94442; border-color: #EBCCD1; }
-.alert-info { background: #D9EDF7; color: #31708F; border-color: #BCE8F1; }
+.alert-success { background: #DFF0D8; color: #3C763D; border-bottom: 1px solid #D6E9C6; }
+.alert-danger { background: #F2DEDE; color: #A94442; border-bottom: 1px solid #EBCCD1; }
+.alert-info { background: #D9EDF7; color: #31708F; border-bottom: 1px solid #BCE8F1; }
 
 .alert-close {
     margin-left: auto;
@@ -595,74 +616,86 @@ textarea.form-control { resize: vertical; min-height: 60px; }
 .alert-close:hover { opacity: 1; }
 
 /* ─── Breadcrumb ──────────────────────────────────────────────── */
-.breadcrumb { font-size: 10px; color: #888; margin-bottom: 6px; }
-.breadcrumb a { color: #8B0000; }
+.breadcrumb { font-size: 10px; color: #707070; margin-bottom: 3px; }
+.breadcrumb a { color: #990000; }
 
 /* ─── Info Box ────────────────────────────────────────────────── */
 .info-box {
-    background: #FFFDE0;
-    border: 1px solid #EED;
-    padding: 5px 8px;
+    background: #EDEDED;
+    padding: 3px 5px;
     font-size: 11px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-.info-box strong { color: #600; }
+.info-box strong { color: #990000; }
 
 /* ─── Page Header ─────────────────────────────────────────────── */
 .page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
 }
 
-.page-header h1 { font-size: 16px; margin: 0; border: none; padding: 0; }
+.page-header h1 {
+    font-size: 150%;
+    color: #990000;
+    font-weight: bold;
+    margin: 0;
+}
 
-.page-actions { display: flex; gap: 3px; }
+.page-actions { display: flex; gap: 2px; }
 
 /* ─── Empty State ─────────────────────────────────────────────── */
 .empty-state {
     text-align: center;
-    padding: 20px;
-    color: #888;
-    border: 1px dashed #D5C8A8;
-    background: #FAF7F0;
-    margin: 8px 0;
+    padding: 12px;
+    color: #707070;
+    border: 1px dashed #DCDCDC;
+    background: #EDEDED;
+    margin: 4px 0;
     font-size: 11px;
 }
 
-.empty-state h3 { font-size: 13px; color: #666; margin-bottom: 3px; }
+.empty-state h3 { font-size: 12px; color: #333; margin-bottom: 2px; }
 
 /* ─── Action Links ────────────────────────────────────────────── */
-.action-links { font-size: 11px; margin-bottom: 6px; }
-.action-links a { margin-right: 5px; }
+.action-links { font-size: 11px; margin-bottom: 3px; }
+.action-links a { margin-right: 4px; color: #990000; }
+
+/* ─── Wine Tags ───────────────────────────────────────────────── */
+.wine-tag {
+    display: inline-block;
+    padding: 0 3px;
+    font-size: 9px;
+}
+
+.wine-tag.rating { background: #990000; color: #FFFFFF; font-weight: bold; }
+.wine-tag.ready { background: #336633; color: #FFFFFF; }
 
 /* ─── Quick Entry ─────────────────────────────────────────────── */
 .quick-entry-row {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     margin-bottom: 2px;
     align-items: center;
 }
 
 .quick-entry-row input {
-    padding: 2px 4px;
-    border: 1px solid #AAA;
+    padding: 2px 3px;
+    border: 1px solid #909090;
     font-size: 10px;
-    font-family: Verdana, sans-serif;
+    font-family: Verdana, Sans-Serif;
     flex: 1;
 }
 
-.quick-entry-row input:focus { border-color: #8B0000; }
-
 .quick-entry-header {
     display: flex;
-    gap: 3px;
-    margin-bottom: 2px;
+    gap: 2px;
+    margin-bottom: 1px;
     font-weight: bold;
     font-size: 9px;
-    color: #888;
+    color: #707070;
 }
 
 .quick-entry-header span { flex: 1; }
@@ -671,79 +704,73 @@ textarea.form-control { resize: vertical; min-height: 60px; }
 .auth-wrapper {
     display: flex;
     justify-content: center;
-    padding: 20px;
-    min-height: 400px;
+    padding: 12px;
+    min-height: 300px;
 }
 
 .auth-card {
-    border: 1px solid #D5C8A8;
-    background: #F5F0E2;
-    padding: 16px;
-    width: 340px;
+    border: 1px #BABABA solid;
+    background: white;
+    padding: 10px;
+    width: 320px;
 }
 
 .auth-card h2 {
     text-align: center;
-    font-size: 16px;
-    margin-bottom: 3px;
+    font-size: 150%;
+    color: #990000;
+    font-weight: bold;
+    margin-bottom: 2px;
 }
 
 .auth-card .subtitle {
     text-align: center;
-    color: #888;
+    color: #707070;
     font-size: 10px;
-    font-style: italic;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .auth-footer {
     text-align: center;
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px dotted #D5C8A8;
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid #DCDCDC;
     font-size: 10px;
-    color: #666;
+    color: #707070;
 }
 
 /* ─── Footer ──────────────────────────────────────────────────── */
+/* div.footer: background-color:#707070, color:#ffffff, bold */
 .site-footer {
-    background: #444;
-    color: #AAA;
+    width: 960px;
+    margin: 0 auto;
+    background-color: #707070;
+    font-size: 11px;
+    font-family: Verdana, Sans-Serif;
+    color: #FFFFFF;
+    font-weight: bold;
     text-align: center;
-    padding: 6px;
-    font-size: 10px;
-    border-top: 2px solid #C8A23C;
+    padding: 4px;
 }
 
-.site-footer a { color: #D4A840; }
-.site-footer a:hover { color: #F0D060; }
+.site-footer a { color: #FFFFFF; text-decoration: none; }
+.site-footer a:hover { color: #EEEE88; }
 
 /* ─── Utility ─────────────────────────────────────────────────── */
 .text-center { text-align: center; }
-.text-muted { color: #888; }
-.mt-1 { margin-top: 4px; }
-.mt-2 { margin-top: 8px; }
-.mb-1 { margin-bottom: 4px; }
-.mb-2 { margin-bottom: 8px; }
+.text-muted { color: #707070; }
+.mt-1 { margin-top: 3px; }
+.mt-2 { margin-top: 6px; }
+.mb-1 { margin-bottom: 3px; }
+.mb-2 { margin-bottom: 6px; }
 .d-flex { display: flex; }
-.gap-1 { gap: 4px; }
+.gap-1 { gap: 3px; }
 
-.wine-tag {
-    display: inline-block;
-    padding: 1px 5px;
-    font-size: 9px;
-    border: 1px solid;
-}
-
-.wine-tag.rating { background: #6B0012; color: #D4A840; border-color: #500; font-weight: bold; }
-.wine-tag.ready { background: #363; color: #FFF; border-color: #252; }
-.wine-tag.price { background: #C8A23C; color: #FFF; border-color: #A08020; }
-
-.separator { border: none; border-top: 1px solid #D5C8A8; margin: 8px 0; }
+.import-help { font-size: 10px; color: #707070; margin-top: 3px; }
 
 /* ─── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .page-container { width: 100%; }
+    .page-container, .site-footer { width: 100%; }
     .main-layout { flex-direction: column; }
     .sidebar { width: 100%; min-width: 100%; }
     .home-cols { flex-direction: column; }

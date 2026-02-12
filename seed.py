@@ -446,6 +446,173 @@ def seed_database():
         print(f"  - Added {len(SAMPLE_WINES)} wines to demo user's cellar")
         print(f"  - Added {len(SAMPLE_TASTING_NOTES)} tasting notes")
 
+        # Also create the 'bread' user and import their cellar CSV
+        _seed_bread_user()
+
+
+def _seed_bread_user():
+    """Create the 'bread' user and import cellar data from CSV if available."""
+    import os
+    import csv
+    import re
+    from io import StringIO
+
+    if User.query.filter_by(username='bread').first():
+        print("  - 'bread' user already exists, skipping.")
+        return
+
+    user = User(username='bread', email='bread@winecellar.com')
+    user.set_password('butter')
+    db.session.add(user)
+    db.session.flush()
+
+    csv_path = os.path.join(os.path.dirname(__file__), 'cellar_data.csv')
+    if not os.path.exists(csv_path):
+        db.session.commit()
+        print(f"  - Created 'bread' user (no CSV found at {csv_path})")
+        return
+
+    with open(csv_path, 'r', encoding='utf-8-sig') as f:
+        content = f.read()
+
+    reader = csv.reader(StringIO(content))
+    header = None
+    for row in reader:
+        cleaned = [c.strip() for c in row]
+        if 'Name' in cleaned and 'Producer' in cleaned:
+            header = cleaned
+            break
+
+    if not header:
+        db.session.commit()
+        print("  - Created 'bread' user (CSV header not found)")
+        return
+
+    col = {}
+    for i, h in enumerate(header):
+        col[h.lower()] = i
+
+    white_grapes = {'Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio', 'Pinot Gris',
+                    'Riesling', 'Aligoté', 'Pinot Blanc', 'Grenache Blanc',
+                    'Roussanne', 'Falanghina', 'Prosecco', 'Xarel-Lo',
+                    'Macabeo', 'Parellada', 'Grenache Gris'}
+    sparkling_kw = ['Champagne', 'Brut', 'Sparkling', 'Prosecco', 'Franciacorta']
+    dessert_kw = ['Sauternes', 'Barsac']
+
+    wine_count = 0
+    note_count = 0
+    wine_cache = {}
+
+    for row in reader:
+        if len(row) < len(header):
+            row.extend([''] * (len(header) - len(row)))
+
+        name = row[col.get('name', 1)].strip()
+        producer = row[col.get('producer', 2)].strip()
+        if not name or not producer:
+            continue
+
+        vintage_str = row[col.get('vintage', 0)].strip()
+        appellation = row[col.get('appellation', 3)].strip()
+        varietal_str = row[col.get('varietal', 4)].strip()
+        size_str = row[col.get('size', 5)].strip()
+        qty_str = row[col.get('quantity', 6)].strip()
+        price_str = row[col.get('price', 7)].strip()
+        stored = row[col.get('stored', 8)].strip()
+        notes = row[col.get('notes', 9)].strip() if len(row) > col.get('notes', 9) else ''
+
+        vintage = None
+        if vintage_str:
+            try: vintage = int(vintage_str)
+            except ValueError: pass
+
+        varietals = [v.strip() for v in varietal_str.split('-') if v.strip()] if varietal_str else []
+        size_ml = int(size_str) if size_str and size_str.isdigit() else 750
+        price = None
+        if price_str:
+            try: price = float(price_str)
+            except ValueError: pass
+
+        wine_type = 'Red'
+        if any(kw.lower() in name.lower() for kw in sparkling_kw):
+            wine_type = 'Sparkling'
+        elif any(kw.lower() in appellation.lower() for kw in dessert_kw):
+            wine_type = 'Dessert'
+        elif 'Rosé' in name or 'Rose' in name:
+            wine_type = 'Rosé'
+        elif varietals and all(v in white_grapes for v in varietals):
+            wine_type = 'White'
+
+        cache_key = (vintage, name, producer)
+
+        if qty_str:
+            try: quantity = int(qty_str)
+            except ValueError: quantity = 1
+
+            wine = Wine(user_id=user.id, name=name, producer=producer, vintage=vintage,
+                        appellation=appellation, wine_type=wine_type,
+                        varietal1=varietals[0] if len(varietals) > 0 else None,
+                        varietal2=varietals[1] if len(varietals) > 1 else None,
+                        varietal3=varietals[2] if len(varietals) > 2 else None,
+                        varietal4=varietals[3] if len(varietals) > 3 else None,
+                        size_ml=size_ml, quantity=quantity, price=price, stored=stored,
+                        description=notes if notes and 'Brad & Erica Sklar' not in notes else None,
+                        status='cellar')
+            db.session.add(wine)
+            db.session.flush()
+            wine_cache[cache_key] = wine.id
+            wine_count += 1
+
+            if notes and 'Brad & Erica Sklar' in notes:
+                _add_note(wine.id, user.id, notes)
+                note_count += 1
+
+        elif notes:
+            wine_id = wine_cache.get(cache_key)
+            if not wine_id:
+                wine = Wine(user_id=user.id, name=name, producer=producer, vintage=vintage,
+                            appellation=appellation, wine_type=wine_type,
+                            varietal1=varietals[0] if len(varietals) > 0 else None,
+                            varietal2=varietals[1] if len(varietals) > 1 else None,
+                            varietal3=varietals[2] if len(varietals) > 2 else None,
+                            varietal4=varietals[3] if len(varietals) > 3 else None,
+                            size_ml=size_ml, price=price, stored=stored,
+                            quantity=1, status='consumed')
+                db.session.add(wine)
+                db.session.flush()
+                wine_cache[cache_key] = wine.id
+                wine_id = wine.id
+                wine_count += 1
+
+            _add_note(wine_id, user.id, notes)
+            note_count += 1
+
+    db.session.commit()
+    print(f"  - Created 'bread' user with {wine_count} wines and {note_count} tasting notes")
+
+
+def _add_note(wine_id, user_id, notes_text):
+    """Create a TastingNote from ManageYourCellar CSV notes format."""
+    import re
+    score = None
+    overall = notes_text
+
+    star_match = re.search(r'(\d+(?:\.\d+)?)\s*stars?', notes_text)
+    if star_match:
+        score = int(float(star_match.group(1)) * 20)
+
+    point_match = re.search(r'(\d+)\s*points?', notes_text)
+    if point_match:
+        score = int(point_match.group(1))
+
+    overall = re.sub(r'^\s*Brad\s*&\s*Erica\s*Sklar:\s*', '', overall)
+    overall = re.sub(r'^\d+(?:\.\d+)?\s*(?:stars?|points?)\s*', '', overall)
+    overall = overall.strip()
+
+    note = TastingNote(wine_id=wine_id, user_id=user_id,
+                       overall=overall if overall else None, score=score)
+    db.session.add(note)
+
 
 if __name__ == '__main__':
     seed_database()

@@ -1,32 +1,87 @@
 {% extends "base.html" %}
-{% block title %}Search - WineCellarManager.com{% endblock %}
+{% block title %}Advanced Search - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<h1 style="font-size:16px;">Search Your Collection</h1>
+<div class="page-header">
+    <h1>Advanced Search: Query Wine</h1>
+</div>
 
-<div class="filter-bar">
-    <form method="GET" action="{{ url_for('search') }}">
-        <div class="filter-row">
-            <div class="form-group" style="flex:2;"><label>Search</label>{{ form.query(class="form-control", placeholder="Wine name, producer, varietal...") }}</div>
-            <div class="form-group"><label>Type</label>{{ form.wine_type(class="form-control") }}</div>
-            <div class="form-group"><label>Appellation</label>{{ form.appellation(class="form-control", placeholder="e.g. Napa Valley") }}</div>
-            <div class="form-group"><label>Varietal</label>{{ form.varietal(class="form-control", placeholder="e.g. Pinot Noir") }}</div>
-            <div class="form-group" style="flex:0;"><label>&nbsp;</label><button type="submit" class="btn btn-primary">Search</button></div>
-        </div>
-    </form>
+<div class="panel">
+    <div class="panel-header">Search Criteria</div>
+    <div class="panel-body">
+        <form method="GET" action="{{ url_for('search') }}">
+            <table class="detail-table">
+                <tr>
+                    <td class="label-cell">Wine Finder:</td>
+                    <td>{{ form.query(class="form-control", placeholder="Enter keywords (producer, region, varietal, vintage)") }}</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Type/Color:</td>
+                    <td>{{ form.wine_type(class="form-control", style="width:200px;") }}</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Varietal:</td>
+                    <td>{{ form.varietal(class="form-control", style="width:200px;", placeholder="Any Varietal") }}</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Appellation:</td>
+                    <td>{{ form.appellation(class="form-control", style="width:200px;", placeholder="Any Appellation") }}</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Sorted by:</td>
+                    <td>{{ form.sort_by(class="form-control", style="width:200px;") }}</td>
+                </tr>
+                <tr>
+                    <td class="label-cell"></td>
+                    <td><button type="submit" class="btn btn-primary">Search</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 
 {% if wines %}
-<div class="info-box"><strong>{{ wines|length }}</strong> result{{ 's' if wines|length != 1 }}.</div>
-<table class="wine-table"><thead><tr><th>Name</th><th>Vintage</th><th>Producer</th><th>Type</th><th>Appellation</th><th>Varietal</th><th>Status</th><th>Rating</th></tr></thead><tbody>
-{% for wine in wines %}<tr>
-    <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a></td>
-    <td>{{ wine.vintage or 'NV' }}</td><td>{{ wine.producer }}</td><td>{{ wine.wine_type }}</td><td>{{ wine.appellation or '-' }}</td><td>{{ wine.varietals_display or '-' }}</td>
-    <td>{% if wine.status == 'cellar' %}In Cellar{% elif wine.status == 'consumed' %}Consumed{% elif wine.status == 'wishlist' %}Wish List{% endif %}</td>
-    <td>{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% else %}-{% endif %}</td>
-</tr>{% endfor %}
-</tbody></table>
+<div class="panel">
+    <div class="panel-header">Search Results: {{ wines|length }} wine{{ 's' if wines|length != 1 }} found</div>
+    <div class="panel-body" style="padding:0;">
+        <table class="wine-table">
+            <thead>
+                <tr>
+                    <th>Vintage</th>
+                    <th style="text-align:left;">Name</th>
+                    <th style="text-align:left;">Producer</th>
+                    <th style="text-align:left;">Appellation</th>
+                    <th style="text-align:left;">Varietal</th>
+                    <th>Type/Color</th>
+                    <th>Qty</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wine in wines %}
+                <tr>
+                    <td style="text-align:center;">{{ wine.vintage or '' }}</td>
+                    <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}{% if wine.size_ml and wine.size_ml != 750 %} ({{ wine.size_display }}){% endif %}</a></td>
+                    <td>{{ wine.producer }}</td>
+                    <td>{{ wine.appellation or '' }}</td>
+                    <td>{{ wine.varietals_display or '' }}</td>
+                    <td style="text-align:center;">{{ wine.wine_type }}</td>
+                    <td style="text-align:center;">{{ wine.quantity }}</td>
+                    <td style="text-align:center;">{% if wine.rating %}<span class="wine-tag rating">{{ wine.rating }}</span>{% endif %}</td>
+                    <td style="text-align:right;">{% if wine.price %}${{ "%.2f"|format(wine.price) }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% elif form.query.data %}
-<div class="empty-state"><h3>No wines found</h3><p>Try adjusting your search.</p></div>
+<div class="panel">
+    <div class="panel-header">Advanced Search</div>
+    <div class="panel-body">
+        No wine was found for your search. Please try a different search below.
+    </div>
+</div>
 {% endif %}
 {% endblock %}

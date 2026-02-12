@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Cellar Import - WineCellarManager.com{% endblock %}
+
+{% block content %}
+<h1 style="font-size:14px;">Cellar Import</h1>
+<p class="desc-text">Upload a CSV file to import wines into your cellar. The CSV should have these columns:</p>
+<p class="desc-text" style="font-family:monospace;background:#F5EED8;padding:4px;border:1px solid #CCBB99;">
+Vintage, Name, Producer, Appellation, Varietal, Size, Quantity, Price, Stored, Notes</p>
+
+<div class="panel">
+    <div class="panel-header">Upload CSV File</div>
+    <div class="panel-body">
+        <form method="POST" action="{{ url_for('cellar_import') }}" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label>CSV File:</label>
+                <input type="file" name="csv_file" accept=".csv" style="font-size:11px;">
+            </div>
+            <div class="form-group mt-1">
+                <button type="submit" class="btn btn-primary">Import Wines</button>
+            </div>
+        </form>
+        <div class="import-help">
+            <p>Notes:</p>
+            <ul style="margin-left:15px;">
+                <li>Wines with a quantity will be added to your cellar</li>
+                <li>Wines without a quantity but with notes will be recorded as consumed with tasting notes</li>
+                <li>Duplicate wines (same name, vintage, producer) will have their quantities combined</li>
+                <li>Varietals separated by hyphens (e.g., "Cabernet Sauvignon-Merlot") will be split into varietal fields</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

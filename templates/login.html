@@ -1,33 +1,35 @@
 {% extends "base.html" %}
-{% block title %}Sign In - WineCellarManager.com{% endblock %}
+{% block title %}ManageYourCellar.com - Login{% endblock %}
 
 {% block layout %}
 <div class="main-layout">
     <div class="sidebar">
-        <div class="sb-section">
-            <div class="sb-title">Manage My Cellar</div>
-            <div class="sb-links">
-                <a href="{{ url_for('login') }}">Wines in Cellar</a>
-                <a href="{{ url_for('login') }}">Ready to Drink</a>
-                <a href="{{ url_for('login') }}">Wines on Order</a>
-                <a href="{{ url_for('login') }}">Wines Consumed</a>
-                <a href="{{ url_for('login') }}">Wish List</a>
-            </div>
+        <div class="sb-title">Manage My Cellar:</div>
+        <div class="sb-links">
+            <a href="{{ url_for('login') }}">Wines in Cellar</a>
+            <a href="{{ url_for('login') }}">Ready to Drink</a>
+            <a href="{{ url_for('login') }}">Wines on Order</a>
+            <a href="{{ url_for('login') }}">Wines Consumed</a>
+            <a href="{{ url_for('login') }}">Wish List</a>
+            <a href="{{ url_for('login') }}">Cellar Statistics</a>
+            <a href="{{ url_for('login') }}">Best Wine Values</a>
+            <a href="{{ url_for('login') }}">Add Wine</a>
+            <a href="{{ url_for('login') }}">Quick Entry</a>
+            <a href="{{ url_for('login') }}">Cellar Import</a>
+            <a href="{{ url_for('login') }}">Cellar Export</a>
         </div>
-        <div class="sb-section">
-            <div class="sb-title">About</div>
-            <div class="sb-links">
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('faq') }}">FAQ</a>
-                <a href="{{ url_for('register') }}">Register</a>
-            </div>
+        <div class="sb-title" style="margin-top:6px;">About:</div>
+        <div class="sb-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('faq') }}">FAQ</a>
+            <a href="{{ url_for('register') }}">Register</a>
         </div>
     </div>
     <div class="content">
         <div class="auth-wrapper">
             <div class="auth-card">
-                <h2>&#127863; Sign In</h2>
-                <p class="subtitle">Sign in to manage your wine cellar</p>
+                <h2>Sign In</h2>
+                <p class="subtitle">Use your username and password to log into your existing account or establish a new <a href="{{ url_for('register') }}">user account</a>.</p>
                 <form method="POST" action="{{ url_for('login') }}">
                     {{ form.hidden_tag() }}
                     <div class="form-group">
@@ -40,7 +42,7 @@
                         {{ form.password(class="form-control") }}
                         {% for error in form.password.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Sign In</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
                 </form>
                 <div class="auth-footer">
                     Don't have an account? <a href="{{ url_for('register') }}">Create one now</a>

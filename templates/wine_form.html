@@ -1,45 +1,42 @@
 {% extends "base.html" %}
-{% block title %}{{ title }} - WineCellarManager.com{% endblock %}
+{% block title %}{{ title }} - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<div class="breadcrumb"><a href="{{ url_for('cellar') }}">My Cellar</a> &raquo; {{ title }}</div>
-
-<div class="panel">
-    <div class="panel-header">{{ title }}</div>
-    <div class="panel-body">
-        <form method="POST">
-            {{ form.hidden_tag() }}
-
-            <table class="detail-table" style="margin-bottom:10px;">
-                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Wine Information</td></tr>
-                <tr><td class="label-cell">Name:</td><td colspan="3">{{ form.name(class="form-control", placeholder="e.g. Reserve Cabernet Sauvignon") }}{% for e in form.name.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
-                <tr><td class="label-cell">Vintage:</td><td>{{ form.vintage(class="form-control", placeholder="e.g. 2018", style="width:90px") }}{% for e in form.vintage.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td><td class="label-cell">Producer:</td><td>{{ form.producer(class="form-control", placeholder="e.g. Chateau Margaux") }}{% for e in form.producer.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
-                <tr><td class="label-cell">Type:</td><td>{{ form.wine_type(class="form-control", style="width:130px") }}</td><td class="label-cell">Appellation:</td><td>{{ form.appellation(class="form-control", placeholder="e.g. Napa Valley AVA") }}</td></tr>
-                <tr><td class="label-cell">Varietal 1:</td><td>{{ form.varietal1(class="form-control", placeholder="e.g. Cabernet Sauvignon") }}</td><td class="label-cell">Varietal 2:</td><td>{{ form.varietal2(class="form-control", placeholder="e.g. Merlot") }}</td></tr>
-                <tr><td class="label-cell">Varietal 3:</td><td>{{ form.varietal3(class="form-control", placeholder="Optional") }}</td><td class="label-cell">Varietal 4:</td><td>{{ form.varietal4(class="form-control", placeholder="Optional") }}</td></tr>
-                <tr><td class="label-cell">Size (ml):</td><td>{{ form.size_ml(class="form-control", placeholder="750", style="width:90px") }}</td><td class="label-cell">Alcohol %:</td><td>{{ form.alcohol_pct(class="form-control", placeholder="e.g. 13.5", style="width:90px") }}</td></tr>
-                <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.description(class="form-control", placeholder="Wine description...", rows="2") }}</td></tr>
-            </table>
-
-            <table class="detail-table" style="margin-bottom:10px;">
-                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Additional Acquisition Information</td></tr>
-                <tr><td class="label-cell">Date:</td><td>{{ form.acq_date(class="form-control", type="date", style="width:140px") }}</td><td class="label-cell">Quantity:</td><td>{{ form.quantity(class="form-control", style="width:70px") }}</td></tr>
-                <tr><td class="label-cell">Price ($):</td><td>{{ form.price(class="form-control", placeholder="e.g. 45.00", style="width:100px") }}</td><td class="label-cell">From:</td><td>{{ form.acq_from(class="form-control", placeholder="e.g. Wine.com") }}</td></tr>
-                <tr><td class="label-cell">On Order:</td><td>{{ form.on_order() }} <label for="on_order" style="font-weight:normal;font-size:10px;">Yes</label></td><td class="label-cell">Stored:</td><td>{{ form.stored(class="form-control", placeholder="e.g. Rack A, Shelf 3") }}</td></tr>
-                <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.acq_description(class="form-control", placeholder="Acquisition notes...", rows="2") }}</td></tr>
-            </table>
-
-            <table class="detail-table" style="margin-bottom:10px;">
-                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Cellar Tracking</td></tr>
-                <tr><td class="label-cell">Drink From:</td><td>{{ form.drink_from(class="form-control", placeholder="e.g. 2025", style="width:90px") }}</td><td class="label-cell">Drink To:</td><td>{{ form.drink_to(class="form-control", placeholder="e.g. 2035", style="width:90px") }}</td></tr>
-                <tr><td class="label-cell">Rating:</td><td>{{ form.rating(class="form-control", placeholder="1-100", style="width:70px") }}</td><td class="label-cell">Status:</td><td>{{ form.status(class="form-control", style="width:130px") }}</td></tr>
-            </table>
-
-            <div class="d-flex gap-1">
-                <button type="submit" class="btn btn-primary">{{ 'Update Wine' if wine is defined else 'Add to Cellar' }}</button>
-                <a href="{{ url_for('cellar') }}" class="btn btn-secondary">Cancel</a>
-            </div>
-        </form>
-    </div>
+<div class="page-header">
+    <h1>{{ title }}</h1>
 </div>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="section-title"><b>Wine Information</b></div>
+    <table class="detail-table">
+        <tr><td class="label-cell">Name:</td><td colspan="3">{{ form.name(class="form-control", placeholder="e.g. Reserve Cabernet Sauvignon") }}{% for e in form.name.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
+        <tr><td class="label-cell">Vintage:</td><td>{{ form.vintage(class="form-control", placeholder="e.g. 2018", style="width:80px") }}{% for e in form.vintage.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td><td class="label-cell">Producer:</td><td>{{ form.producer(class="form-control", placeholder="e.g. Chateau Margaux") }}{% for e in form.producer.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
+        <tr><td class="label-cell">Type/Color:</td><td>{{ form.wine_type(class="form-control", style="width:120px") }}</td><td class="label-cell">Appellation:</td><td>{{ form.appellation(class="form-control", placeholder="e.g. Napa Valley") }}</td></tr>
+        <tr><td class="label-cell">Varietal 1:</td><td>{{ form.varietal1(class="form-control", placeholder="e.g. Cabernet Sauvignon") }}</td><td class="label-cell">Varietal 2:</td><td>{{ form.varietal2(class="form-control") }}</td></tr>
+        <tr><td class="label-cell">Varietal 3:</td><td>{{ form.varietal3(class="form-control") }}</td><td class="label-cell">Varietal 4:</td><td>{{ form.varietal4(class="form-control") }}</td></tr>
+        <tr><td class="label-cell">Size (ml):</td><td>{{ form.size_ml(class="form-control", placeholder="750", style="width:80px") }}</td><td class="label-cell">Alcohol %:</td><td>{{ form.alcohol_pct(class="form-control", placeholder="e.g. 13.5", style="width:80px") }}</td></tr>
+        <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.description(class="form-control", rows="2") }}</td></tr>
+    </table>
+
+    <div class="section-title" style="margin-top:6px;"><b>Acquisition Information</b></div>
+    <table class="detail-table">
+        <tr><td class="label-cell">Date:</td><td>{{ form.acq_date(class="form-control", type="date", style="width:130px") }}</td><td class="label-cell">Quantity:</td><td>{{ form.quantity(class="form-control", style="width:60px") }}</td></tr>
+        <tr><td class="label-cell">Price ($):</td><td>{{ form.price(class="form-control", placeholder="e.g. 45.00", style="width:90px") }}</td><td class="label-cell">From:</td><td>{{ form.acq_from(class="form-control") }}</td></tr>
+        <tr><td class="label-cell">On Order:</td><td>{{ form.on_order() }} Yes</td><td class="label-cell">Stored:</td><td>{{ form.stored(class="form-control", placeholder="e.g. Rack A, Shelf 3") }}</td></tr>
+        <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.acq_description(class="form-control", rows="2") }}</td></tr>
+    </table>
+
+    <div class="section-title" style="margin-top:6px;"><b>Cellar Tracking</b></div>
+    <table class="detail-table">
+        <tr><td class="label-cell">Drink From:</td><td>{{ form.drink_from(class="form-control", placeholder="e.g. 2025", style="width:80px") }}</td><td class="label-cell">Drink To:</td><td>{{ form.drink_to(class="form-control", placeholder="e.g. 2035", style="width:80px") }}</td></tr>
+        <tr><td class="label-cell">Rating:</td><td>{{ form.rating(class="form-control", placeholder="1-100", style="width:60px") }}</td><td class="label-cell">Status:</td><td>{{ form.status(class="form-control", style="width:120px") }}</td></tr>
+    </table>
+
+    <div style="margin-top:6px;">
+        <button type="submit" class="btn btn-primary">{{ 'Update Wine' if wine is defined else 'Add to Cellar' }}</button>
+        <a href="{{ url_for('cellar') }}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
 {% endblock %}

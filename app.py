@@ -160,6 +160,9 @@ def cellar():
         'name': Wine.name,
         'vintage': Wine.vintage.desc(),
         'producer': Wine.producer,
+        'appellation': Wine.appellation,
+        'varietal': Wine.varietal1,
+        'wine_type': Wine.wine_type,
         'rating': Wine.rating.desc(),
         'price': Wine.price.desc(),
         'date_added': Wine.date_added.desc(),
@@ -438,6 +441,262 @@ def quick_entry():
         flash(f'{count} wine(s) added to your cellar!', 'success')
         return redirect(url_for('cellar'))
     return render_template('quick_entry.html')
+
+
+# ─── Cellar Import ────────────────────────────────────────────
+
+@app.route('/import', methods=['GET', 'POST'])
+@login_required
+def cellar_import():
+    if request.method == 'POST':
+        import csv
+        from io import StringIO, TextIOWrapper
+
+        file = request.files.get('csv_file')
+        if not file or not file.filename.endswith('.csv'):
+            flash('Please upload a valid CSV file.', 'danger')
+            return redirect(url_for('cellar_import'))
+
+        try:
+            content = file.stream.read().decode('utf-8-sig')
+            reader = csv.reader(StringIO(content))
+
+            # Find the header row
+            header = None
+            for row in reader:
+                cleaned = [c.strip() for c in row]
+                if 'Name' in cleaned and 'Producer' in cleaned:
+                    header = cleaned
+                    break
+
+            if not header:
+                flash('Could not find header row with Name and Producer columns.', 'danger')
+                return redirect(url_for('cellar_import'))
+
+            # Map column indices
+            col = {}
+            for i, h in enumerate(header):
+                col[h.lower()] = i
+
+            wine_count = 0
+            note_count = 0
+
+            # Track wines we create so we can attach tasting notes to consumed copies
+            wine_cache = {}  # key: (vintage, name, producer) -> wine_id
+
+            for row in reader:
+                if len(row) < len(header):
+                    row.extend([''] * (len(header) - len(row)))
+
+                name = row[col.get('name', 1)].strip() if col.get('name') is not None else ''
+                producer = row[col.get('producer', 2)].strip() if col.get('producer') is not None else ''
+                if not name or not producer:
+                    continue
+
+                vintage_str = row[col.get('vintage', 0)].strip() if col.get('vintage') is not None else ''
+                appellation = row[col.get('appellation', 3)].strip() if col.get('appellation') is not None else ''
+                varietal_str = row[col.get('varietal', 4)].strip() if col.get('varietal') is not None else ''
+                size_str = row[col.get('size', 5)].strip() if col.get('size') is not None else ''
+                qty_str = row[col.get('quantity', 6)].strip() if col.get('quantity') is not None else ''
+                price_str = row[col.get('price', 7)].strip() if col.get('price') is not None else ''
+                stored = row[col.get('stored', 8)].strip() if col.get('stored') is not None else ''
+                notes = row[col.get('notes', 9)].strip() if col.get('notes') is not None else ''
+
+                vintage = None
+                if vintage_str:
+                    try:
+                        vintage = int(vintage_str)
+                    except ValueError:
+                        pass
+
+                # Parse varietals (split by hyphen)
+                varietals = [v.strip() for v in varietal_str.split('-') if v.strip()] if varietal_str else []
+
+                size_ml = 750
+                if size_str:
+                    try:
+                        size_ml = int(size_str)
+                    except ValueError:
+                        pass
+
+                price = None
+                if price_str:
+                    try:
+                        price = float(price_str)
+                    except ValueError:
+                        pass
+
+                # Determine wine type from varietals
+                white_grapes = {'Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio', 'Pinot Gris',
+                                'Riesling', 'Gewürztraminer', 'Viognier', 'Sémillon', 'Aligoté',
+                                'Pinot Blanc', 'Chenin Blanc', 'Muscat', 'Grenache Blanc',
+                                'Roussanne', 'Marsanne', 'Falanghina', 'Prosecco', 'Xarel-Lo',
+                                'Macabeo', 'Parellada', 'Grenache Gris', 'Vermentino'}
+                sparkling_keywords = {'Champagne', 'Brut', 'Sparkling', 'Prosecco', 'Franciacorta'}
+                dessert_keywords = {'Sauternes', 'Barsac'}
+
+                wine_type = 'Red'
+                if any(kw.lower() in name.lower() for kw in sparkling_keywords):
+                    wine_type = 'Sparkling'
+                elif any(kw.lower() in appellation.lower() for kw in dessert_keywords):
+                    wine_type = 'Dessert'
+                elif varietals and all(v in white_grapes for v in varietals):
+                    wine_type = 'White'
+                elif 'Rosé' in name or 'Rose' in name:
+                    wine_type = 'Rosé'
+
+                cache_key = (vintage, name, producer)
+
+                if qty_str:
+                    # This is a cellar entry
+                    quantity = int(qty_str) if qty_str else 1
+
+                    wine = Wine(
+                        user_id=current_user.id,
+                        name=name,
+                        producer=producer,
+                        vintage=vintage,
+                        appellation=appellation,
+                        wine_type=wine_type,
+                        varietal1=varietals[0] if len(varietals) > 0 else None,
+                        varietal2=varietals[1] if len(varietals) > 1 else None,
+                        varietal3=varietals[2] if len(varietals) > 2 else None,
+                        varietal4=varietals[3] if len(varietals) > 3 else None,
+                        size_ml=size_ml,
+                        quantity=quantity,
+                        price=price,
+                        stored=stored,
+                        description=notes if notes and 'Brad & Erica Sklar' not in notes else None,
+                        status='cellar'
+                    )
+                    db.session.add(wine)
+                    db.session.flush()
+                    wine_cache[cache_key] = wine.id
+                    wine_count += 1
+
+                    # If there are tasting notes in the notes field for cellar wines
+                    if notes and 'Brad & Erica Sklar' in notes:
+                        _create_tasting_note(wine.id, current_user.id, notes)
+                        note_count += 1
+
+                elif notes:
+                    # This is a consumed entry with tasting notes
+                    # Find or create a consumed wine entry
+                    wine_id = wine_cache.get(cache_key)
+                    if not wine_id:
+                        # Create consumed wine
+                        wine = Wine(
+                            user_id=current_user.id,
+                            name=name,
+                            producer=producer,
+                            vintage=vintage,
+                            appellation=appellation,
+                            wine_type=wine_type,
+                            varietal1=varietals[0] if len(varietals) > 0 else None,
+                            varietal2=varietals[1] if len(varietals) > 1 else None,
+                            varietal3=varietals[2] if len(varietals) > 2 else None,
+                            varietal4=varietals[3] if len(varietals) > 3 else None,
+                            size_ml=size_ml,
+                            price=price,
+                            stored=stored,
+                            quantity=1,
+                            status='consumed'
+                        )
+                        db.session.add(wine)
+                        db.session.flush()
+                        wine_cache[cache_key] = wine.id
+                        wine_id = wine.id
+                        wine_count += 1
+
+                    _create_tasting_note(wine_id, current_user.id, notes)
+                    note_count += 1
+
+            db.session.commit()
+            flash(f'Import complete: {wine_count} wines and {note_count} tasting notes imported!', 'success')
+            return redirect(url_for('cellar'))
+
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Import error: {str(e)}', 'danger')
+            return redirect(url_for('cellar_import'))
+
+    return render_template('cellar_import.html')
+
+
+def _create_tasting_note(wine_id, user_id, notes_text):
+    """Parse tasting note text from ManageYourCellar CSV format and create a TastingNote."""
+    import re
+
+    # Parse "Brad & Erica Sklar: X stars  occasion description details"
+    # or "Brad & Erica Sklar: X points  description"
+    score = None
+    overall = notes_text
+
+    # Extract star rating
+    star_match = re.search(r'(\d+(?:\.\d+)?)\s*stars?', notes_text)
+    if star_match:
+        stars = float(star_match.group(1))
+        score = int(stars * 20)  # Convert 5-star to 100 scale
+
+    # Extract point rating
+    point_match = re.search(r'(\d+)\s*points?', notes_text)
+    if point_match:
+        score = int(point_match.group(1))
+
+    # Clean up the text - remove the author prefix
+    overall = re.sub(r'^\s*Brad\s*&\s*Erica\s*Sklar:\s*', '', overall)
+    overall = re.sub(r'^\d+(?:\.\d+)?\s*(?:stars?|points?)\s*', '', overall)
+    overall = overall.strip()
+
+    # Try to parse out tasting descriptors
+    appearance = None
+    nose = None
+    palate = None
+
+    # Look for common tasting words
+    descriptors = {
+        'pale': 'appearance', 'bright': 'appearance', 'deep': 'appearance',
+        'dark': 'appearance', 'evolved': 'appearance',
+        'fragrant': 'nose', 'floral': 'nose', 'complex': 'nose',
+        'intense': 'nose', 'discreet': 'nose', 'nutty': 'nose',
+        'supple': 'palate', 'crisp': 'palate', 'lively': 'palate',
+        'tannic': 'palate', 'flat': 'palate', 'woody': 'palate',
+        'light-bodied': 'palate', 'medium-bodied': 'palate',
+        'full-bodied': 'palate', 'alcoholic': 'palate',
+    }
+
+    appearance_words = []
+    nose_words = []
+    palate_words = []
+
+    for word in overall.lower().split():
+        word_clean = word.strip(',.;:')
+        if word_clean in descriptors:
+            cat = descriptors[word_clean]
+            if cat == 'appearance':
+                appearance_words.append(word_clean)
+            elif cat == 'nose':
+                nose_words.append(word_clean)
+            elif cat == 'palate':
+                palate_words.append(word_clean)
+
+    if appearance_words:
+        appearance = ', '.join(appearance_words)
+    if nose_words:
+        nose = ', '.join(nose_words)
+    if palate_words:
+        palate = ', '.join(palate_words)
+
+    note = TastingNote(
+        wine_id=wine_id,
+        user_id=user_id,
+        appearance=appearance,
+        nose=nose,
+        palate=palate,
+        overall=overall if overall else None,
+        score=score
+    )
+    db.session.add(note)
 
 
 # ─── Export ───────────────────────────────────────────────────────

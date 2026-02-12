@@ -80,64 +80,101 @@
 </table>
 
 {% if wines %}
-<!-- Wine table matching original with thead/tbody for client-side sorting -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%" onclick="sortColumnWithHold(event)">
+<!-- Wine table matching original exactly: class="bottleresult" cellpadding="3" border="1" onclick="sortColumn" -->
+<table class="bottleresult" cellpadding="3" cellspacing="0" border="1" onclick="sortColumn(event)">
 <thead>
 <tr class="subhead">
 {% if status == 'on_order' %}
-    <td type="String" class="subhead">Name</td>
-    <td type="String" class="subhead">Producer</td>
-    <td type="String" class="subhead">Appellation</td>
-    <td type="String" class="subhead">Varietal</td>
-    <td type="Number" class="subhead">Qty</td>
-    <td type="String" class="subhead" nowrap>Rating</td>
-    <td type="String" class="subhead">Price</td>
+<td type="String" class="subhead">Name</td>
+<td type="String" class="subhead">Producer</td>
+<td type="String" class="subhead">Appellation</td>
+<td type="String" class="subhead">Varietal</td>
+<td type="Number" class="subhead">Qty</td>
+<td type="String" class="subhead" nowrap>Rating</td>
+<td type="String" class="subhead">Price</td>
+{% elif status == 'consumed' %}
+<td type="String" class="subhead">Name</td>
+<td type="String" class="subhead">Producer</td>
+<td type="String" class="subhead">Appellation</td>
+<td type="String" class="subhead">Varietal</td>
+<td type="String" class="subhead">Last Consumed</td>
+<td type="Number" class="subhead">Qty</td>
+<td type="String" class="subhead" nowrap>Rating</td>
+<td type="String" class="subhead">Est. Price</td>
 {% else %}
-    <td type="String" class="subhead">Name</td>
-    <td type="String" class="subhead">Producer</td>
-    <td type="String" class="subhead">Appellation</td>
-    <td type="String" class="subhead">Varietal</td>
-    <td type="Number" class="subhead">Qty</td>
-    <td type="String" class="subhead">Maturity</td>
-    <td type="Number" class="subhead" nowrap>Best From</td>
-    <td type="Number" class="subhead" nowrap>Best Until</td>
-    <td type="String" class="subhead" nowrap>Rating</td>
-    <td type="String" class="subhead">Price</td>
+<td type="String" class="subhead">Name</td>
+<td type="String" class="subhead">Producer</td>
+<td type="String" class="subhead">Appellation</td>
+<td type="String" class="subhead">Varietal</td>
+<td type="Number" class="subhead">Qty</td>
+<td type="String" class="subhead">Maturity</td>
+<td type="Number" class="subhead" nowrap>Best From</td>
+<td type="Number" class="subhead" nowrap>Best Until</td>
+<td type="String" class="subhead" nowrap>Rating</td>
+<td type="String" class="subhead">Price</td>
 {% endif %}
 </tr>
 </thead>
 <tbody>
 {% for wine in wines %}
-<tr class="evenitem">
+<tr class="evenitem"> 
 {% if status == 'on_order' %}
-    <td align="left">
+<td align="left">
 <a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
 {{ wine.name }}
-({{ wine.size_ml or 750 }}ml){% if wine.has_rating %}
-<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a>
-    </td>
-    <td align="center">{{ wine.producer }}</td>
-    <td align="center">{{ wine.appellation or '' }}</td>
-    <td align="center">{{ wine.varietals_display or '' }}</td>
-    <td align="right">{{ wine.quantity }}</td>
-    <td align="center">{{ wine.rating_text }}</td>
-    <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %} 
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a> 
+</td>
+<td align="center">{{ wine.producer }}</td>
+<td align="center">{{ wine.appellation or '' }}</td>
+<td align="center">
+{{ wine.varietals_display or '' }}
+</td>
+<td align="right">
+{{ wine.quantity }}
+</td>
+<td align="center">{{ wine.rating_text }}</td>
+<td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% endif %}</td>
+{% elif status == 'consumed' %}
+<td align="left">
+<a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
+{{ wine.name }}
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %} 
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a> 
+</td>
+<td align="center">{{ wine.producer }}</td>
+<td align="center">{{ wine.appellation or '' }}</td>
+<td align="center">
+{{ wine.varietals_display or '' }}
+</td>
+<td align="center">
+{% if wine.date_consumed %}{{ wine.date_consumed.strftime('%Y-%m-%d') }}{% endif %}
+</td>
+<td align="right">
+{{ wine.quantity }}
+</td>
+<td align="center">{{ wine.rating_text }}</td>
+<td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% endif %}</td>
 {% else %}
-    <td align="left">
+<td align="left">
 <a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
 {{ wine.name }}
-({{ wine.size_ml or 750 }}ml){% if wine.has_rating %}
-<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a>
-    </td>
-    <td align="center">{{ wine.producer }}</td>
-    <td align="center">{{ wine.appellation or '' }}</td>
-    <td align="center">{{ wine.varietals_display or '' }}</td>
-    <td align="right">{{ wine.quantity }}</td>
-    <td align="center">{{ wine.maturity_display or '' }}</td>
-    <td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
-    <td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
-    <td align="center">{{ wine.rating_text }}</td>
-    <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %} 
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a> 
+</td>
+<td align="center">{{ wine.producer }}</td>
+<td align="center">{{ wine.appellation or '' }}</td>
+<td align="center">
+{{ wine.varietals_display or '' }}
+</td>
+<td align="right">
+{{ wine.quantity }}
+</td>
+<td align="center">{{ wine.maturity_display or '' }}</td>
+<td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
+<td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
+<td align="center">{{ wine.rating_text }}</td>
+<td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
 {% endif %}
 </tr>
 {% endfor %}
@@ -179,12 +216,12 @@ if ((ie5 || dom) && !(ieOnMac)) initSortTable();
 
 function initSortTable() {
     arrowUp = document.createElement("SPAN");
-    var arrowU = '&nbsp;\u2191';
+    var arrowU = '&nbsp;&uarr;';
     arrowUp.innerHTML = arrowU;
     arrowUp.className = "arrow";
 
     arrowDown = document.createElement("SPAN");
-    var arrowD = '&nbsp;\u2193';
+    var arrowD = '&nbsp;&darr;';
     arrowDown.innerHTML = arrowD;
     arrowDown.className = "arrow";
 }
@@ -241,8 +278,19 @@ function sortTable(tableNode, nCol, bDesc, sType) {
     var trl= trs.length;
     var a = new Array();
     for (var i = 0; i < trl; i++) { a[i] = trs[i]; }
+    var start = new Date;
+    window.status = "Sorting data...";
     a.sort(compareByColumn(nCol,bDesc,sType));
-    for (var i = 0; i < trl; i++) { tBody.appendChild(a[i]); }
+    window.status = "Sorting data done";
+    for (var i = 0; i < trl; i++) {
+        tBody.appendChild(a[i]);
+        window.status = "Updating row " + (i + 1) + " of " + trl +
+                        " (Time spent: " + (new Date - start) + "ms)";
+    }
+    if (typeof tableNode.onsort == "string")
+        tableNode.onsort = new Function("", tableNode.onsort);
+    if (typeof tableNode.onsort == "function")
+        tableNode.onsort();
 }
 
 

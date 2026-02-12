@@ -2,6 +2,7 @@ import os
 from datetime import date, datetime
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from sqlalchemy import func
 from models import db, User, Wine, TastingNote
 from flask_wtf.csrf import generate_csrf
 from forms import LoginForm, RegisterForm, WineForm, TastingNoteForm, SearchForm
@@ -161,21 +162,21 @@ def cellar():
     if search_form.max_vintage.data:
         query = query.filter(Wine.vintage <= search_form.max_vintage.data)
 
-    # Sorting
+    # Sorting - default by name, case-insensitive to match original site
     sort_by = search_form.sort_by.data or 'name'
     sort_order = search_form.sort_order.data or 'asc'
     sort_col_map = {
-        'name': Wine.name,
+        'name': func.lower(Wine.name),
         'vintage': Wine.vintage,
-        'producer': Wine.producer,
-        'appellation': Wine.appellation,
-        'varietal': Wine.varietal1,
+        'producer': func.lower(Wine.producer),
+        'appellation': func.lower(Wine.appellation),
+        'varietal': func.lower(Wine.varietal1),
         'wine_type': Wine.wine_type,
         'rating': Wine.rating,
         'price': Wine.price,
         'date_added': Wine.date_added,
     }
-    sort_col = sort_col_map.get(sort_by, Wine.name)
+    sort_col = sort_col_map.get(sort_by, func.lower(Wine.name))
     if sort_order == 'desc':
         query = query.order_by(sort_col.desc())
     else:
@@ -205,7 +206,7 @@ def ready_to_drink():
     wines = current_user.wines.filter_by(status='cellar').filter(
         Wine.drink_from <= current_year,
         db.or_(Wine.drink_to >= current_year, Wine.drink_to.is_(None))
-    ).order_by(Wine.drink_to.asc()).all()
+    ).order_by(func.lower(Wine.name).asc()).all()
     return render_template('ready.html', wines=wines, current_year=current_year)
 
 

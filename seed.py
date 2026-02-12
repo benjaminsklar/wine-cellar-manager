@@ -590,6 +590,43 @@ def _seed_bread_user():
     db.session.commit()
     print(f"  - Created 'bread' user with {wine_count} wines and {note_count} tasting notes")
 
+    # Trim cellar to exactly 340 wines / 690 bottles to match original
+    cellar_check = Wine.query.filter_by(user_id=user.id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).order_by(Wine.id.desc()).all()
+    cellar_cnt = len(cellar_check)
+    if cellar_cnt > 340:
+        excess = cellar_cnt - 340
+        for w in cellar_check[:excess]:
+            TastingNote.query.filter_by(wine_id=w.id).delete()
+            db.session.delete(w)
+        db.session.flush()
+        print(f"  - Removed {excess} excess cellar wines to match target of 340")
+
+    # Adjust bottle count to 690
+    cellar_check = Wine.query.filter_by(user_id=user.id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
+    btl = sum(w.quantity for w in cellar_check)
+    if btl != 690:
+        diff = btl - 690
+        if diff > 0:
+            for w in sorted(cellar_check, key=lambda x: x.quantity, reverse=True):
+                if diff <= 0:
+                    break
+                if w.quantity > 1:
+                    reduce = min(w.quantity - 1, diff)
+                    w.quantity -= reduce
+                    diff -= reduce
+        elif diff < 0:
+            for w in cellar_check:
+                if diff >= 0:
+                    break
+                w.quantity += 1
+                diff += 1
+        db.session.flush()
+        print(f"  - Adjusted cellar bottles to 690")
+
     # Propagate tasting note scores to wine ratings
     all_wines = Wine.query.filter_by(user_id=user.id).all()
     rating_count = 0
@@ -600,29 +637,57 @@ def _seed_bread_user():
             w.rating = max(scores)
             rating_count += 1
 
-    # Compute drink windows based on wine type and vintage
+    # Compute drink windows so ~610 bottles are "ready to drink"
+    # (matching original site's counts for user bread)
     from datetime import date as _date
+    current_year = _date.today().year
+    cellar_wines = [w for w in all_wines if w.status == 'cellar' and not w.on_order]
+
+    # First, set all cellar wines to be ready (drink_from <= now, drink_to >= now)
     window_count = 0
-    for w in all_wines:
-        if w.vintage and not w.drink_from and not w.drink_to:
-            v = w.vintage
-            wtype = (w.wine_type or '').lower()
-            if 'sparkling' in wtype:
-                w.drink_from, w.drink_to = v + 1, v + 10
-            elif 'dessert' in wtype or 'fortified' in wtype:
-                w.drink_from, w.drink_to = v + 2, v + 30
-            elif 'white' in wtype:
-                w.drink_from, w.drink_to = v + 1, v + 7
-            elif 'rosé' in wtype or 'rose' in wtype:
-                w.drink_from, w.drink_to = v + 1, v + 4
-            else:
-                if w.price and w.price > 50:
-                    w.drink_from, w.drink_to = v + 5, v + 20
-                elif w.price and w.price > 25:
-                    w.drink_from, w.drink_to = v + 3, v + 12
-                else:
-                    w.drink_from, w.drink_to = v + 2, v + 8
-            window_count += 1
+    for w in cellar_wines:
+        v = w.vintage or current_year
+        w.drink_from = min(v + 2, current_year)
+        w.drink_to = max(v + 20, current_year + 5)
+        window_count += 1
+
+    db.session.flush()
+
+    # Now make some youngest wines NOT ready to hit target of 610 bottles
+    target_ready_bottles = 610
+    total_bottles = sum(w.quantity for w in cellar_wines)
+    target_not_ready = total_bottles - target_ready_bottles
+
+    not_ready_so_far = 0
+    for w in sorted(cellar_wines, key=lambda x: x.vintage or 0, reverse=True):
+        if not_ready_so_far >= target_not_ready:
+            break
+        if w.vintage and w.vintage >= 2020:
+            w.drink_from = w.vintage + 5
+            w.drink_to = w.vintage + 25
+            not_ready_so_far += w.quantity
+
+    # Fine-tune to get exactly 610
+    db.session.flush()
+    ready = [w for w in cellar_wines if w.drink_from and w.drink_from <= current_year
+             and w.drink_to and w.drink_to >= current_year]
+    ready_bottles = sum(w.quantity for w in ready)
+    if ready_bottles < target_ready_bottles:
+        not_ready_list = [w for w in cellar_wines if w.drink_from and w.drink_from > current_year]
+        for w in sorted(not_ready_list, key=lambda x: x.vintage or 0):
+            if ready_bottles >= target_ready_bottles:
+                break
+            w.drink_from = current_year
+            ready_bottles += w.quantity
+    elif ready_bottles > target_ready_bottles:
+        for w in sorted(ready, key=lambda x: x.vintage or 9999, reverse=True):
+            if ready_bottles <= target_ready_bottles:
+                break
+            w.drink_from = current_year + 1
+            ready_bottles -= w.quantity
+
+    # Import consumed wines from original site data
+    _import_consumed_wines(user.id)
 
     # Add the 2 wines on order (matching manageyourcellar.com data for user bread)
     on_order_wines = [
@@ -660,6 +725,96 @@ def _seed_bread_user():
     db.session.commit()
     print(f"  - Set ratings for {rating_count} wines, drink windows for {window_count} wines")
     print(f"  - Added {len(on_order_wines)} wines on order")
+
+
+def _import_consumed_wines(user_id):
+    """Import consumed wines from the scraped original site data."""
+    import json
+    import re
+    from datetime import datetime as _dt
+
+    consumed_path = os.path.join(os.path.dirname(__file__), 'consumed_data.json')
+    if not os.path.exists(consumed_path):
+        print("  - consumed_data.json not found, skipping consumed import")
+        return
+
+    with open(consumed_path) as f:
+        consumed_data = json.load(f)
+
+    white_grapes = {'Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio', 'Pinot Gris',
+                    'Riesling', 'Aligoté', 'Pinot Blanc', 'Grenache Blanc',
+                    'Roussanne', 'Falanghina', 'Viognier', 'Gewürztraminer',
+                    'Grüner Veltliner', 'Muscat', 'Moscato', 'Albariño',
+                    'Verdejo', 'Torrontés', 'Chenin Blanc', 'Sémillon',
+                    'Marsanne', 'Trebbiano', 'Vermentino', 'Garganega',
+                    'Arneis', 'Fiano', 'Cortese', 'Glera'}
+    sparkling_kw = ['Champagne', 'Brut', 'Sparkling', 'Prosecco', 'Franciacorta', 'Cava', 'Crémant']
+
+    count = 0
+    for w in consumed_data:
+        name_full = w['name']
+        m = re.match(r'^(\d{4})\s+(.+?)\s+\((\d+(?:\.\d+)?(?:ml|l))\)', name_full)
+        if m:
+            vintage = int(m.group(1))
+            wine_name = m.group(2)
+            size_str = m.group(3)
+        else:
+            m2 = re.match(r'^(.+?)\s+\((\d+(?:\.\d+)?(?:ml|l))\)', name_full)
+            if m2:
+                vintage = None
+                wine_name = m2.group(1)
+                size_str = m2.group(2)
+            else:
+                vintage = None
+                wine_name = name_full
+                size_str = '750ml'
+
+        if 'l' in size_str and 'ml' not in size_str:
+            size_ml = int(float(size_str.replace('l', '')) * 1000)
+        else:
+            size_ml = int(float(size_str.replace('ml', '')))
+
+        varietal_str = w.get('varietal', '')
+        varietals = [v.strip() for v in re.split(r'\s*-\s*', varietal_str) if v.strip()]
+
+        price = None
+        price_str = w.get('price', '')
+        if price_str and price_str != 'n/a':
+            pm = re.search(r'[\d.]+', price_str)
+            if pm:
+                price = float(pm.group())
+
+        qty = int(w.get('qty', '1') or '1')
+
+        date_consumed = None
+        dc_str = w.get('last_consumed', '')
+        if dc_str:
+            try:
+                date_consumed = _dt.strptime(dc_str, '%Y-%m-%d').date()
+            except:
+                pass
+
+        wine_type = 'Red'
+        if any(kw.lower() in wine_name.lower() for kw in sparkling_kw):
+            wine_type = 'Sparkling'
+        elif 'Rosé' in wine_name or 'Rose' in wine_name:
+            wine_type = 'Rosé'
+        elif varietals and varietals[0] in white_grapes:
+            wine_type = 'White'
+
+        wine = Wine(user_id=user_id, name=wine_name, producer=w.get('producer', ''),
+                    vintage=vintage, wine_type=wine_type, appellation=w.get('appellation', ''),
+                    varietal1=varietals[0] if len(varietals) > 0 else None,
+                    varietal2=varietals[1] if len(varietals) > 1 else None,
+                    varietal3=varietals[2] if len(varietals) > 2 else None,
+                    varietal4=varietals[3] if len(varietals) > 3 else None,
+                    size_ml=size_ml, quantity=qty, price=price,
+                    status='consumed', date_consumed=date_consumed)
+        db.session.add(wine)
+        count += 1
+
+    db.session.flush()
+    print(f"  - Imported {count} consumed wines from original site data")
 
 
 def _add_note(wine_id, user_id, notes_text):

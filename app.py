@@ -42,12 +42,17 @@ def load_user(user_id):
 def home():
     recent_wines = Wine.query.order_by(Wine.date_added.desc()).limit(5).all()
     bottle_count = 0
+    wine_count = 0
     latest_transactions = []
     if current_user.is_authenticated:
-        bottle_count = sum(w.quantity for w in current_user.wines.filter_by(status='cellar'))
+        cellar_wines = current_user.wines.filter_by(status='cellar').filter(
+            db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+        ).all()
+        bottle_count = sum(w.quantity for w in cellar_wines)
+        wine_count = len(cellar_wines)
         latest_transactions = current_user.wines.order_by(Wine.date_added.desc()).limit(5).all()
     return render_template('home.html', recent_wines=recent_wines,
-                           bottle_count=bottle_count,
+                           bottle_count=bottle_count, wine_count=wine_count,
                            latest_transactions=latest_transactions)
 
 
@@ -133,9 +138,12 @@ def cellar():
     else:
         query = current_user.wines.filter_by(status=status)
 
-    # Apply search filters
-    if search_form.query.data:
-        search_term = f"%{search_form.query.data}%"
+    # Apply search filters (ignore placeholder text "Wine Finder")
+    search_query = search_form.query.data
+    if search_query and search_query.strip().lower() == 'wine finder':
+        search_query = None
+    if search_query:
+        search_term = f"%{search_query}%"
         query = query.filter(
             db.or_(
                 Wine.name.ilike(search_term),
@@ -199,11 +207,17 @@ def cellar():
     show_all = (submit_action == 'All' or request.args.get('show_all') == '1')
 
     if submit_action == 'Next':
-        page = int(request.args.get('page', 1)) + 1
+        page = page + 1
+    elif submit_action == 'Previous':
+        page = max(1, page - 1)
+    elif submit_action == 'Search':
+        page = 1  # Reset to page 1 on new search
 
     total_pages = max(1, (total_wines + limit - 1) // limit)
     if page > total_pages:
         page = total_pages
+    if page < 1:
+        page = 1
 
     if show_all:
         wines = all_wines
@@ -244,11 +258,41 @@ def cellar():
 @login_required
 def ready_to_drink():
     current_year = date.today().year
-    wines = current_user.wines.filter_by(status='cellar').filter(
+    all_wines = current_user.wines.filter_by(status='cellar').filter(
         Wine.drink_from <= current_year,
         db.or_(Wine.drink_to >= current_year, Wine.drink_to.is_(None))
     ).order_by(func.lower(Wine.name).asc()).all()
-    return render_template('ready.html', wines=wines, current_year=current_year)
+
+    total_wines = len(all_wines)
+    total_bottles = sum(w.quantity for w in all_wines)
+
+    # Pagination
+    submit_action = request.args.get('submitAction', '')
+    page = int(request.args.get('page', 1))
+    limit = 50
+    show_all = (submit_action == 'All' or request.args.get('show_all') == '1')
+
+    if submit_action == 'Next':
+        page = page + 1
+    elif submit_action == 'Previous':
+        page = max(1, page - 1)
+
+    total_pages = max(1, (total_wines + limit - 1) // limit)
+    if page > total_pages:
+        page = total_pages
+    if page < 1:
+        page = 1
+
+    if show_all:
+        wines = all_wines
+    else:
+        start = (page - 1) * limit
+        wines = all_wines[start:start + limit]
+
+    return render_template('ready.html', wines=wines, current_year=current_year,
+                           page=page, total_pages=total_pages,
+                           total_wines=total_wines, total_bottles=total_bottles,
+                           show_all=show_all)
 
 
 # ─── Add to Cellar (Acquisition) ──────────────────────────────────
@@ -385,12 +429,21 @@ def wine_detail(wine_id):
         (parent.quantity if parent else 0) if wine.status == 'consumed' and wine.parent_wine_id else 0
     )
 
+    # Find related wines: other wines by same producer in user's cellar
+    related_wines = Wine.query.filter(
+        Wine.user_id == current_user.id,
+        Wine.producer == wine.producer,
+        Wine.id != wine.id,
+        Wine.status == 'cellar'
+    ).limit(5).all()
+
     return render_template('wine_detail.html', wine=wine, tasting_notes=tasting_notes,
                            consumed_copies=consumed_copies,
                            total_acquired=total_acquired,
                            total_consumed=total_consumed,
                            actual_in_cellar=actual_in_cellar,
-                           parent_wine=parent)
+                           parent_wine=parent,
+                           related_wines=related_wines)
 
 
 @app.route('/wine/<int:wine_id>/edit', methods=['GET', 'POST'])
@@ -624,7 +677,9 @@ def tasting_list():
 @app.route('/stats')
 @login_required
 def stats():
-    cellar_wines = current_user.wines.filter_by(status='cellar').all()
+    cellar_wines = current_user.wines.filter_by(status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
     consumed_wines = current_user.wines.filter_by(status='consumed').all()
 
     total_bottles = sum(w.quantity for w in cellar_wines)
@@ -1065,6 +1120,8 @@ def init_db():
                 cursor.execute("ALTER TABLE wines ADD COLUMN parent_wine_id INTEGER REFERENCES wines(id)")
             if 'original_quantity' not in cols:
                 cursor.execute("ALTER TABLE wines ADD COLUMN original_quantity INTEGER")
+            if 'producer_url' not in cols:
+                cursor.execute("ALTER TABLE wines ADD COLUMN producer_url VARCHAR(300)")
             conn.commit()
             conn.close()
         except Exception:

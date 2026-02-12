@@ -34,6 +34,11 @@
 <td width="10%" class="smallfieldlabel">Producer:</td>
 <td class="smallfieldvalue" nowrap>
 {{ wine.producer }}
+{% if wine.producer_url %}
+<a href="{{ wine.producer_url }}" target="_blank">
+{{ wine.producer_url|replace('http://www.','')|replace('https://www.','')|replace('http://','')|replace('https://','') }}
+</a>
+{% endif %}
 </td>
 </tr>
 
@@ -75,12 +80,38 @@
 
 </tr>
 
+{% if wine.alcohol_pct %}
+<tr>
+<td></td>
+<td class="smallfieldlabel">Alcohol %:</td>
+<td class="smallfieldvalue" colspan="1">{{ wine.alcohol_pct }}</td>
+</tr>
+{% endif %}
+
 </table>
 </td>
 <td>&nbsp;</td>
 
+{% if related_wines and related_wines|length > 0 %}
+<td valign="top">
+<table cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td class="smalltext" nowrap>
+Members who purchased this wine also purchased:
+</td></tr>
+{% for rw in related_wines %}
+<tr><td class="smalltext">
+<a href="{{ url_for('wine_detail', wine_id=rw.id) }}">{{ rw.name }}</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+</td>
+{% endif %}
+
 </tr>
 </table></td></tr>
+
 
 
 <tr><td colspan="1" valign="center">
@@ -136,8 +167,6 @@ on {{ wine.acq_date.strftime('%B %d, %Y') }}
 
 , quantity {{ total_acquired }}
 
-{% if wine.price %} at US${{ "%.2f"|format(wine.price) }}{% endif %}
-
 &nbsp;
 <span class="smalledit">
 <a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
@@ -173,6 +202,42 @@ From
 </td>
 </tr>
 
+<!-- Valuation event -->
+{% if wine.price %}
+<tr><td class="smallfieldvalue" colspan="1">
+<span class="redsmalltext">
+<b>valued:</b>
+</span>
+
+{% if wine.acq_date %}
+on {{ wine.acq_date.strftime('%B %d, %Y') }}
+{% endif %}
+
+ 
+at US${{ "%.2f"|format(wine.price) }}
+
+&nbsp;
+<span class="smalledit">
+<a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
+-
+<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
+
+</td></tr>
+
+{% if wine.description %}
+<tr><td colspan="1" class="smallfieldvalue">
+<span class="redsmalltext">Notes: </span>
+{{ wine.description }}
+</td></tr>
+{% endif %}
+
+<tr>
+<td colspan="1">
+</td>
+</tr>
+{% endif %}
+
+
 <!-- Consumption events -->
 {% for consumed in consumed_copies %}
 <tr><td class="smallfieldvalue" colspan="1">
@@ -201,6 +266,23 @@ on {{ consumed.date_consumed.strftime('%B %d, %Y') }}
 {% endfor %}
 
 
+<!-- Availability section -->
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+<tr><td colspan="1" class="title">
+Availability:
+</td></tr>
+<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
+
+<tr><td class="leftsmallfieldlabel">
+Locate a store with
+<a href="http://www.winezap.com/search/searchresults.cfm?searchtext={{ wine.name|urlencode }}+{{ wine.vintage or '' }}" target="_blank">WineZap</a>
+&nbsp;
+<a href="http://www.wine-searcher.com/find/{{ wine.name|urlencode }}/{{ wine.vintage or '' }}/USA/USD" target="_blank">
+Wine-Searcher</a>
+</td></tr>
+
+
+<!-- Tasting Notes section (user's own) -->
 {% if tasting_notes %}
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>
 <tr><td colspan="1" class="title">
@@ -219,22 +301,16 @@ Tasting Notes:
 {% endfor %}
 {% endif %}
 
-<!-- Availability section -->
+<!-- Other Tasting Notes section -->
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>
 <tr><td colspan="1" class="title">
-Availability:
+Other Tasting Notes:
 </td></tr>
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>
-
-<tr><td class="leftsmallfieldlabel">
-Locate a store with
-<a href="http://www.wine-searcher.com/find/{{ wine.name|urlencode }}/{{ wine.vintage or '' }}/USA/USD" target="_blank">
-Wine-Searcher</a>
-</td></tr>
 
 <tr><td class="leftsmallfieldlabel" colspan="1">
 <a href="http://www.google.com/search?q={{ wine.vintage or '' }}+{{ wine.name|urlencode }}+nose+palate" target="_blank">
-search ratings
+search other ratings
 </a>
 </td></tr>
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>

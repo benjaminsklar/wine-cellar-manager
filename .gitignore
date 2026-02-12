@@ -6,3 +6,9 @@ instance/
 .env
 .DS_Store
 cookies.txt
+*.png
+compare_wine_pages.py
+inspect_wine_detail.py
+inspect_wine_with_session.py
+wine_detail_report.json
+wine_detail_full_report.json

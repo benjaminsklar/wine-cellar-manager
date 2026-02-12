@@ -53,6 +53,7 @@ class Wine(db.Model):
     size_ml = db.Column(db.Integer, default=750)
     alcohol_pct = db.Column(db.Float)
     description = db.Column(db.Text)
+    producer_url = db.Column(db.String(300))
 
     # ── Acquisition Information ──
     acq_date = db.Column(db.Date)
@@ -94,11 +95,11 @@ class Wine(db.Model):
     @property
     def is_ready_to_drink(self):
         current_year = date.today().year
-        if self.drink_from and self.drink_to:
+        if not self.drink_from:
+            return False
+        if self.drink_to:
             return self.drink_from <= current_year <= self.drink_to
-        if self.drink_from:
-            return current_year >= self.drink_from
-        return True
+        return current_year >= self.drink_from
 
     @property
     def drinking_window_display(self):

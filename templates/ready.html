@@ -11,7 +11,7 @@ Ready to Drink Wines
 <tr><td class="titlepaddingbottom" colspan="2"></td></tr>
 
 <!-- Filter bar matching original exactly -->
-<form method="GET" action="{{ url_for('ready_to_drink') }}">
+<form id="readyForm" method="GET" action="{{ url_for('ready_to_drink') }}">
 
 <tr><td class="mediumtext" colspan="2">
  <input type="text" name="searchtext" maxlength="100" size="50" value="Wine Finder" onfocus="javascript:if (event.target.value == 'Wine Finder') event.target.value = ''">
@@ -72,14 +72,23 @@ Ready to Drink Wines
 </td></tr>
 
 {% if wines %}
+<input type="hidden" name="page" value="{{ page }}">
+{% if show_all %}<input type="hidden" name="show_all" value="1">{% endif %}
 <tr>
 <td class="smalltext" align="left">
+{% if not show_all and page > 1 %}
+<input type="submit" name="submitAction" value="Previous">
+{% endif %}
+{% if not show_all and page < total_pages %}
 <input type="submit" name="submitAction" value="Next">
+{% endif %}
+{% if not show_all %}
 <input type="submit" name="submitAction" value="All">
-Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+{% endif %}
+Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 }}
 -
-{{ wines|length }} wines
-({{ wines|sum(attribute='quantity') }} bottles)
+{{ total_wines }} wines
+({{ total_bottles }} bottles)
 </td>
 <td class="smalltext" align="right" nowrap>
 &nbsp;<a href="#">Printable View</a>
@@ -101,10 +110,7 @@ Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
     <td type="String" class="subhead">Producer</td>
     <td type="String" class="subhead">Appellation</td>
     <td type="String" class="subhead">Varietal</td>
-    <td type="Number" class="subhead">Qty</td>
     <td type="String" class="subhead">Maturity</td>
-    <td type="Number" class="subhead" nowrap>Best From</td>
-    <td type="Number" class="subhead" nowrap>Best Until</td>
     <td type="String" class="subhead" nowrap>Rating</td>
     <td type="String" class="subhead">Price</td>
 </tr>
@@ -123,12 +129,7 @@ Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
 <td align="center">
 {{ wine.varietals_display or '' }}
 </td>
-<td align="right">
-{{ wine.quantity }}
-</td>
 <td align="center">{{ wine.maturity_display or 'Drink' }}</td>
-<td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
-<td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
 <td align="center">{{ wine.rating_text }}</td>
 <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
 </tr>
@@ -142,9 +143,16 @@ Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
 <!-- Bottom pagination -->
 <tr>
 <td class="smalltext" align="left" colspan="2">
-<input type="submit" form="ready_form" name="submitAction" value="Next">
-<input type="submit" form="ready_form" name="submitAction" value="All">
-Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+{% if not show_all and page > 1 %}
+<input type="submit" name="submitAction" value="Previous" form="readyForm">
+{% endif %}
+{% if not show_all and page < total_pages %}
+<input type="submit" name="submitAction" value="Next" form="readyForm">
+{% endif %}
+{% if not show_all %}
+<input type="submit" name="submitAction" value="All" form="readyForm">
+{% endif %}
+Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 }}
 </td>
 </tr>
 

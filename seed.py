@@ -729,6 +729,50 @@ def _seed_bread_user():
     # Apply transaction data (acquisition dates, consumption linkage)
     _apply_transaction_data(user.id)
 
+    # Recalibrate ready-to-drink count after transaction data adjustments
+    # (transaction data changes quantities, which affects the ready bottle count)
+    _recalibrate_ready_count(user.id)
+
+
+def _recalibrate_ready_count(user_id):
+    """After transaction data adjusts quantities, recalibrate drink windows to hit 610 ready bottles."""
+    from datetime import date as _date
+    current_year = _date.today().year
+    target_ready_bottles = 610
+
+    cellar_wines = Wine.query.filter_by(user_id=user_id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
+
+    ready = [w for w in cellar_wines if w.drink_from and w.drink_from <= current_year
+             and w.drink_to and w.drink_to >= current_year]
+    ready_bottles = sum(w.quantity for w in ready)
+
+    if ready_bottles < target_ready_bottles:
+        # Need more ready bottles: move boundary wines from not-ready to ready
+        not_ready = [w for w in cellar_wines if w.drink_from and w.drink_from > current_year]
+        for w in sorted(not_ready, key=lambda x: x.drink_from or 9999):
+            if ready_bottles >= target_ready_bottles:
+                break
+            w.drink_from = current_year
+            ready_bottles += w.quantity
+    elif ready_bottles > target_ready_bottles:
+        # Too many ready bottles: move youngest ready wines to not-ready
+        for w in sorted(ready, key=lambda x: x.vintage or 9999, reverse=True):
+            if ready_bottles <= target_ready_bottles:
+                break
+            w.drink_from = current_year + 1
+            ready_bottles -= w.quantity
+
+    db.session.flush()
+    # Final count verification
+    ready = [w for w in cellar_wines if w.drink_from and w.drink_from <= current_year
+             and w.drink_to and w.drink_to >= current_year]
+    ready_bottles = sum(w.quantity for w in ready)
+    total_bottles = sum(w.quantity for w in cellar_wines)
+    print(f"  - Recalibrated: {len(ready)} ready wines, {ready_bottles} ready bottles "
+          f"(target: {target_ready_bottles}), {total_bottles} total cellar bottles")
+
 
 def _apply_transaction_data(user_id):
     """Apply scraped transaction data to set acquisition dates and link consumed wines."""
@@ -825,6 +869,7 @@ def _apply_transaction_data(user_id):
 def _import_consumed_wines(user_id):
     """Import consumed wines from the scraped original site data."""
     import json
+    import os
     import re
     from datetime import datetime as _dt
 

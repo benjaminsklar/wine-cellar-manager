@@ -11,7 +11,7 @@
 <tr><td class="titlepaddingbottom" colspan="2"></td></tr>
 
 <!-- Filter bar matching original exactly -->
-<form method="GET" action="{{ url_for('cellar') }}">
+<form id="cellarForm" method="GET" action="{{ url_for('cellar') }}">
 <input type="hidden" name="status" value="{{ status }}">
 
 <tr><td class="mediumtext" colspan="2">
@@ -77,6 +77,9 @@
 {% if show_all %}<input type="hidden" name="show_all" value="1">{% endif %}
 <tr>
 <td class="smalltext" align="left">
+{% if not show_all and page > 1 %}
+<input type="submit" name="submitAction" value="Previous">
+{% endif %}
 {% if not show_all and page < total_pages %}
 <input type="submit" name="submitAction" value="Next">
 {% endif %}
@@ -110,7 +113,6 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td type="String" class="subhead">Producer</td>
 <td type="String" class="subhead">Appellation</td>
 <td type="String" class="subhead">Varietal</td>
-<td type="Number" class="subhead">Qty</td>
 <td type="String" class="subhead" nowrap>Rating</td>
 <td type="String" class="subhead">Price</td>
 {% elif status == 'consumed' %}
@@ -119,7 +121,6 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td type="String" class="subhead">Appellation</td>
 <td type="String" class="subhead">Varietal</td>
 <td type="String" class="subhead">Last Consumed</td>
-<td type="Number" class="subhead">Qty</td>
 <td type="String" class="subhead" nowrap>Rating</td>
 <td type="String" class="subhead">Est. Price</td>
 {% else %}
@@ -127,10 +128,7 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td type="String" class="subhead">Producer</td>
 <td type="String" class="subhead">Appellation</td>
 <td type="String" class="subhead">Varietal</td>
-<td type="Number" class="subhead">Qty</td>
 <td type="String" class="subhead">Maturity</td>
-<td type="Number" class="subhead" nowrap>Best From</td>
-<td type="Number" class="subhead" nowrap>Best Until</td>
 <td type="String" class="subhead" nowrap>Rating</td>
 <td type="String" class="subhead">Price</td>
 {% endif %}
@@ -151,9 +149,6 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td align="center">
 {{ wine.varietals_display or '' }}
 </td>
-<td align="right">
-{{ wine.quantity }}
-</td>
 <td align="center">{{ wine.rating_text }}</td>
 <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% endif %}</td>
 {% elif status == 'consumed' %}
@@ -171,9 +166,6 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td align="center">
 {% if wine.date_consumed %}{{ wine.date_consumed.strftime('%Y-%m-%d') }}{% endif %}
 </td>
-<td align="right">
-{{ wine.quantity }}
-</td>
 <td align="center">{{ wine.rating_text }}</td>
 <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% endif %}</td>
 {% else %}
@@ -188,12 +180,7 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td align="center">
 {{ wine.varietals_display or '' }}
 </td>
-<td align="right">
-{{ wine.quantity }}
-</td>
 <td align="center">{{ wine.maturity_display or '' }}</td>
-<td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
-<td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
 <td align="center">{{ wine.rating_text }}</td>
 <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
 {% endif %}
@@ -208,11 +195,15 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <!-- Bottom pagination -->
 <tr>
 <td class="smalltext" align="left" colspan="2">
+{% set clean_query = '' if (search_form.query.data or '')|lower == 'wine finder' else (search_form.query.data or '') %}
+{% if not show_all and page > 1 %}
+<input type="submit" name="submitAction" value="Previous" form="cellarForm">
+{% endif %}
 {% if not show_all and page < total_pages %}
-<a href="{{ url_for('cellar', status=status, page=page+1, sort_by=search_form.sort_by.data or '', sort_order=search_form.sort_order.data or '', query=search_form.query.data or '', wine_type=search_form.wine_type.data or '', varietal=search_form.varietal.data or '') }}">Next</a>
+<input type="submit" name="submitAction" value="Next" form="cellarForm">
 {% endif %}
 {% if not show_all %}
-<a href="{{ url_for('cellar', status=status, show_all=1, sort_by=search_form.sort_by.data or '', sort_order=search_form.sort_order.data or '', query=search_form.query.data or '', wine_type=search_form.wine_type.data or '', varietal=search_form.varietal.data or '') }}">All</a>
+<input type="submit" name="submitAction" value="All" form="cellarForm">
 {% endif %}
 Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 }}
 </td>

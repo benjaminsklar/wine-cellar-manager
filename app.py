@@ -184,6 +184,14 @@ def cellar():
 
     wines = query.all()
 
+    # Build varietal list from user's wines for the filter dropdown
+    varietal_set = set()
+    for w in current_user.wines.all():
+        for v in [w.varietal1, w.varietal2, w.varietal3, w.varietal4]:
+            if v:
+                varietal_set.add(v)
+    varietals = sorted(varietal_set)
+
     status_labels = {
         'cellar': f"Wines in {current_user.username}'s Cellar",
         'consumed': 'Consumed Wines',
@@ -196,6 +204,7 @@ def cellar():
                            status=status,
                            status_label=status_labels.get(status, 'Wines in Cellar'),
                            search_form=search_form,
+                           varietals=varietals,
                            current_year=date.today().year)
 
 

@@ -10,7 +10,7 @@
 </td></tr>
 <tr><td class="titlepaddingbottom" colspan="2"></td></tr>
 
-<!-- Wine Finder / Filter bar matching original exactly -->
+<!-- Filter bar matching original exactly -->
 <form method="GET" action="{{ url_for('cellar') }}">
 <input type="hidden" name="status" value="{{ status }}">
 
@@ -51,36 +51,51 @@
 <option value="spirits"{% if search_form.wine_type.data == 'spirits' %} selected{% endif %}>spirits</option></select>
 
 <select name="varietal" size="4"><option value="">Any Varietal</option>
-</select>
+{% for v in varietals %}<option value="{{ v }}"{% if search_form.varietal.data == v %} selected{% endif %}>{{ v }}</option>
+{% endfor %}</select>
 
+</td>
+<td class="smalltext" nowrap align="left">
 </td>
 </tr>
 <tr>
-<td class="mediumtext">
-<input type="submit" name="submitAction" value="Search">
-&nbsp;
-<input type="submit" name="submitAction" value="Search Cellar">
+<td align="center">
 
+<select name="sort_order"><option value="">Sort order</option>
+<option value="asc"{% if search_form.sort_order.data == 'asc' %} selected{% endif %}>Ascending</option>
+<option value="desc"{% if search_form.sort_order.data == 'desc' %} selected{% endif %}>Descending</option></select>
+</td>
+<td>
+<input type="submit" name="submitAction" value="Search">
 </td>
 </tr>
 </table>
 </td></tr>
+
+{% if wines %}
+<tr>
+<td class="smalltext" align="left">
+<input type="submit" name="submitAction" value="Next">
+<input type="submit" name="submitAction" value="All">
+Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+-
+{{ wines|length }} wines
+({{ wines|sum(attribute='quantity') }} bottles)
+</td>
+<td class="smalltext" align="right" nowrap>
+&nbsp;<a href="#">Printable View</a>
+&nbsp;<a href="#">Customize this page</a>
+</td>
+</tr>
+{% endif %}
+
 </form>
 
-<!-- Page info with Next/All pagination -->
-<tr><td class="smallfieldvalue" colspan="2">
-{% if wines %}
-<b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
-&nbsp;&nbsp;&nbsp;
-<a href="#" style="font-size:10px;">Printable View</a>&nbsp;
-<a href="#" style="font-size:10px;">Customize this view</a>
-{% endif %}
-</td></tr>
-
-</table>
+<tr>
+<td colspan="2">
 
 {% if wines %}
-<!-- Wine table matching original exactly: class="bottleresult" cellpadding="3" border="1" onclick="sortColumn" -->
+<!-- Wine table matching original exactly -->
 <table class="bottleresult" cellpadding="3" cellspacing="0" border="1" onclick="sortColumn(event)">
 <thead>
 <tr class="subhead">
@@ -181,17 +196,24 @@
 </tbody>
 </table>
 
-<!-- Bottom pagination -->
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr>
-    <td class="smallfieldvalue">
-        <b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
-    </td>
+</td>
 </tr>
-</table>
+
+<!-- Bottom pagination -->
+<tr>
+<td class="smalltext" align="left" colspan="2">
+<input type="submit" form="cellar_form" name="submitAction" value="Next">
+<input type="submit" form="cellar_form" name="submitAction" value="All">
+Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+</td>
+</tr>
+
 {% else %}
-<p class="smalltext" style="padding:10px;">No wines found. <a href="{{ url_for('add_wine') }}">Add Wine</a> to get started.</p>
+</td>
+</tr>
 {% endif %}
+
+</table>
 
 {% endblock %}
 
@@ -226,23 +248,6 @@ function initSortTable() {
     arrowDown.className = "arrow";
 }
 
-
-function sortColumnWithHold(e) {
-    var el = ie5 ? e.srcElement : e.target;
-    var table = getParent(el, "TABLE");
-    var oldCursor = table.style.cursor;
-    var oldClick = table.onclick;
-    table.style.cursor = "wait";
-    table.onclick = null;
-    var fakeEvent = {srcElement : e.srcElement, target : e.target};
-    window.setTimeout(function () {
-        sortColumn(fakeEvent);
-        table.style.cursor = oldCursor;
-        table.onclick = oldClick;
-    }, 100);
-}
-
-
 function sortColumn(e) {
     var tmp = e.target ? e.target : e.srcElement;
     var tHeadParent = getParent(tmp, "THEAD");
@@ -271,7 +276,6 @@ function sortColumn(e) {
     }
 }
 
-
 function sortTable(tableNode, nCol, bDesc, sType) {
     var tBody = tableNode.tBodies[0];
     var trs = tBody.rows;
@@ -284,15 +288,8 @@ function sortTable(tableNode, nCol, bDesc, sType) {
     window.status = "Sorting data done";
     for (var i = 0; i < trl; i++) {
         tBody.appendChild(a[i]);
-        window.status = "Updating row " + (i + 1) + " of " + trl +
-                        " (Time spent: " + (new Date - start) + "ms)";
     }
-    if (typeof tableNode.onsort == "string")
-        tableNode.onsort = new Function("", tableNode.onsort);
-    if (typeof tableNode.onsort == "function")
-        tableNode.onsort();
 }
-
 
 function compareByColumn(nCol, bDescending, sType) {
     var c = nCol;
@@ -307,7 +304,6 @@ function compareByColumn(nCol, bDescending, sType) {
         return 0;
     };
 }
-
 
 function getInnerText(el) {
     if (ie5) return el.innerText;

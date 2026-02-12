@@ -114,8 +114,7 @@ table.logobox { border: 4 #990000 ridge; }
 table.greybox { border-color: #707070; }
 table.mediumgreybox { border-color: #BABABA; }
 table.lightgreybox { border-color: #DCDCDC; }
-table.bottleresult { width: 100%; border-collapse: collapse; }
-table.bottleresult td { border: 1px solid #DCDCDC; }
+table.bottleresult { width: 100%; }
 
 /* ─── Titles (exact from myc.css) ─── */
 td.toptitle { background-color: #DCDCDC; font-size: 13px; font-family: Verdana, Sans-Serif; width: 100%; }

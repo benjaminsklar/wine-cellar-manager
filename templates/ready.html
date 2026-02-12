@@ -10,7 +10,9 @@ Ready to Drink Wines
 </td></tr>
 <tr><td class="titlepaddingbottom" colspan="2"></td></tr>
 
-<!-- Wine Finder / Filter bar matching original exactly -->
+<!-- Filter bar matching original exactly -->
+<form method="GET" action="{{ url_for('ready_to_drink') }}">
+
 <tr><td class="mediumtext" colspan="2">
  <input type="text" name="searchtext" maxlength="100" size="50" value="Wine Finder" onfocus="javascript:if (event.target.value == 'Wine Finder') event.target.value = ''">
 </td>
@@ -52,29 +54,44 @@ Ready to Drink Wines
 </select>
 
 </td>
+<td class="smalltext" nowrap align="left">
+</td>
 </tr>
 <tr>
-<td class="mediumtext">
-<input type="submit" name="submitAction" value="Search">
-&nbsp;
-<input type="submit" name="submitAction" value="Search Cellar">
+<td align="center">
 
+<select name="sortOrder"><option value="">Sort order</option>
+<option value="Ascending" selected>Ascending</option>
+<option value="Descending">Descending</option></select>
+</td>
+<td>
+<input type="submit" name="submitAction" value="Search">
 </td>
 </tr>
 </table>
 </td></tr>
 
-<!-- Page info -->
-<tr><td class="smallfieldvalue" colspan="2">
 {% if wines %}
-<b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }} - {{ wines|length }} wines ({{ wines|sum(attribute='quantity') }} bottles)
-&nbsp;&nbsp;&nbsp;
-<a href="#" style="font-size:10px;">Printable View</a>&nbsp;
-<a href="#" style="font-size:10px;">Customize this view</a>
+<tr>
+<td class="smalltext" align="left">
+<input type="submit" name="submitAction" value="Next">
+<input type="submit" name="submitAction" value="All">
+Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+-
+{{ wines|length }} wines
+({{ wines|sum(attribute='quantity') }} bottles)
+</td>
+<td class="smalltext" align="right" nowrap>
+&nbsp;<a href="#">Printable View</a>
+&nbsp;<a href="#">Customize this page</a>
+</td>
+</tr>
 {% endif %}
-</td></tr>
 
-</table>
+</form>
+
+<tr>
+<td colspan="2">
 
 {% if wines %}
 <table class="bottleresult" cellpadding="3" cellspacing="0" border="1" onclick="sortColumn(event)">
@@ -94,33 +111,50 @@ Ready to Drink Wines
 </thead>
 <tbody>
 {% for wine in wines %}
-<tr class="evenitem">
-    <td align="left">
+<tr class="evenitem"> 
+<td align="left">
 <a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
 {{ wine.name }}
-({{ wine.size_ml or 750 }}ml){% if wine.has_rating %}
-<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a>
-    </td>
-    <td align="center">{{ wine.producer }}</td>
-    <td align="center">{{ wine.appellation or '' }}</td>
-    <td align="center">{{ wine.varietals_display or '' }}</td>
-    <td align="right">{{ wine.quantity }}</td>
-    <td align="center">{{ wine.maturity_display or 'Drink' }}</td>
-    <td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
-    <td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
-    <td align="center">{{ wine.rating_text }}</td>
-    <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %} 
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a> 
+</td>
+<td align="center">{{ wine.producer }}</td>
+<td align="center">{{ wine.appellation or '' }}</td>
+<td align="center">
+{{ wine.varietals_display or '' }}
+</td>
+<td align="right">
+{{ wine.quantity }}
+</td>
+<td align="center">{{ wine.maturity_display or 'Drink' }}</td>
+<td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
+<td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
+<td align="center">{{ wine.rating_text }}</td>
+<td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
 
-<table cellpadding="2" cellspacing="0" border="0" width="100%">
-<tr><td class="smallfieldvalue"><b>Next</b> | <b>All</b> | Page 1 of {{ ((wines|length - 1) // 50 + 1) }}</td></tr>
-</table>
+</td>
+</tr>
+
+<!-- Bottom pagination -->
+<tr>
+<td class="smalltext" align="left" colspan="2">
+<input type="submit" form="ready_form" name="submitAction" value="Next">
+<input type="submit" form="ready_form" name="submitAction" value="All">
+Page 1 of {{ ((wines|length - 1) // 50 + 1) }}
+</td>
+</tr>
+
 {% else %}
-<p class="smalltext" style="padding:10px;">No wines ready right now. Set drinking windows when adding wines to see them here.</p>
+</td>
+</tr>
 {% endif %}
+
+</table>
+
 {% endblock %}
 
 {% block extra_js %}
@@ -138,25 +172,11 @@ var arrowUp, arrowDown;
 if ((ie5 || dom) && !(ieOnMac)) initSortTable();
 function initSortTable() {
     arrowUp = document.createElement("SPAN");
-    arrowUp.innerHTML = '&nbsp;\u2191';
+    arrowUp.innerHTML = '&nbsp;&uarr;';
     arrowUp.className = "arrow";
     arrowDown = document.createElement("SPAN");
-    arrowDown.innerHTML = '&nbsp;\u2193';
+    arrowDown.innerHTML = '&nbsp;&darr;';
     arrowDown.className = "arrow";
-}
-function sortColumnWithHold(e) {
-    var el = ie5 ? e.srcElement : e.target;
-    var table = getParent(el, "TABLE");
-    var oldCursor = table.style.cursor;
-    var oldClick = table.onclick;
-    table.style.cursor = "wait";
-    table.onclick = null;
-    var fakeEvent = {srcElement : e.srcElement, target : e.target};
-    window.setTimeout(function () {
-        sortColumn(fakeEvent);
-        table.style.cursor = oldCursor;
-        table.onclick = oldClick;
-    }, 100);
 }
 function sortColumn(e) {
     var tmp = e.target ? e.target : e.srcElement;

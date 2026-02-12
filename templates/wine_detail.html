@@ -87,9 +87,7 @@
 
 <input type="submit" name="submitAction" value="Rate this Wine" title="Rate this wine to add a tasting note and update its rating and maturity" onclick="window.location='{{ url_for('add_tasting_note', wine_id=wine.id) }}'; return false;">
 
-{% if wine.status != 'cellar' %}
-<input type="submit" name="submitAction" value="Add to Cellar" title="Add this wine to your cellar">
-{% endif %}
+<input type="submit" name="submitAction" value="Add to Cellar" title="Add this wine to your cellar" onclick="window.location='{{ url_for('add_to_cellar', wine_id=wine.id) }}'; return false;">
 
 <input type="submit" name="submitAction" value="Add to Wish List" title="Add this wine to your wish list">
 

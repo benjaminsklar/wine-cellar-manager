@@ -251,6 +251,90 @@ def ready_to_drink():
     return render_template('ready.html', wines=wines, current_year=current_year)
 
 
+# ─── Add to Cellar (Acquisition) ──────────────────────────────────
+
+@app.route('/wine/<int:wine_id>/add-to-cellar', methods=['GET', 'POST'])
+@login_required
+def add_to_cellar(wine_id):
+    wine = Wine.query.get_or_404(wine_id)
+    if wine.user_id != current_user.id:
+        flash('Access denied.', 'danger')
+        return redirect(url_for('cellar'))
+
+    if request.method == 'GET':
+        return render_template('add_to_cellar_form.html', wine=wine, today=date.today())
+
+    # POST: process the acquisition form
+    submit_action = request.form.get('submitAction', '')
+    if submit_action == 'Cancel':
+        return redirect(url_for('wine_detail', wine_id=wine.id))
+
+    # Parse acquisition date
+    try:
+        year = int(request.form.get('year', date.today().year))
+        month = int(request.form.get('month', date.today().month))
+        day = int(request.form.get('day', date.today().day))
+        acq_date = date(year, month, day)
+    except (ValueError, TypeError):
+        acq_date = date.today()
+
+    # Parse quantity
+    try:
+        qty = int(request.form.get('quantity', 1))
+    except (ValueError, TypeError):
+        qty = 1
+    if qty < 1:
+        qty = 1
+
+    # Parse price
+    try:
+        price = float(request.form.get('price', 0))
+    except (ValueError, TypeError):
+        price = None
+
+    # Parse other fields
+    from_name = request.form.get('otherPartyName', '').strip()
+    winery_is_from = request.form.get('wineryIsOtherParty', '')
+    if winery_is_from and not from_name:
+        from_name = wine.producer
+    is_on_order = bool(request.form.get('isOnOrder', ''))
+    stored = request.form.get('storingInfo', '').strip()
+    alcohol_str = request.form.get('alcohol', '').strip()
+    description = request.form.get('description', '').strip()
+
+    # Parse alcohol
+    alcohol_pct = None
+    if alcohol_str:
+        try:
+            alcohol_pct = float(alcohol_str)
+        except ValueError:
+            pass
+
+    # Update the wine record: add bottles to existing quantity
+    wine.quantity += qty
+    wine.acq_date = acq_date
+    if price and price > 0:
+        wine.price = price
+    if from_name:
+        wine.acq_from = from_name
+    if is_on_order:
+        wine.on_order = True
+    if stored:
+        wine.stored = stored
+    if alcohol_pct is not None:
+        wine.alcohol_pct = alcohol_pct
+    if description:
+        wine.acq_description = description
+
+    # If the wine was consumed or on wishlist, move it back to cellar
+    if wine.status != 'cellar':
+        wine.status = 'cellar'
+
+    db.session.commit()
+    flash(f'Added {qty} bottle(s) of {wine.name} to your cellar!', 'success')
+    return redirect(url_for('wine_detail', wine_id=wine.id))
+
+
 # ─── Wine CRUD ────────────────────────────────────────────────────
 
 @app.route('/wine/add', methods=['GET', 'POST'])

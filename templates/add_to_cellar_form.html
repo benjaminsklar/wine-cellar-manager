@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Add to Cellar - ManageYourCellar.com{% endblock %}
+
+{% block content %}
+<table cellpadding="2" cellspacing="0" border="0" width="100%" height="100%">
+
+<tr><td colspan="4" class="title">
+{{ wine.vintage or 'NV' }}
+{{ wine.name }}
+({{ wine.size_ml or 750 }}ml)
+</td></tr>
+<tr><td colspan="4" class="titlepaddingbottom"></td></tr>
+
+<tr>
+<td width="10%" class="smallfieldlabel">Producer:</td>
+<td class="smallfieldvalue" colspan="3">
+{{ wine.producer }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Appellation:</td>
+<td class="smallfieldvalue" colspan="3">
+{{ wine.appellation or '' }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Varietal:</td>
+<td class="smallfieldvalue">
+{{ wine.varietals_display or '' }}
+</td>
+<td width="25%" class="smallfieldlabel">Type:</td>
+<td width="30%" class="smallfieldvalue">
+{{ wine.wine_type|lower }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Maturity:</td>
+<td class="smallfieldvalue">
+{{ wine.maturity_display or '' }}</td>
+
+<td class="smallfieldlabel">Rating:</td>
+<td class="smallfieldvalue">
+{{ wine.rating_text }}
+</td>
+</tr>
+
+<tr>
+<td class="smallfieldlabel">Est. Price:</td>
+<td class="smallfieldvalue" colspan="3">
+{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+</tr>
+
+
+<form name="eventForm" method="POST" action="{{ url_for('add_to_cellar', wine_id=wine.id) }}">
+
+<tr><td colspan="4" class="titlepaddingtop"></td></tr>
+<tr><td colspan="4" class="title">
+Acquisition 
+
+Information:
+
+
+</td></tr>
+<tr><td colspan="4" class="titlepaddingbottom"></td></tr>
+
+<tr>
+<td class="smallfieldlabel">Date:</td>
+<td colspan="3">
+<input type="text" name="year" maxlength="4" size="4" value="{{ today.year }}">/
+<input type="text" name="month" maxlength="2" size="2" value="{{ '%02d'|format(today.month) }}">/
+<input type="text" name="day" maxlength="2" size="2" value="{{ '%02d'|format(today.day) }}">
+</td>
+</tr>
+
+
+<tr><td class="smallfieldlabel" nowrap>Bottle Vintage:</td>
+<td class="smallfieldvalue"><input type="text" name="bottleVintage" maxlength="10" size="6" value="{{ wine.vintage or '' }}"></td></tr>
+<tr><td class="smallfieldlabel" nowrap>Bottle Size (ml):</td>
+<td class="smallfieldvalue"><input type="text" name="bottleSize" maxlength="10" size="6" value="{{ wine.size_ml or 750 }}"></td></tr>
+
+
+<tr>
+<td class="smallfieldlabel">Quantity:</td>
+<td class="smallfieldvalue" colspan="3"><input type="text" name="quantity" maxlength="20" size="10" value="1"> (blank if this is not an acquisition)</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">Price:</td>
+<td class="smallfieldvalue" colspan="3"><input type="text" name="price" maxlength="20" size="10" value="{{ '%.2f'|format(wine.price) if wine.price else '0' }}">
+
+<select name="currencyCode"><option value="USD" selected>USD</option>
+<option value="ARS">ARS</option>
+<option value="AUD">AUD</option>
+<option value="BRL">BRL</option>
+<option value="CAD">CAD</option>
+<option value="CHF">CHF</option>
+<option value="CLP">CLP</option>
+<option value="EUR">EUR</option>
+<option value="GBP">GBP</option>
+<option value="HKD">HKD</option>
+<option value="ILS">ILS</option>
+<option value="MYR">MYR</option>
+<option value="NZD">NZD</option>
+<option value="SGD">SGD</option>
+<option value="TRY">TRY</option></select>
+
+each
+</td>
+</tr>
+
+
+<tr>
+<td class="smallfieldlabel">
+
+From:
+
+</td>
+<td colspan="3" class="smallfieldvalue">
+
+<input type="checkbox" name="wineryIsOtherParty" value="on"> Winery or
+
+<input type="text" name="otherPartyName" maxlength="75" size="28" value="{{ wine.acq_from or '' }}">
+
+</td>
+</tr>
+
+
+<tr><td class="smallfieldlabel">On Order:</td>
+<td colspan="3" class="smallfieldvalue"><input type="checkbox" name="isOnOrder" value="on">
+(select this if this is a future order.)
+</td></tr>
+
+
+<tr>
+<td class="smallfieldlabel">Stored:</td>
+<td colspan="3"><input type="text" name="storingInfo" maxlength="75" size="40" value="{{ wine.stored or '' }}"></td>
+</tr>
+
+
+<tr><td class="smallfieldlabel" nowrap>Alcohol %:</td>
+<td class="smallfieldvalue"><input type="text" name="alcohol" maxlength="10" size="6" value="{{ wine.alcohol_pct or '' }}"></td></tr>
+
+
+<tr><td class="smallfieldlabel" nowrap>Label URL:</td>
+<td class="smallfieldvalue"><input type="text" name="labelUrl" maxlength="150" size="40" value=""> (URL to wine label image)</td></tr>
+
+
+<tr>
+<td class="smallfieldlabel" valign="top">
+
+Description:
+
+</td>
+<td colspan="3"><textarea name="description" cols="45" rows="6">{{ wine.acq_description or '' }}</textarea></td>
+</tr>
+
+
+<tr><td colspan="4"></td></tr>
+
+<tr>
+<td colspan="4">
+
+<input type="submit" name="submitAction" value="Save">
+
+
+<input type="submit" name="submitAction" value="Cancel">
+
+</td>
+</tr>
+
+</form>
+
+</table>
+{% endblock %}

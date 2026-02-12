@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Best Wine Values - WineCellarManager.com{% endblock %}
+
+{% block content %}
+<h1 style="font-size:16px;">Best Wine Values</h1>
+<p class="desc-text">Wines ranked by value score (rating relative to price). Higher value score = better deal.</p>
+
+{% if wines_with_value %}
+<table class="wine-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Wine</th>
+            <th>Vintage</th>
+            <th>Producer</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Value Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wine, score in wines_with_value %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }}</a></td>
+            <td>{{ wine.vintage or 'NV' }}</td>
+            <td>{{ wine.producer }}</td>
+            <td>{{ wine.wine_type }}</td>
+            <td>${{ "%.0f"|format(wine.price) }}</td>
+            <td><span class="wine-tag rating">{{ wine.rating }}</span></td>
+            <td><b>{{ "%.1f"|format(score) }}</b></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+    <h3>No rated wines with prices</h3>
+    <p>Add ratings and prices to your wines to see value rankings here.</p>
+</div>
+{% endif %}
+{% endblock %}

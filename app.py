@@ -39,7 +39,25 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    recent_wines = Wine.query.order_by(Wine.date_added.desc()).limit(5).all()
+    return render_template('home.html', recent_wines=recent_wines)
+
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
+@app.route('/best-values')
+@login_required
+def best_values():
+    wines = current_user.wines.filter_by(status='cellar').filter(
+        Wine.price.isnot(None), Wine.rating.isnot(None)
+    ).all()
+    # Sort by value score: rating / price (higher = better value)
+    wines_with_value = [(w, w.rating / w.price if w.price > 0 else 0) for w in wines]
+    wines_with_value.sort(key=lambda x: x[1], reverse=True)
+    return render_template('best_values.html', wines_with_value=wines_with_value[:20])
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -47,14 +65,20 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('cellar'))
     form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user)
-            flash('Welcome back!', 'success')
-            next_page = request.args.get('next')
-            return redirect(next_page or url_for('cellar'))
-        flash('Invalid username or password.', 'danger')
+
+    # Handle both WTForms login AND the inline home-page login form
+    if request.method == 'POST':
+        username = form.username.data or request.form.get('username', '')
+        password = form.password.data or request.form.get('password', '')
+        if username and password:
+            user = User.query.filter_by(username=username).first()
+            if user and user.check_password(password):
+                login_user(user)
+                flash('Welcome back!', 'success')
+                next_page = request.args.get('next')
+                return redirect(next_page or url_for('cellar'))
+            flash('Invalid username or password.', 'danger')
+
     return render_template('login.html', form=form)
 
 

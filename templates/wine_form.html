@@ -1,10 +1,8 @@
 {% extends "base.html" %}
-{% block title %}{{ title }} - WineCellarManager{% endblock %}
+{% block title %}{{ title }} - WineCellarManager.com{% endblock %}
 
 {% block content %}
-<div class="breadcrumb">
-    <a href="{{ url_for('cellar') }}">My Cellar</a> &raquo; {{ title }}
-</div>
+<div class="breadcrumb"><a href="{{ url_for('cellar') }}">My Cellar</a> &raquo; {{ title }}</div>
 
 <div class="panel">
     <div class="panel-header">{{ title }}</div>
@@ -12,152 +10,29 @@
         <form method="POST">
             {{ form.hidden_tag() }}
 
-            <!-- Wine Information -->
-            <table class="wine-table" style="margin-bottom: 12px;">
-                <thead><tr><th colspan="4">Wine Information</th></tr></thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;width:100px;background:var(--cream-dark);">{{ form.name.label.text }}:</td>
-                        <td colspan="3">
-                            {{ form.name(class="form-control", placeholder="e.g. Reserve Cabernet Sauvignon") }}
-                            {% for error in form.name.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.vintage.label.text }}:</td>
-                        <td>
-                            {{ form.vintage(class="form-control", placeholder="e.g. 2018", style="width:100px;") }}
-                            {% for error in form.vintage.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);width:100px;">{{ form.producer.label.text }}:</td>
-                        <td>
-                            {{ form.producer(class="form-control", placeholder="e.g. Chateau Margaux") }}
-                            {% for error in form.producer.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.wine_type.label.text }}:</td>
-                        <td>
-                            {{ form.wine_type(class="form-control", style="width:150px;") }}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.appellation.label.text }}:</td>
-                        <td>
-                            {{ form.appellation(class="form-control", placeholder="e.g. Napa Valley AVA") }}
-                            {% for error in form.appellation.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">Varietal 1:</td>
-                        <td>
-                            {{ form.varietal1(class="form-control", placeholder="e.g. Cabernet Sauvignon") }}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">Varietal 2:</td>
-                        <td>
-                            {{ form.varietal2(class="form-control", placeholder="e.g. Merlot") }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">Varietal 3:</td>
-                        <td>
-                            {{ form.varietal3(class="form-control", placeholder="Optional") }}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">Varietal 4:</td>
-                        <td>
-                            {{ form.varietal4(class="form-control", placeholder="Optional") }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.size_ml.label.text }}:</td>
-                        <td>
-                            {{ form.size_ml(class="form-control", placeholder="750", style="width:100px;") }}
-                            {% for error in form.size_ml.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.alcohol_pct.label.text }}:</td>
-                        <td>
-                            {{ form.alcohol_pct(class="form-control", placeholder="e.g. 13.5", style="width:100px;") }}
-                            {% for error in form.alcohol_pct.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);vertical-align:top;">Description:</td>
-                        <td colspan="3">
-                            {{ form.description(class="form-control", placeholder="Wine description, tasting profile...", rows="3") }}
-                        </td>
-                    </tr>
-                </tbody>
+            <table class="detail-table" style="margin-bottom:10px;">
+                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Wine Information</td></tr>
+                <tr><td class="label-cell">Name:</td><td colspan="3">{{ form.name(class="form-control", placeholder="e.g. Reserve Cabernet Sauvignon") }}{% for e in form.name.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
+                <tr><td class="label-cell">Vintage:</td><td>{{ form.vintage(class="form-control", placeholder="e.g. 2018", style="width:90px") }}{% for e in form.vintage.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td><td class="label-cell">Producer:</td><td>{{ form.producer(class="form-control", placeholder="e.g. Chateau Margaux") }}{% for e in form.producer.errors %}<div class="form-error">{{ e }}</div>{% endfor %}</td></tr>
+                <tr><td class="label-cell">Type:</td><td>{{ form.wine_type(class="form-control", style="width:130px") }}</td><td class="label-cell">Appellation:</td><td>{{ form.appellation(class="form-control", placeholder="e.g. Napa Valley AVA") }}</td></tr>
+                <tr><td class="label-cell">Varietal 1:</td><td>{{ form.varietal1(class="form-control", placeholder="e.g. Cabernet Sauvignon") }}</td><td class="label-cell">Varietal 2:</td><td>{{ form.varietal2(class="form-control", placeholder="e.g. Merlot") }}</td></tr>
+                <tr><td class="label-cell">Varietal 3:</td><td>{{ form.varietal3(class="form-control", placeholder="Optional") }}</td><td class="label-cell">Varietal 4:</td><td>{{ form.varietal4(class="form-control", placeholder="Optional") }}</td></tr>
+                <tr><td class="label-cell">Size (ml):</td><td>{{ form.size_ml(class="form-control", placeholder="750", style="width:90px") }}</td><td class="label-cell">Alcohol %:</td><td>{{ form.alcohol_pct(class="form-control", placeholder="e.g. 13.5", style="width:90px") }}</td></tr>
+                <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.description(class="form-control", placeholder="Wine description...", rows="2") }}</td></tr>
             </table>
 
-            <!-- Acquisition Information -->
-            <table class="wine-table" style="margin-bottom: 12px;">
-                <thead><tr><th colspan="4">Additional Acquisition Information</th></tr></thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;width:100px;background:var(--cream-dark);">{{ form.acq_date.label.text }}:</td>
-                        <td>
-                            {{ form.acq_date(class="form-control", type="date", style="width:150px;") }}
-                            {% for error in form.acq_date.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);width:100px;">{{ form.quantity.label.text }}:</td>
-                        <td>
-                            {{ form.quantity(class="form-control", style="width:80px;") }}
-                            {% for error in form.quantity.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.price.label.text }}:</td>
-                        <td>
-                            {{ form.price(class="form-control", placeholder="e.g. 45.00", style="width:120px;") }}
-                            {% for error in form.price.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.acq_from.label.text }}:</td>
-                        <td>
-                            {{ form.acq_from(class="form-control", placeholder="e.g. Wine.com, Local Shop") }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">On Order:</td>
-                        <td>
-                            {{ form.on_order() }} <label for="on_order" style="font-weight:normal;">Yes, wine is on order</label>
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.stored.label.text }}:</td>
-                        <td>
-                            {{ form.stored(class="form-control", placeholder="e.g. Rack A, Shelf 3") }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);vertical-align:top;">Description:</td>
-                        <td colspan="3">
-                            {{ form.acq_description(class="form-control", placeholder="Acquisition notes...", rows="2") }}
-                        </td>
-                    </tr>
-                </tbody>
+            <table class="detail-table" style="margin-bottom:10px;">
+                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Additional Acquisition Information</td></tr>
+                <tr><td class="label-cell">Date:</td><td>{{ form.acq_date(class="form-control", type="date", style="width:140px") }}</td><td class="label-cell">Quantity:</td><td>{{ form.quantity(class="form-control", style="width:70px") }}</td></tr>
+                <tr><td class="label-cell">Price ($):</td><td>{{ form.price(class="form-control", placeholder="e.g. 45.00", style="width:100px") }}</td><td class="label-cell">From:</td><td>{{ form.acq_from(class="form-control", placeholder="e.g. Wine.com") }}</td></tr>
+                <tr><td class="label-cell">On Order:</td><td>{{ form.on_order() }} <label for="on_order" style="font-weight:normal;font-size:10px;">Yes</label></td><td class="label-cell">Stored:</td><td>{{ form.stored(class="form-control", placeholder="e.g. Rack A, Shelf 3") }}</td></tr>
+                <tr><td class="label-cell" style="vertical-align:top;">Description:</td><td colspan="3">{{ form.acq_description(class="form-control", placeholder="Acquisition notes...", rows="2") }}</td></tr>
             </table>
 
-            <!-- Cellar Tracking -->
-            <table class="wine-table" style="margin-bottom: 12px;">
-                <thead><tr><th colspan="4">Cellar Tracking</th></tr></thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;width:100px;background:var(--cream-dark);">{{ form.drink_from.label.text }}:</td>
-                        <td>
-                            {{ form.drink_from(class="form-control", placeholder="e.g. 2025", style="width:100px;") }}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);width:100px;">{{ form.drink_to.label.text }}:</td>
-                        <td>
-                            {{ form.drink_to(class="form-control", placeholder="e.g. 2035", style="width:100px;") }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.rating.label.text }}:</td>
-                        <td>
-                            {{ form.rating(class="form-control", placeholder="e.g. 92", style="width:80px;") }}
-                        </td>
-                        <td style="font-weight:bold;background:var(--cream-dark);">{{ form.status.label.text }}:</td>
-                        <td>
-                            {{ form.status(class="form-control", style="width:150px;") }}
-                        </td>
-                    </tr>
-                </tbody>
+            <table class="detail-table" style="margin-bottom:10px;">
+                <tr><td colspan="4" style="background:#6B0012;color:#D4A840;font-weight:bold;padding:3px 6px;font-size:10px;">Cellar Tracking</td></tr>
+                <tr><td class="label-cell">Drink From:</td><td>{{ form.drink_from(class="form-control", placeholder="e.g. 2025", style="width:90px") }}</td><td class="label-cell">Drink To:</td><td>{{ form.drink_to(class="form-control", placeholder="e.g. 2035", style="width:90px") }}</td></tr>
+                <tr><td class="label-cell">Rating:</td><td>{{ form.rating(class="form-control", placeholder="1-100", style="width:70px") }}</td><td class="label-cell">Status:</td><td>{{ form.status(class="form-control", style="width:130px") }}</td></tr>
             </table>
 
             <div class="d-flex gap-1">

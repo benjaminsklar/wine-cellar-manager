@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}FAQ - WineCellarManager.com{% endblock %}
+
+{% block content %}
+<h1 style="font-size:16px;">Frequently Asked Questions</h1>
+<hr class="separator">
+
+<div class="arrow-title">&rarr; What is WineCellarManager?</div>
+<p class="desc-text">WineCellarManager is a free online wine cellar management software. It allows you to track your wine collection, record tasting notes, manage your inventory, and much more.</p>
+
+<div class="arrow-title">&rarr; How much does it cost?</div>
+<p class="desc-text">WineCellarManager is completely free to use. Just <a href="{{ url_for('register') }}">register</a> and start managing your wine collection today.</p>
+
+<div class="arrow-title">&rarr; What information can I track?</div>
+<p class="desc-text">For each wine you can track: name, vintage, producer, type, appellation, up to 4 varietals, bottle size, alcohol percentage, and a description. You can also record acquisition information including date, quantity, price, where you bought it, storage location, and whether it's on order.</p>
+
+<div class="arrow-title">&rarr; Can I record tasting notes?</div>
+<p class="desc-text">Yes! For each wine you can add detailed tasting notes covering appearance, nose, palate, finish, and overall impression, along with a score from 1 to 100.</p>
+
+<div class="arrow-title">&rarr; What is the "Ready to Drink" feature?</div>
+<p class="desc-text">When you add wines to your cellar, you can set a drinking window (drink from year / drink to year). The "Ready to Drink" view shows you all wines currently in their optimal drinking window, so you never miss a wine at its peak.</p>
+
+<div class="arrow-title">&rarr; Can I see statistics about my cellar?</div>
+<p class="desc-text">Yes, the <a href="{{ url_for('stats') }}">Cellar Statistics</a> page gives you a one-page overview of your cellar including total bottles, total value, average price, breakdowns by type, appellation, and varietal, plus your top rated wines.</p>
+
+<div class="arrow-title">&rarr; Can I export my cellar data?</div>
+<p class="desc-text">Yes, you can export your entire wine collection as a CSV file at any time using the Cellar Export feature.</p>
+
+<div class="arrow-title">&rarr; What is Quick Entry?</div>
+<p class="desc-text">Quick Entry allows you to add multiple wines at once in a rapid-fire form, perfect for when you're cataloging a large collection for the first time.</p>
+
+<div class="arrow-title">&rarr; What are Best Wine Values?</div>
+<p class="desc-text">The Best Wine Values page ranks your cellar wines by their value score (rating divided by price). This helps you find the best-performing wines in your collection relative to what you paid.</p>
+
+<div class="arrow-title">&rarr; Can I share my cellar with friends?</div>
+<p class="desc-text">Each user has their own private cellar. You can invite friends to register and build their own collections.</p>
+{% endblock %}

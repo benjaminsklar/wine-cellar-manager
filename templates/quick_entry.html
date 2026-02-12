@@ -1,67 +1,35 @@
 {% extends "base.html" %}
-{% block title %}Quick Entry - WineCellarManager{% endblock %}
+{% block title %}Quick Entry - WineCellarManager.com{% endblock %}
 
 {% block content %}
-<div class="breadcrumb">
-    <a href="{{ url_for('cellar') }}">My Cellar</a> &raquo; Quick Entry
-</div>
+<div class="breadcrumb"><a href="{{ url_for('cellar') }}">My Cellar</a> &raquo; Quick Entry</div>
+<h1 style="font-size:16px;">Quick Entry</h1>
+<p class="text-muted mb-2">Add multiple wines at once. Fill in at least the name and producer.</p>
 
-<h1>Quick Entry</h1>
-<p class="text-muted" style="font-size:11px;">Quickly add multiple wines at once. Fill in at least the name and producer for each row.</p>
-
-<div class="panel">
-    <div class="panel-header">Add Multiple Wines</div>
-    <div class="panel-body">
-        <form method="POST" action="{{ url_for('quick_entry') }}">
-            <div class="quick-entry-header">
-                <span>Wine Name *</span>
-                <span>Producer *</span>
-                <span>Vintage</span>
-                <span>Varietal</span>
-                <span>Qty</span>
-                <span>Price</span>
-                <span style="width:30px;flex:none;"></span>
+<div class="panel"><div class="panel-header">Add Multiple Wines</div><div class="panel-body">
+    <form method="POST" action="{{ url_for('quick_entry') }}">
+        <div class="quick-entry-header"><span>Wine Name *</span><span>Producer *</span><span>Vintage</span><span>Varietal</span><span style="width:45px;flex:none;">Qty</span><span style="width:55px;flex:none;">Price</span><span style="width:24px;flex:none;"></span></div>
+        <div id="entry-rows">
+            {% for i in range(5) %}
+            <div class="quick-entry-row">
+                <input type="text" name="name[]" placeholder="Wine name">
+                <input type="text" name="producer[]" placeholder="Producer">
+                <input type="number" name="vintage[]" placeholder="Year" min="1900" max="2030">
+                <input type="text" name="varietal[]" placeholder="Grape">
+                <input type="number" name="quantity[]" value="1" min="1" style="width:45px;flex:none;">
+                <input type="number" name="price[]" placeholder="$" step="0.01" min="0" style="width:55px;flex:none;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()" style="flex:none;">&times;</button>
             </div>
-
-            <div id="entry-rows">
-                {% for i in range(5) %}
-                <div class="quick-entry-row">
-                    <input type="text" name="name[]" placeholder="Wine name">
-                    <input type="text" name="producer[]" placeholder="Producer">
-                    <input type="number" name="vintage[]" placeholder="Year" min="1900" max="2030">
-                    <input type="text" name="varietal[]" placeholder="Grape">
-                    <input type="number" name="quantity[]" value="1" min="1" style="width:50px;flex:none;">
-                    <input type="number" name="price[]" placeholder="$" step="0.01" min="0" style="width:60px;flex:none;">
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()" title="Remove row" style="flex:none;">&times;</button>
-                </div>
-                {% endfor %}
-            </div>
-
-            <hr class="separator">
-            <div class="d-flex gap-1">
-                <button type="button" class="btn btn-secondary" onclick="addRow()">+ Add Row</button>
-                <button type="submit" class="btn btn-primary">Add All to Cellar</button>
-            </div>
-        </form>
-    </div>
-</div>
+            {% endfor %}
+        </div>
+        <hr class="separator">
+        <div class="d-flex gap-1"><button type="button" class="btn btn-secondary" onclick="addRow()">+ Add Row</button><button type="submit" class="btn btn-primary">Add All to Cellar</button></div>
+    </form>
+</div></div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-function addRow() {
-    var container = document.getElementById('entry-rows');
-    var row = document.createElement('div');
-    row.className = 'quick-entry-row';
-    row.innerHTML = '<input type="text" name="name[]" placeholder="Wine name">' +
-        '<input type="text" name="producer[]" placeholder="Producer">' +
-        '<input type="number" name="vintage[]" placeholder="Year" min="1900" max="2030">' +
-        '<input type="text" name="varietal[]" placeholder="Grape">' +
-        '<input type="number" name="quantity[]" value="1" min="1" style="width:50px;flex:none;">' +
-        '<input type="number" name="price[]" placeholder="$" step="0.01" min="0" style="width:60px;flex:none;">' +
-        '<button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()" title="Remove row" style="flex:none;">&times;</button>';
-    container.appendChild(row);
-    row.querySelector('input').focus();
-}
+function addRow(){var c=document.getElementById('entry-rows'),r=document.createElement('div');r.className='quick-entry-row';r.innerHTML='<input type="text" name="name[]" placeholder="Wine name"><input type="text" name="producer[]" placeholder="Producer"><input type="number" name="vintage[]" placeholder="Year" min="1900" max="2030"><input type="text" name="varietal[]" placeholder="Grape"><input type="number" name="quantity[]" value="1" min="1" style="width:45px;flex:none;"><input type="number" name="price[]" placeholder="$" step="0.01" min="0" style="width:55px;flex:none;"><button type="button" class="btn btn-secondary btn-sm" onclick="this.parentElement.remove()" style="flex:none;">&times;</button>';c.appendChild(r);r.querySelector('input').focus();}
 </script>
 {% endblock %}

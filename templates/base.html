@@ -3,127 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Wine Cellar Manager{% endblock %}</title>
+    <title>{% block title %}WineCellarManager.com{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Site Header Banner -->
-    <div class="site-header">
-        <div class="site-header-inner">
-            <div>
-                <a href="{{ url_for('home') }}" class="site-logo">
-                    <span class="wine-icon">&#127863;</span>WineCellarManager
-                </a>
-                <div class="site-tagline">A Community of Wine Lovers</div>
+<div class="page-container">
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="top-banner-inner">
+            <div class="logo-area">
+                <a href="{{ url_for('home') }}">WineCellarManager.COM</a>
+                <div class="logo-subtitle">A Community of Wine Lovers</div>
             </div>
-            <div class="header-right">
+            <div class="top-links">
                 {% if current_user.is_authenticated %}
-                Welcome <strong>{{ current_user.username }}</strong>!
-                | <a href="{{ url_for('cellar') }}">My Cellar</a>
-                | <a href="{{ url_for('logout') }}">Logout</a>
+                Welcome <b>{{ current_user.username }}</b>!
+                <a href="{{ url_for('home') }}">Home</a><span>|</span><a href="{{ url_for('logout') }}">Logout</a>
                 {% else %}
                 Welcome guest!
-                | <a href="{{ url_for('login') }}">Please login</a>
-                | <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('home') }}">Home</a><span>|</span><a href="{{ url_for('register') }}">Register</a><span>|</span><a href="{{ url_for('login') }}">Please login</a>
                 {% endif %}
             </div>
         </div>
     </div>
 
-    <!-- Top Navigation -->
-    {% if current_user.is_authenticated %}
-    <div class="topnav">
-        <div class="topnav-inner">
-            <a href="{{ url_for('home') }}" class="{{ 'active' if request.endpoint == 'home' }}">Home</a>
-            <a href="{{ url_for('cellar') }}" class="{{ 'active' if request.endpoint == 'cellar' and request.args.get('status', 'cellar') == 'cellar' }}">My Cellar</a>
-            <a href="{{ url_for('add_wine') }}" class="{{ 'active' if request.endpoint == 'add_wine' }}">Add Wine</a>
-            <a href="{{ url_for('search') }}" class="{{ 'active' if request.endpoint == 'search' }}">Search</a>
-            <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Statistics</a>
-            <a href="{{ url_for('tasting_list') }}" class="{{ 'active' if request.endpoint == 'tasting_list' }}">Tastings</a>
-            <a href="{{ url_for('export_cellar') }}">Export</a>
-        </div>
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form method="GET" action="{{ url_for('search') }}" style="display:flex;align-items:center;gap:4px;">
+            <input type="text" name="query" placeholder="Search wines...">
+            <button type="submit">Search</button>
+        </form>
+        <a href="{{ url_for('search') }}" class="more-options">More Search Options</a>
     </div>
-    {% endif %}
 
+    <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <div class="alerts">
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-            <span>{{ message }}</span>
-            <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
-        </div>
-        {% endfor %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        <span>{{ message }}</span>
+        <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
     </div>
+    {% endfor %}
     {% endif %}
     {% endwith %}
 
     {% block layout %}
-    {% if current_user.is_authenticated %}
-    <div class="page-wrapper">
+    <!-- Main Layout: Sidebar + Content -->
+    <div class="main-layout">
         <!-- Sidebar -->
-        <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('show')">&#9776; Menu</button>
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-search">
-                <form method="GET" action="{{ url_for('search') }}">
-                    <input type="text" name="query" placeholder="Search wines...">
-                    <button type="submit">Search</button>
-                </form>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">Manage My Cellar</div>
+                <div class="sb-links">
+                    <a href="{{ url_for('cellar', status='cellar') }}" class="{{ 'active' if request.endpoint == 'cellar' and request.args.get('status', 'cellar') == 'cellar' }}">Wines in Cellar</a>
+                    <a href="{{ url_for('ready_to_drink') }}" class="{{ 'active' if request.endpoint == 'ready_to_drink' }}">Ready to Drink</a>
+                    <a href="{{ url_for('cellar', status='on_order') }}" class="{{ 'active' if request.args.get('status') == 'on_order' }}">Wines on Order</a>
+                    <a href="{{ url_for('cellar', status='consumed') }}" class="{{ 'active' if request.args.get('status') == 'consumed' }}">Wines Consumed</a>
+                    <a href="{{ url_for('cellar', status='wishlist') }}" class="{{ 'active' if request.args.get('status') == 'wishlist' }}">Wish List</a>
+                    <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Cellar Statistics</a>
+                    <a href="{{ url_for('best_values') }}" class="{{ 'active' if request.endpoint == 'best_values' }}">Best Wine Values</a>
+                </div>
             </div>
 
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">Manage My Cellar</div>
-                <a href="{{ url_for('cellar', status='cellar') }}" class="{{ 'active' if request.endpoint == 'cellar' and request.args.get('status', 'cellar') == 'cellar' }}">Wines in Cellar</a>
-                <a href="{{ url_for('ready_to_drink') }}" class="{{ 'active' if request.endpoint == 'ready_to_drink' }}">Ready to Drink</a>
-                <a href="{{ url_for('cellar', status='on_order') }}" class="{{ 'active' if request.args.get('status') == 'on_order' }}">Wines on Order</a>
-                <a href="{{ url_for('cellar', status='consumed') }}" class="{{ 'active' if request.args.get('status') == 'consumed' }}">Wines Consumed</a>
-                <a href="{{ url_for('cellar', status='wishlist') }}" class="{{ 'active' if request.args.get('status') == 'wishlist' }}">Wish List</a>
-                <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Cellar Statistics</a>
+            <div class="sb-section">
+                <div class="sb-title">Add &amp; Manage</div>
+                <div class="sb-links">
+                    <a href="{{ url_for('add_wine') }}" class="{{ 'active' if request.endpoint == 'add_wine' }}">Add Wine</a>
+                    <a href="{{ url_for('quick_entry') }}" class="{{ 'active' if request.endpoint == 'quick_entry' }}">Quick Entry</a>
+                    <a href="{{ url_for('export_cellar') }}">Cellar Export</a>
+                </div>
             </div>
 
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">Add Wines</div>
-                <a href="{{ url_for('add_wine') }}" class="{{ 'active' if request.endpoint == 'add_wine' }}">Add Wine</a>
-                <a href="{{ url_for('quick_entry') }}" class="{{ 'active' if request.endpoint == 'quick_entry' }}">Quick Entry</a>
-                <a href="{{ url_for('export_cellar') }}">Export Cellar</a>
+            <div class="sb-section">
+                <div class="sb-title">Tasting Tools</div>
+                <div class="sb-links">
+                    <a href="{{ url_for('tasting_list') }}" class="{{ 'active' if request.endpoint == 'tasting_list' }}">Tasting Notes</a>
+                </div>
             </div>
 
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">Tasting Tools</div>
-                <a href="{{ url_for('tasting_list') }}" class="{{ 'active' if request.endpoint == 'tasting_list' }}">Tasting Notes</a>
-                <a href="{{ url_for('search') }}" class="{{ 'active' if request.endpoint == 'search' }}">Advanced Search</a>
-            </div>
-
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">About</div>
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('logout') }}">Logout</a>
+            <div class="sb-section">
+                <div class="sb-title">About</div>
+                <div class="sb-links">
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('faq') }}" class="{{ 'active' if request.endpoint == 'faq' }}">FAQ</a>
+                </div>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
+        <!-- Content -->
+        <div class="content">
             {% block content %}{% endblock %}
         </div>
     </div>
-    {% else %}
-    {% block content_public %}{% endblock %}
-    {% endif %}
     {% endblock %}
+</div>
 
-    <footer class="footer">
-        <p>Copyright &copy; 2026 WineCellarManager.com &mdash; All Rights Reserved. |
-        <a href="{{ url_for('home') }}">Home</a> |
-        <a href="{{ url_for('register') }}">Register</a></p>
-    </footer>
+<div class="site-footer">
+    Copyright &copy; 2026 <a href="{{ url_for('home') }}">WineCellarManager.com</a>, All Rights Reserved.
+</div>
 
-    <script>
-        // Auto-dismiss alerts after 5 seconds
-        document.querySelectorAll('.alert').forEach(function(alert) {
-            setTimeout(function() { alert.remove(); }, 5000);
-        });
-    </script>
-    {% block extra_js %}{% endblock %}
+<script>
+document.querySelectorAll('.alert').forEach(function(a){ setTimeout(function(){ a.remove(); }, 5000); });
+</script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

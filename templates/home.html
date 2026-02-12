@@ -1,98 +1,160 @@
 {% extends "base.html" %}
-{% block title %}WineCellarManager - Your Personal Wine Collection{% endblock %}
+{% block title %}WineCellarManager.com - Wine Cellar Software - Welcome{% endblock %}
 
 {% block layout %}
-<!-- Home page: full width, no sidebar -->
-<div class="hero">
-    <h1>&#127863; Manage Your Wine Collection</h1>
-    <p>
-        Whether you have several bottles or several thousand, WineCellarManager
-        is the indispensable software for consulting and managing your wine collection.
-        Keep track of your inventory, know which wine to drink at the right time, and much more.
-    </p>
-    <div class="hero-actions">
-        <a href="{{ url_for('register') }}" class="btn btn-gold btn-lg">Register Now - It's Free!</a>
-        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Sign In</a>
-    </div>
-</div>
-
-<div class="features">
-    <div class="feature-card">
-        <span class="feature-icon">&#127870;</span>
-        <h3>Track Your Cellar</h3>
-        <p>Manage your wine inventory. Know exactly what you have, where it's stored, and how much it's worth.</p>
-    </div>
-    <div class="feature-card">
-        <span class="feature-icon">&#9200;</span>
-        <h3>Ready to Drink</h3>
-        <p>Set drinking windows and know when your bottles reach their optimal maturity.</p>
-    </div>
-    <div class="feature-card">
-        <span class="feature-icon">&#128221;</span>
-        <h3>Tasting Notes</h3>
-        <p>Record detailed tasting notes with appearance, nose, palate, and finish for every wine.</p>
-    </div>
-    <div class="feature-card">
-        <span class="feature-icon">&#128202;</span>
-        <h3>Cellar Statistics</h3>
-        <p>Visualize your collection with breakdowns by color, region, varietal. Track your cellar's value.</p>
-    </div>
-    <div class="feature-card">
-        <span class="feature-icon">&#128269;</span>
-        <h3>Smart Search</h3>
-        <p>Find any wine in your collection instantly. Filter by color, vintage, varietal, region, and rating.</p>
-    </div>
-    <div class="feature-card">
-        <span class="feature-icon">&#128230;</span>
-        <h3>Import & Export</h3>
-        <p>Quickly add wines with Quick Entry, or export your entire collection as a CSV file.</p>
-    </div>
-</div>
-
-<div style="max-width: 960px; margin: 0 auto; padding: 0 10px;">
-    <div class="panel">
-        <div class="panel-header">&#8594; 10 Good Reasons to Use This Site</div>
-        <div class="panel-body">
-            <ol style="margin-left: 20px; font-size: 11px; line-height: 1.8;">
-                <li>This will help you find what you have in your cellar</li>
-                <li>This will identify which wines you should drink soon</li>
-                <li>This will allow you to update your inventory in only a few clicks</li>
-                <li>This will help you keep track of your pending orders</li>
-                <li>This will help you record and share tasting notes</li>
-                <li>This will help you keep a balanced cellar</li>
-                <li>This will show you detailed statistics about your collection</li>
-                <li>This will allow you to record your tasting sessions</li>
-                <li>This will help you learn more about wine and wine regions</li>
-                <li>This is free and fun to use!</li>
-            </ol>
-        </div>
-    </div>
-
-    <div style="display: flex; gap: 12px; margin-bottom: 15px;">
-        <div class="panel" style="flex: 1;">
-            <div class="panel-header">&#8594; Sign In</div>
-            <div class="panel-body">
-                <form method="POST" action="{{ url_for('login') }}">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                        <label>Username:</label>
-                        <input type="text" name="username" class="form-control" style="width: 200px;">
-                    </div>
-                    <div class="form-group">
-                        <label>Password:</label>
-                        <input type="password" name="password" class="form-control" style="width: 200px;">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+<div class="main-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sb-section">
+            <div class="sb-title">Manage My Cellar</div>
+            <div class="sb-links">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('cellar', status='cellar') }}">Wines in Cellar</a>
+                <a href="{{ url_for('ready_to_drink') }}">Ready to Drink</a>
+                <a href="{{ url_for('cellar', status='on_order') }}">Wines on Order</a>
+                <a href="{{ url_for('cellar', status='consumed') }}">Wines Consumed</a>
+                <a href="{{ url_for('cellar', status='wishlist') }}">Wish List</a>
+                <a href="{{ url_for('stats') }}">Cellar Statistics</a>
+                <a href="{{ url_for('best_values') }}">Best Wine Values</a>
+                {% else %}
+                <a href="{{ url_for('login') }}">Wines in Cellar</a>
+                <a href="{{ url_for('login') }}">Ready to Drink</a>
+                <a href="{{ url_for('login') }}">Wines on Order</a>
+                <a href="{{ url_for('login') }}">Wines Consumed</a>
+                <a href="{{ url_for('login') }}">Wish List</a>
+                <a href="{{ url_for('login') }}">Cellar Statistics</a>
+                <a href="{{ url_for('login') }}">Best Wine Values</a>
+                {% endif %}
             </div>
         </div>
-        <div class="panel" style="flex: 1;">
-            <div class="panel-header">&#8594; New Here?</div>
-            <div class="panel-body">
-                <p>Start building your virtual wine cellar and keep track of your inventory,
-                   know which wine to drink at the right time, and much more.</p>
-                <p>Adding wines to your collection is just a couple of clicks.</p>
-                <a href="{{ url_for('register') }}" class="btn btn-gold">Register Now</a>
+        <div class="sb-section">
+            <div class="sb-title">Add &amp; Manage</div>
+            <div class="sb-links">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('add_wine') }}">Add Wine</a>
+                <a href="{{ url_for('quick_entry') }}">Quick Entry</a>
+                <a href="{{ url_for('export_cellar') }}">Cellar Export</a>
+                {% else %}
+                <a href="{{ url_for('login') }}">Add Wine</a>
+                <a href="{{ url_for('login') }}">Quick Entry</a>
+                <a href="{{ url_for('login') }}">Cellar Export</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sb-section">
+            <div class="sb-title">Tasting Tools</div>
+            <div class="sb-links">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('tasting_list') }}">Tasting Notes</a>
+                {% else %}
+                <a href="{{ url_for('login') }}">Tasting Notes</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sb-section">
+            <div class="sb-title">About</div>
+            <div class="sb-links">
+                <a href="{{ url_for('faq') }}">FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="home-cols">
+            <div class="home-main">
+                <!-- Featured Wine -->
+                <div class="featured-wine">
+                    <div class="arrow-title">&rarr; Featured Wine of the Month</div>
+                    <p>The <b>2018 Silver Oak Reserve Cabernet Sauvignon</b> is produced by Silver Oak Cellars,
+                    a legendary Napa Valley estate known for American oak-aged Cabernets. The wine exhibits a nose
+                    of blackcurrant, cedar, and vanilla with a firm, well-balanced backbone on the palate,
+                    leaving a full-flavored, persistent finish. Pair it with a classic grilled ribeye steak.</p>
+                </div>
+
+                <hr class="separator">
+
+                <!-- Search -->
+                <div class="arrow-title">&rarr; <a href="{{ url_for('search') }}">Search Wine</a></div>
+                <p class="desc-text">Or use <a href="{{ url_for('search') }}">more search options</a> to find wines by name, producer, varietal, or appellation.</p>
+
+                <hr class="separator">
+
+                <!-- 10 Reasons -->
+                <div class="arrow-title">&rarr; <a href="{{ url_for('register') }}">10 good reasons to use this site</a></div>
+                <p class="desc-text">Here are 10 good reasons to use this Wine Cellar Software:</p>
+                <ul class="reasons-list">
+                    <li>This will help you find what you have in your cellar</li>
+                    <li>This will identify which wines you should drink soon</li>
+                    <li>This will allow you to update your inventory in only a few clicks</li>
+                    <li>This will help you keep track of your pending orders</li>
+                    <li>This will show you what other wine lovers think about a wine</li>
+                    <li>This will help you keep a balanced cellar</li>
+                    <li>This will allow you to recommend your favorite wines to your friends</li>
+                    <li>This will allow you to record your tasting sessions</li>
+                    <li>This will help you learn more about wine and wine regions</li>
+                    <li>This is free and fun to use!</li>
+                </ul>
+
+                <hr class="separator">
+
+                <!-- Manage your collection -->
+                <div class="arrow-title">&rarr; <a href="{{ url_for('register') }}">Manage your wine collection</a></div>
+                <p class="desc-text">Whether you have several bottles or several thousands bottles,
+                WineCellarManager is the indispensable wine cellar software for consulting and managing
+                your wine collection. Start building your virtual wine cellar and you will keep track of
+                your inventory, know which wine to drink at the right time, and much more.</p>
+                <p class="desc-text">Adding wines to your collection is just a couple of clicks.
+                <a href="{{ url_for('stats') }}">Cellar Statistics</a> will give you a useful one page
+                overview of your cellar and even compute the value of your cellar.</p>
+                <p class="desc-text">Just <a href="{{ url_for('register') }}">register</a> now and start
+                managing your wine collection today.</p>
+
+                <hr class="separator">
+
+                <!-- FAQ -->
+                <div class="arrow-title">&rarr; <a href="{{ url_for('faq') }}">Learn More About WineCellarManager</a></div>
+                <p class="desc-text">Check the <a href="{{ url_for('faq') }}">Frequently Asked Questions</a> page to learn more.</p>
+
+                <hr class="separator">
+
+                <!-- Recently Added -->
+                <div class="arrow-title">&rarr; Recently Added By Our Users</div>
+                <ul class="recent-list">
+                    {% if recent_wines %}
+                    {% for w in recent_wines %}
+                    <li><a href="{{ url_for('wine_detail', wine_id=w.id) }}">{{ w.vintage or 'NV' }} {{ w.name }}{% if w.size_ml %} ({{ w.size_ml }}ml){% endif %}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    <li>No wines added yet. <a href="{{ url_for('register') }}">Register</a> to add yours!</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Right column: Login box -->
+            <div class="home-side">
+                {% if not current_user.is_authenticated %}
+                <div class="home-login-box">
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <label>Username:</label>
+                        <input type="text" name="username">
+                        <label>Password:</label>
+                        <input type="password" name="password">
+                        <br>
+                        <button type="submit" class="login-btn">Login</button>
+                        <br>
+                        <a href="{{ url_for('register') }}" class="forgot" style="margin-top:6px;">Register a new account</a>
+                    </form>
+                </div>
+                {% else %}
+                <div class="home-login-box">
+                    <p style="margin-bottom:6px;"><b>Welcome, {{ current_user.username }}!</b></p>
+                    <a href="{{ url_for('cellar') }}" class="btn btn-primary btn-sm" style="display:block;text-align:center;margin-bottom:4px;">Go to My Cellar</a>
+                    <a href="{{ url_for('add_wine') }}" class="btn btn-secondary btn-sm" style="display:block;text-align:center;margin-bottom:4px;">Add Wine</a>
+                    <a href="{{ url_for('stats') }}" class="btn btn-secondary btn-sm" style="display:block;text-align:center;">Cellar Statistics</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

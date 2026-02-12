@@ -624,8 +624,42 @@ def _seed_bread_user():
                     w.drink_from, w.drink_to = v + 2, v + 8
             window_count += 1
 
+    # Add the 2 wines on order (matching manageyourcellar.com data for user bread)
+    on_order_wines = [
+        {
+            'name': 'Viticcio Chianti Classico',
+            'producer': 'Fattoria Viticcio',
+            'vintage': 2007,
+            'wine_type': 'Red',
+            'appellation': 'Chianti Classico',
+            'varietal1': 'Sangiovese',
+            'size_ml': 750,
+            'quantity': 3,
+            'price': 21.99,
+            'status': 'cellar',
+            'on_order': True,
+        },
+        {
+            'name': 'Mumm Napa Sparkling Pinot Noir',
+            'producer': 'Mumm Napa',
+            'vintage': 2001,
+            'wine_type': 'Sparkling',
+            'appellation': 'Los Carneros',
+            'varietal1': 'Pinot Noir',
+            'size_ml': 750,
+            'quantity': 3,
+            'price': 29.99,
+            'status': 'cellar',
+            'on_order': True,
+        },
+    ]
+    for ow in on_order_wines:
+        wine = Wine(user_id=user.id, **ow)
+        db.session.add(wine)
+
     db.session.commit()
     print(f"  - Set ratings for {rating_count} wines, drink windows for {window_count} wines")
+    print(f"  - Added {len(on_order_wines)} wines on order")
 
 
 def _add_note(wine_id, user_id, notes_text):

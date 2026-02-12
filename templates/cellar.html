@@ -84,6 +84,15 @@
 <table cellpadding="2" cellspacing="0" border="0" width="100%" onclick="sortColumnWithHold(event)">
 <thead>
 <tr class="subhead">
+{% if status == 'on_order' %}
+    <td type="String" class="subhead">Name</td>
+    <td type="String" class="subhead">Producer</td>
+    <td type="String" class="subhead">Appellation</td>
+    <td type="String" class="subhead">Varietal</td>
+    <td type="Number" class="subhead">Qty</td>
+    <td type="String" class="subhead" nowrap>Rating</td>
+    <td type="String" class="subhead">Price</td>
+{% else %}
     <td type="String" class="subhead">Name</td>
     <td type="String" class="subhead">Producer</td>
     <td type="String" class="subhead">Appellation</td>
@@ -94,23 +103,42 @@
     <td type="Number" class="subhead" nowrap>Best Until</td>
     <td type="String" class="subhead" nowrap>Rating</td>
     <td type="String" class="subhead">Price</td>
+{% endif %}
 </tr>
 </thead>
 <tbody>
 {% for wine in wines %}
-<tr class="{{ 'odditem' if loop.index is odd else 'evenitem' }}">
-    <td>
-        {% if wine.vintage %}<b>{{ wine.vintage }}</b> {% endif %}<a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>{% if wine.has_rating %} <span style="font-size:9px;vertical-align:super;color:#990000;font-weight:bold;">RATED</span>{% endif %}
+<tr class="evenitem">
+{% if status == 'on_order' %}
+    <td align="left">
+<a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
+{{ wine.name }}
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %}
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a>
     </td>
-    <td>{{ wine.producer }}</td>
-    <td>{{ wine.appellation or '' }}</td>
-    <td>{{ wine.varietals_display or '' }}</td>
-    <td style="text-align:center;">{{ wine.quantity }}</td>
-    <td style="text-align:center;">{{ wine.maturity_display or '' }}</td>
-    <td style="text-align:center;">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
-    <td style="text-align:center;">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
-    <td style="text-align:center;">{{ wine.rating_text }}</td>
-    <td style="text-align:right;white-space:nowrap;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+    <td align="center">{{ wine.producer }}</td>
+    <td align="center">{{ wine.appellation or '' }}</td>
+    <td align="center">{{ wine.varietals_display or '' }}</td>
+    <td align="right">{{ wine.quantity }}</td>
+    <td align="center">{{ wine.rating_text }}</td>
+    <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+{% else %}
+    <td align="left">
+<a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.vintage or '' }}
+{{ wine.name }}
+({{ wine.size_ml or 750 }}ml){% if wine.has_rating %}
+<sup><font color="black"><i>RATED</i></font></sup>{% endif %}</a>
+    </td>
+    <td align="center">{{ wine.producer }}</td>
+    <td align="center">{{ wine.appellation or '' }}</td>
+    <td align="center">{{ wine.varietals_display or '' }}</td>
+    <td align="right">{{ wine.quantity }}</td>
+    <td align="center">{{ wine.maturity_display or '' }}</td>
+    <td align="center">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
+    <td align="center">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
+    <td align="center">{{ wine.rating_text }}</td>
+    <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+{% endif %}
 </tr>
 {% endfor %}
 </tbody>

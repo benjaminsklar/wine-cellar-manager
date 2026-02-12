@@ -40,7 +40,14 @@ def load_user(user_id):
 @app.route('/')
 def home():
     recent_wines = Wine.query.order_by(Wine.date_added.desc()).limit(5).all()
-    return render_template('home.html', recent_wines=recent_wines)
+    bottle_count = 0
+    latest_transactions = []
+    if current_user.is_authenticated:
+        bottle_count = sum(w.quantity for w in current_user.wines.filter_by(status='cellar'))
+        latest_transactions = current_user.wines.order_by(Wine.date_added.desc()).limit(5).all()
+    return render_template('home.html', recent_wines=recent_wines,
+                           bottle_count=bottle_count,
+                           latest_transactions=latest_transactions)
 
 
 @app.route('/faq')
@@ -177,7 +184,7 @@ def cellar():
     wines = query.all()
 
     status_labels = {
-        'cellar': 'Wines in Cellar',
+        'cellar': f"Wines in {current_user.username}'s Cellar",
         'consumed': 'Wines Consumed',
         'on_order': 'Wines on Order',
         'wishlist': 'Wish List'

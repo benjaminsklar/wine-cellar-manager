@@ -2,45 +2,45 @@
 {% block title %}Ready to Drink - ManageYourCellar.com{% endblock %}
 
 {% block content %}
-<div class="section-title" style="font-size:13px;"><b>Ready to Drink</b></div>
-<p style="font-size:11px;color:#707070;margin:2px 0 4px;">Wines in their optimal drinking window ({{ current_year }}).</p>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr class="header"><td class="title"><b>Ready to Drink</b></td></tr>
+</table>
+<p class="smalltext" style="padding:2px 0;">Wines in their optimal drinking window ({{ current_year }}). {{ wines|length }} wine{{ 's' if wines|length != 1 }} ready to enjoy now.</p>
 
 {% if wines %}
-<div style="font-size:11px;padding:2px 0;">{{ wines|length }} wine{{ 's' if wines|length != 1 }} ready to enjoy now.</div>
-
-<table class="wine-table">
-    <thead>
-        <tr>
-            <th style="text-align:left;">Name</th>
-            <th style="text-align:left;">Producer</th>
-            <th style="text-align:left;">Appellation</th>
-            <th style="text-align:left;">Varietal</th>
-            <th>Maturity</th>
-            <th>Rating</th>
-            <th>Drink Window</th>
-            <th style="text-align:right;">Est. Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for wine in wines %}
-        <tr>
-            <td>
-                {% if wine.vintage %}<span style="font-weight:bold;">{{ wine.vintage }}</span><br>{% endif %}
-                <a href="{{ url_for('wine_detail', wine_id=wine.id) }}" class="wine-link">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>
-                {% if wine.has_rating %}<br><span style="font-size:9px;vertical-align:super;color:#990000;">RATED</span>{% endif %}
-            </td>
-            <td>{{ wine.producer }}</td>
-            <td>{{ wine.appellation or '' }}</td>
-            <td>{{ wine.varietals_display or '' }}</td>
-            <td style="text-align:center;">{{ wine.maturity_display or 'Drink' }}</td>
-            <td style="text-align:center;">{{ wine.rating_text }}</td>
-            <td style="text-align:center;">{{ wine.drinking_window_display }}</td>
-            <td style="text-align:right;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tbody>
+<tr class="subhead">
+    <td style="text-align:left;">Name</td>
+    <td style="text-align:left;">Producer</td>
+    <td style="text-align:left;">Appellation</td>
+    <td style="text-align:left;">Varietal</td>
+    <td>Qty</td>
+    <td>Maturity</td>
+    <td>Best From</td>
+    <td>Best Until</td>
+    <td>Rating</td>
+    <td style="text-align:right;">Price</td>
+</tr>
+{% for wine in wines %}
+<tr class="{{ 'odditem' if loop.index is odd else 'evenitem' }}">
+    <td>
+        {% if wine.vintage %}<b>{{ wine.vintage }}</b> {% endif %}<a href="{{ url_for('wine_detail', wine_id=wine.id) }}">{{ wine.name }} ({{ wine.size_ml or 750 }}ml)</a>{% if wine.has_rating %} <span style="font-size:9px;vertical-align:super;color:#990000;font-weight:bold;">RATED</span>{% endif %}
+    </td>
+    <td>{{ wine.producer }}</td>
+    <td>{{ wine.appellation or '' }}</td>
+    <td>{{ wine.varietals_display or '' }}</td>
+    <td style="text-align:center;">{{ wine.quantity }}</td>
+    <td style="text-align:center;">{{ wine.maturity_display or 'Drink' }}</td>
+    <td style="text-align:center;">{% if wine.drink_from %}{{ wine.drink_from }}{% else %}n/a{% endif %}</td>
+    <td style="text-align:center;">{% if wine.drink_to %}{{ wine.drink_to }}{% else %}n/a{% endif %}</td>
+    <td style="text-align:center;">{{ wine.rating_text }}</td>
+    <td style="text-align:right;white-space:nowrap;">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
 </table>
 {% else %}
-<div class="empty-state"><p>No wines ready right now. Set drinking windows when adding wines to see them here.</p></div>
+<p class="smalltext" style="padding:10px;">No wines ready right now. Set drinking windows when adding wines to see them here.</p>
 {% endif %}
 {% endblock %}

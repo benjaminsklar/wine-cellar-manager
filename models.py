@@ -80,9 +80,9 @@ class Wine(db.Model):
 
     @property
     def varietals_display(self):
-        """Return comma-separated list of varietals."""
+        """Return hyphen-separated list of varietals (matching ManageYourCellar format)."""
         parts = [v for v in [self.varietal1, self.varietal2, self.varietal3, self.varietal4] if v]
-        return ', '.join(parts) if parts else ''
+        return ' - '.join(parts) if parts else ''
 
     @property
     def is_ready_to_drink(self):

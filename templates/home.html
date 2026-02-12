@@ -1,162 +1,205 @@
 {% extends "base.html" %}
 {% block title %}ManageYourCellar.com - Wine Cellar Software - Welcome{% endblock %}
 
-{% block layout %}
-<div class="main-layout">
-    <!-- Sidebar (#909090 gray) matching original home page -->
-    <div class="sidebar">
-        <div class="sb-title">Manage My Cellar:</div>
-        <div class="sb-links">
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('cellar', status='cellar') }}">Wines in Cellar</a>
-            <a href="{{ url_for('ready_to_drink') }}">Ready to Drink</a>
-            <a href="{{ url_for('cellar', status='on_order') }}">Wines on Order</a>
-            <a href="{{ url_for('cellar', status='consumed') }}">Wines Consumed</a>
-            <a href="{{ url_for('cellar', status='wishlist') }}">Wish List</a>
-            {% else %}
-            <a href="{{ url_for('login') }}">Wines in Cellar</a>
-            <a href="{{ url_for('login') }}">Ready to Drink</a>
-            <a href="{{ url_for('login') }}">Wines on Order</a>
-            <a href="{{ url_for('login') }}">Wines Consumed</a>
-            <a href="{{ url_for('login') }}">Wish List</a>
-            {% endif %}
-        </div>
-        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('stats') }}">Cellar Statistics</a>
-            <a href="{{ url_for('best_values') }}">Best Wine Values</a>
-            {% else %}
-            <a href="{{ url_for('login') }}">Cellar Statistics</a>
-            <a href="{{ url_for('login') }}">Best Wine Values</a>
-            {% endif %}
-        </div>
-        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('add_wine') }}">Add Wine</a>
-            <a href="{{ url_for('quick_entry') }}">Quick Entry</a>
-            <a href="{{ url_for('cellar_import') }}">Cellar Import</a>
-            <a href="{{ url_for('export_cellar') }}">Cellar Export</a>
-            {% else %}
-            <a href="{{ url_for('login') }}">Add Wine</a>
-            <a href="{{ url_for('login') }}">Quick Entry</a>
-            <a href="{{ url_for('login') }}">Cellar Import</a>
-            <a href="{{ url_for('login') }}">Cellar Export</a>
-            {% endif %}
-        </div>
-        <div class="sb-links" style="border-top:1px solid #a0a0a0;">
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('tasting_list') }}">Tasting Notes</a>
-            {% else %}
-            <a href="{{ url_for('login') }}">Tasting Notes</a>
-            {% endif %}
-        </div>
-        <div class="sb-title" style="margin-top:4px;">About Us</div>
-        <div class="sb-links">
-            <a href="{{ url_for('faq') }}">FAQ</a>
-            <a href="{{ url_for('home') }}">Site Map</a>
-        </div>
-    </div>
+{% block content %}
+<table cellpadding="0" cellspacing="2" border="0" height="550">
+<tbody>
 
-    <!-- Content -->
-    <div class="content">
-        <div class="home-cols">
-            <div class="home-main">
-                <!-- Featured Wine -->
-                <div class="featured-wine">
-                    <div class="arrow-title">&rarr; Best Napa Valley Cabernet</div>
-                    <p>The <b>2001 ZD Reserve Cabernet Sauvignon</b> is produced by ZD Wines,
-                    a winery founded by two former aerospace engineers. <i>ZD</i> means Zero Defects,
-                    which is the winery's commitment to maintain quality, consistency, and style.
-                    The wine exhibits a nose of blackberries, coffee, and licorice and a firm,
-                    well-balanced backbone on the palate, leaving a full-flavored finish.
-                    Try this zero defect wine with a tasty Smoked Pork Butt.</p>
-                </div>
+{% if current_user.is_authenticated %}
+<tr><td colspan="2" valign="top" class="welcometext">
+{{ current_user.username }},
+you have now
+{{ bottle_count }}
+bottles in your cellar.
+</td></tr>
+{% endif %}
 
-                <div class="arrow-title">&rarr; <a href="{{ url_for('search') }}">Search Wine</a></div>
-                <p class="desc-text">Or use <a href="{{ url_for('search') }}">more search options</a></p>
+<tr>
+<td valign="top" width="50%" class="welcometext">
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+<tbody>
 
-                <hr class="separator">
+<!-- Best Napa Valley Cabernet -->
+<tr><td class="welcometitle">
+<a href="#">&rarr;&nbsp;Best Napa Valley Cabernet</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<img style="float:left;width:140px;margin:0px 15px 5px 0px;" src="http://farm7.static.flickr.com/6109/6288372749_1ffbf40a8c.jpg" alt="ZD Reserve">The <a href="#">2001 ZD Reserve Cabernet Sauvignon</a> is produced by <a href="http://www.zdwines.com/" target="_blank">ZD Wines</a>, a winery founded by two former aerospace engineers. <i>ZD</i> means <a href="http://en.wikipedia.org/wiki/Zero_Defects" target="_blank">Zero Defects</a>, which is the winery&rsquo;s commitment to maintain quality, consistency, and style. The wine exhibits a nose of blackberries, coffee, and licorice and a firm, well-balanced backbone on the palate, leaving a full-flavored finish. Try this zero defect wine with a tasty <a href="http://www.epicurious.com/recipes/food/views/Pork-Shoulder-365431" target="_blank">Smoked Pork Butt</a>. And learn more about our <a href="#">Blue Angels Air Show Tasting</a>, or check our other <a href="{{ url_for('tasting_list') if current_user.is_authenticated else url_for('login') }}">tasting reports</a>.
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
 
-                <div class="arrow-title">&rarr; <a href="{{ url_for('register') }}">10 good reasons to use this site</a></div>
-                <p class="desc-text">These are 10 good reasons to use this <a href="{{ url_for('home') }}">Wine Cellar Software</a>:</p>
-                <ol class="reasons-list">
-                    <li>this will help you find what you have in your cellar;</li>
-                    <li>this will identify which wines you should drink soon;</li>
-                    <li>this will allow you to update your inventory in only a few clicks;</li>
-                    <li>this will help you keep track of your pending orders;</li>
-                    <li>this will show you what other wine lovers think about a wine, not only professional critics;</li>
-                    <li>this will help you keep a balanced cellar;</li>
-                    <li>this will allow you to recommend your favorite wines to your friends;</li>
-                    <li>this will allow you to record your tasting sessions;</li>
-                    <li>this will help you learn more about wine and wine regions;</li>
-                    <li>this is free and fun to use!</li>
-                </ol>
+<!-- Search Wine -->
+<tr><td class="welcometitle">
+<a href="{{ url_for('search') }}">&rarr; Search Wine</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>
+<form method="GET" action="{{ url_for('search') }}">
+<input type="text" name="query" maxlength="100" size="50" value="Wine Finder" onfocus="if(this.value=='Wine Finder')this.value=''">
+<br>
+<input type="submit" value="Search">
+{% if current_user.is_authenticated %}
+<input type="submit" value="Search Cellar">
+{% endif %}
+</form>
+Or use <a href="{{ url_for('search') }}">more search options</a>
+</p>
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
 
-                <hr class="separator">
+{% if not current_user.is_authenticated %}
+<!-- 10 good reasons (guest only) -->
+<tr><td class="welcometitle">
+<a href="{{ url_for('register') }}">&rarr; 10 good reasons to use this site</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>
+These are 10 good reason to use this <a href="{{ url_for('home') }}">Wine Cellar Software</a>:
+</p>
+<ol>
+<li value="10">this will help you find what you have in your cellar;</li>
+<li value="9">this will identify which wines you should drink soon;</li>
+<li value="8">this will allow you to update your inventory in only a few clicks;</li>
+<li value="7">this will help you keep track of your pending orders;</li>
+<li value="6">this will show you what other wine lovers think about a wine, not only professional critics;</li>
+<li value="5">this will help you keep a balanced cellar;</li>
+<li value="4">this will allow you to recommend your favorite wines to your friends;</li>
+<li value="3">this will allow you to record your tasting sessions;</li>
+<li value="2">this will help you learn more about wine and wine regions;</li>
+<li value="1">this is free and fun to use!</li>
+</ol>
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+{% else %}
+<!-- Your Latest Transactions (logged in only) -->
+<tr><td class="welcometitle">
+&rarr; Your Latest Transactions
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+<tbody>
+{% for w in latest_transactions %}
+<tr class="evenitem">
+<td align="left">
+&bull;&nbsp;<a href="{{ url_for('wine_detail', wine_id=w.id) }}">{{ w.vintage or '' }}
+{{ w.name }}
+({{ w.size_ml or 750 }}ml)</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</p>
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+{% endif %}
 
-                <div class="arrow-title">&rarr; <a href="{{ url_for('register') }}">Manage your wine collection</a></div>
-                <p class="desc-text">Whether you have several bottles or several thousands bottles,
-                ManageYourCellar is the indispensable wine cellar software for consulting and managing
-                your wine collection. Start building your virtual wine cellar and you will keep track of
-                your inventory, know which wine to drink at the right time, and much more.</p>
-                <p class="desc-text">Adding wines to your collection is just a couple of clicks. And with all
-                the wine knowledge already present in the software, there will be little typing that you will
-                need to do. Cellar Statistics will give you a useful one page
-                overview of your cellar and even compute the value of your cellar and its ideal size based on
-                your annual consumption.</p>
-                <p class="desc-text">Just <a href="{{ url_for('register') }}">register</a> now and start
-                managing your wine collection today.</p>
+</tbody>
+</table>
+</td>
 
-                <hr class="separator">
+<!-- RIGHT COLUMN -->
+<td width="50%" valign="top">
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+<tbody>
 
-                <div class="arrow-title">&rarr; <a href="{{ url_for('faq') }}">Learn More About ManageYourCellar</a></div>
-                <p class="desc-text">Check the <a href="{{ url_for('faq') }}">Frequently Asked Questions</a>
-                page to learn more about ManageYourCellar.</p>
+{% if not current_user.is_authenticated %}
+<!-- Guest: Manage your wine collection -->
+<tr><td class="welcometitle">
+<a href="{{ url_for('register') }}">&rarr; Manage your wine collection</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>Whether you have several bottles or several thousands bottles, Manage Your Cellar is the indispensable wine cellar software for consulting and managing
+your wine collection. Start building your virtual wine cellar and you will keep track of your inventory, know which wine to drink at the right time, and much more. Adding wines to your collection is just a couple of clicks. And with all the wine knowledge already present in the software, there will be little typing that you will need to do. <a href="{{ url_for('stats') if current_user.is_authenticated else url_for('login') }}">Cellar Statistics</a> will give you a useful one page
+overview of your cellar and even compute the value of your cellar and its ideal size based on your annual consumption.</p>
+<p>Just <a href="{{ url_for('register') }}">register</a> now and start managing your wine collection today.</p>
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+{% endif %}
 
-                <hr class="separator">
+<!-- Learn More -->
+<tr><td class="welcometitle">
+<a href="{{ url_for('faq') }}">&rarr; Learn More About ManageYourCellar</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>Check the <a href="{{ url_for('faq') }}">Frequently Asked Questions</a> page to learn more about ManageYourCellar.</p>
+</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
 
-                <div class="arrow-title">&rarr; Recently Added By Our Users</div>
-                <ul class="recent-list">
-                    {% if recent_wines %}
-                    {% for w in recent_wines %}
-                    <li><a href="{{ url_for('wine_detail', wine_id=w.id) }}">{{ w.vintage or '' }} {{ w.name }} ({{ w.size_ml or 750 }}ml)</a></li>
-                    {% endfor %}
-                    {% else %}
-                    <li>No wines added yet. <a href="{{ url_for('register') }}">Register</a> to add yours!</li>
-                    {% endif %}
-                </ul>
+<!-- Recently Added By Our Users -->
+<tr><td class="welcometitle">
+&rarr; Recently Added By Our Users
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">
+<p>
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+<tbody>
+{% for w in recent_wines %}
+<tr class="evenitem">
+<td align="left">
+&bull;&nbsp;<a href="{{ url_for('wine_detail', wine_id=w.id) if current_user.is_authenticated else '#' }}">{{ w.vintage or '' }}
+{{ w.name }}
+({{ w.size_ml or 750 }}ml)</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</p>
+</td></tr>
 
-                <hr class="separator">
+<!-- Find me on your Mobile -->
+<tr><td class="welcometitle">
+<a href="#">&rarr; Find me on your Mobile</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td valign="top" class="welcometext">Use ManageYourCellar anywhere on your mobile phone to keep track of your wine inventory, and check and write tasting notes.</td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
 
-                <div class="arrow-title">&rarr; Access from anywhere</div>
-                <p class="desc-text">Use ManageYourCellar anywhere on your phone to keep track
-                of your wine inventory, and check and write tasting notes.</p>
-            </div>
+{% if not current_user.is_authenticated %}
+<!-- Login Form (guest only) -->
+<tr><td>
+<table class="loginbox" cellpadding="3" cellspacing="0" border="0">
+<form method="POST" action="{{ url_for('login') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<tbody>
+<tr><td class="smallleftfieldlabel">Username:</td></tr>
+<tr><td><input type="text" name="username" maxlength="30" size="15" value=""></td></tr>
+<tr><td class="smallleftfieldlabel">Password:</td></tr>
+<tr><td><input type="password" name="password" maxlength="30" size="15" value=""></td></tr>
+<tr><td class="smallfieldvalue">
+<input type="checkbox" name="remember" value="on">
+Keep me signed in on this computer</td></tr>
+<tr><td class="smallfieldvalue">
+<a href="{{ url_for('login') }}">Forgot my password</a>
+</td></tr>
+<tr><td></td></tr>
+<tr><td><input type="submit" value="Login"></td></tr>
+</tbody>
+</form>
+</table>
+</td></tr>
+{% endif %}
 
-            <!-- Right column -->
-            <div class="home-side">
-                {% if not current_user.is_authenticated %}
-                <div class="home-login-box">
-                    <form method="POST" action="{{ url_for('login') }}">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <label>Username:</label>
-                        <input type="text" name="username">
-                        <label>Password:</label>
-                        <input type="password" name="password">
-                        <br>
-                        <button type="submit" class="login-btn">Login</button>
-                    </form>
-                </div>
-                {% else %}
-                <div class="home-login-box">
-                    <p style="margin-bottom:3px;"><b>Welcome, {{ current_user.username }}!</b></p>
-                    <a href="{{ url_for('cellar') }}" class="btn btn-primary btn-sm" style="display:block;text-align:center;margin-bottom:2px;">Go to My Cellar</a>
-                    <a href="{{ url_for('add_wine') }}" class="btn btn-secondary btn-sm" style="display:block;text-align:center;margin-bottom:2px;">Add Wine</a>
-                    <a href="{{ url_for('stats') }}" class="btn btn-secondary btn-sm" style="display:block;text-align:center;">Cellar Statistics</a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 {% endblock %}

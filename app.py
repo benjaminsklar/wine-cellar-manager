@@ -123,8 +123,13 @@ def cellar():
     search_form = SearchForm(request.args)
 
     # For on_order view, show cellar wines where on_order=True
+    # For cellar view, exclude on_order wines (matching original site behavior)
     if status == 'on_order':
         query = current_user.wines.filter_by(status='cellar', on_order=True)
+    elif status == 'cellar':
+        query = current_user.wines.filter_by(status='cellar').filter(
+            db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+        )
     else:
         query = current_user.wines.filter_by(status=status)
 
@@ -182,7 +187,29 @@ def cellar():
     else:
         query = query.order_by(sort_col.asc())
 
-    wines = query.all()
+    # Get all wines first, then paginate in Python (simpler, avoids double query)
+    all_wines = query.all()
+    total_wines = len(all_wines)
+    total_bottles = sum(w.quantity for w in all_wines)
+
+    # Pagination: 50 per page (matching original), "All" shows everything
+    submit_action = request.args.get('submitAction', '')
+    page = int(request.args.get('page', 1))
+    limit = 50
+    show_all = (submit_action == 'All' or request.args.get('show_all') == '1')
+
+    if submit_action == 'Next':
+        page = int(request.args.get('page', 1)) + 1
+
+    total_pages = max(1, (total_wines + limit - 1) // limit)
+    if page > total_pages:
+        page = total_pages
+
+    if show_all:
+        wines = all_wines
+    else:
+        start = (page - 1) * limit
+        wines = all_wines[start:start + limit]
 
     # Build varietal list from user's wines for the filter dropdown
     varietal_set = set()
@@ -205,7 +232,12 @@ def cellar():
                            status_label=status_labels.get(status, 'Wines in Cellar'),
                            search_form=search_form,
                            varietals=varietals,
-                           current_year=date.today().year)
+                           current_year=date.today().year,
+                           page=page,
+                           total_pages=total_pages,
+                           total_wines=total_wines,
+                           total_bottles=total_bottles,
+                           show_all=show_all)
 
 
 @app.route('/cellar/ready')

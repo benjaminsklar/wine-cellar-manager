@@ -85,7 +85,7 @@
 <tr>
 <td></td>
 <td class="smallfieldlabel">Alcohol %:</td>
-<td class="smallfieldvalue" colspan="1">{{ wine.alcohol_pct }}</td>
+<td class="smallfieldvalue" colspan="1">{{ wine.alcohol_pct | int if wine.alcohol_pct == wine.alcohol_pct | int else wine.alcohol_pct }}</td>
 </tr>
 {% endif %}
 
@@ -247,8 +247,8 @@ on {{ consumed.date_consumed.strftime('%B %d, %Y') }}
 on {{ note.tasting_date.strftime('%B %d, %Y') }}
 {% endif %}
 
-{% if note.overall %}
-, {{ note.overall }}
+{% if note.description %}
+, {{ note.description }}
 {% endif %}
 
 &nbsp;
@@ -258,6 +258,49 @@ on {{ note.tasting_date.strftime('%B %d, %Y') }}
 <a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
 
 </td></tr>
+
+{% if note.participants %}
+<tr><td colspan="1" class="smallfieldvalue">
+<span class="redsmalltext">Participants: </span>
+{{ note.participants }}.
+</td></tr>
+{% endif %}
+
+{% if note.recommended_with %}
+<tr><td colspan="1" class="smallfieldvalue">
+<span class="redsmalltext">Recommended with: </span>
+{{ note.recommended_with }}.
+</td></tr>
+{% endif %}
+
+{% if note.appearance or note.nose or note.palate %}
+<tr><td colspan="1">
+<table class="lightgreybox" bordercolor="#b0b0b0" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<td class="smallredcenteredheader" width="20%">Sight:</td>
+<td class="smallredcenteredheader" width="35%">Smell:</td>
+<td class="smallredcenteredheader" width="35%">Taste:</td>
+</tr>
+<tr>
+<td class="smallfieldvalue" valign="top">
+{{ note.appearance or '' }}
+</td>
+<td class="smallfieldvalue" valign="top">
+{% if note.nose %}<span nowrap>{{ note.nose }}</span>{% endif %}
+</td>
+<td class="smallfieldvalue" valign="top">
+{% if note.palate %}<span nowrap>{{ note.palate }}</span>{% endif %}
+</td>
+</tr>
+</table>
+</td></tr>
+{% endif %}
+
+{% if note.overall %}
+<tr><td colspan="1" class="smallfieldvalue">
+<span class="redsmalltext">Overall Impression: </span>{{ note.overall }}
+</td></tr>
+{% endif %}
 
 {% if note.score %}
 <tr><td colspan="1" class="smallfieldvalue">

@@ -217,12 +217,15 @@ class TastingNote(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     tasting_date = db.Column(db.Date, default=date.today)
-    appearance = db.Column(db.String(200))
-    nose = db.Column(db.Text)
-    palate = db.Column(db.Text)
+    description = db.Column(db.Text)          # Event occasion (e.g., "NYE.")
+    participants = db.Column(db.Text)          # e.g., "E/B."
+    recommended_with = db.Column(db.Text)      # e.g., "popcorn."
+    appearance = db.Column(db.String(200))     # Sight
+    nose = db.Column(db.Text)                  # Smell
+    palate = db.Column(db.Text)                # Taste
     finish = db.Column(db.Text)
-    overall = db.Column(db.Text)
-    score = db.Column(db.Integer)  # 1-100
+    overall = db.Column(db.Text)               # Overall Impression
+    score = db.Column(db.Integer)              # 1-100
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):

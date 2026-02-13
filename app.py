@@ -1146,6 +1146,14 @@ def init_db():
             if 'acq_price' not in cols:
                 cursor.execute("ALTER TABLE wines ADD COLUMN acq_price FLOAT")
             conn.commit()
+
+            # Tasting notes migration
+            cursor.execute("PRAGMA table_info(tasting_notes)")
+            tn_cols = [row[1] for row in cursor.fetchall()]
+            for col in ['description', 'participants', 'recommended_with']:
+                if col not in tn_cols:
+                    cursor.execute(f"ALTER TABLE tasting_notes ADD COLUMN {col} TEXT")
+            conn.commit()
             conn.close()
         except Exception:
             pass

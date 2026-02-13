@@ -739,6 +739,12 @@ def _seed_bread_user():
     # Move tasting notes from cellar wines to consumed copies (with correct dates)
     _reassociate_tasting_notes(user.id)
 
+    # Apply structured tasting note data (participants, recommended_with, sight/smell/taste etc.)
+    _apply_tasting_note_details(user.id)
+
+    # Re-propagate ratings from tasting notes to consumed copies (after reassociation)
+    _propagate_tasting_ratings(user.id)
+
 
 def _reassociate_tasting_notes(user_id):
     """Move tasting notes from cellar wines to their consumed copies, using the consumption date."""
@@ -763,6 +769,141 @@ def _reassociate_tasting_notes(user_id):
     if fixed:
         db.session.flush()
     print(f"  - Reassociated {fixed} tasting notes to consumed copies with correct dates")
+
+
+def _propagate_tasting_ratings(user_id):
+    """After tasting notes have been reassociated to consumed copies, propagate their scores to wine ratings."""
+    from models import TastingNote
+    notes = TastingNote.query.filter_by(user_id=user_id).all()
+    updated = 0
+    for note in notes:
+        if note.score:
+            w = db.session.get(Wine, note.wine_id)
+            if w and (not w.rating or w.rating < note.score):
+                w.rating = note.score
+                updated += 1
+    if updated:
+        db.session.flush()
+    print(f"  - Propagated tasting note ratings to {updated} wines")
+
+
+def _apply_tasting_note_details(user_id):
+    """Apply structured tasting note data (participants, recommended_with, sight/smell/taste, overall) from scraped original site data."""
+    import json
+    import os
+    import re
+
+    events_path = os.path.join(os.path.dirname(__file__), 'tasting_events_original.json')
+    if not os.path.exists(events_path):
+        print("  - tasting_events_original.json not found, skipping tasting note details")
+        return
+
+    mapping_path = os.path.join(os.path.dirname(__file__), 'wine_transactions.json')
+    with open(events_path) as f:
+        events_by_orig_id = json.load(f)
+    with open(mapping_path) as f:
+        txns = json.load(f)
+
+    def _norm(name):
+        return re.sub(r'\s+', ' ', (name or '').lower().strip())
+
+    def _parse_wine_name(full_name):
+        full_name = re.sub(r'\s*RATED\s*$', '', full_name.strip())
+        m = re.match(r'^(\d{4})\s+(.+?)\s*\(\d+(?:\.\d+)?(?:ml|l)\)\s*$', full_name, re.I)
+        if m:
+            return int(m.group(1)), m.group(2).strip()
+        m2 = re.match(r'^(.+?)\s*\(\d+(?:\.\d+)?(?:ml|l)\)\s*$', full_name, re.I)
+        if m2:
+            return None, m2.group(1).strip()
+        return None, full_name
+
+    # Build lookup: orig_id -> (vintage, name)
+    orig_lookup = {}
+    for tx in txns:
+        if 'error' in tx:
+            continue
+        vintage, name = _parse_wine_name(tx['wine_name'])
+        orig_lookup[tx['wine_id']] = (vintage, _norm(name))
+
+    # Build reverse lookup: (vintage, norm_name) -> orig_id
+    name_to_orig = {v: k for k, v in orig_lookup.items()}
+
+    # Get all wines for user
+    all_wines = Wine.query.filter_by(user_id=user_id).all()
+    wine_by_id = {w.id: w for w in all_wines}
+
+    # Build mapping: orig_id -> our wine ids with tasting notes
+    from models import TastingNote
+    all_notes = TastingNote.query.filter_by(user_id=user_id).all()
+
+    orig_to_notes = {}
+    for note in all_notes:
+        w = wine_by_id.get(note.wine_id)
+        if not w:
+            continue
+        # Get the parent wine for matching
+        check_w = w
+        if w.parent_wine_id and w.parent_wine_id in wine_by_id:
+            check_w = wine_by_id[w.parent_wine_id]
+        key = (check_w.vintage, _norm(check_w.name))
+        orig_id = name_to_orig.get(key)
+        if orig_id:
+            orig_to_notes.setdefault(str(orig_id), []).append(note)
+
+    updated = 0
+    for orig_id, events in events_by_orig_id.items():
+        notes = orig_to_notes.get(str(orig_id), [])
+        if not notes:
+            continue
+
+        for i, note in enumerate(notes):
+            matching_event = None
+
+            # Try date match
+            if note.tasting_date:
+                note_date_strs = [
+                    note.tasting_date.strftime('%B %-d, %Y'),
+                    note.tasting_date.strftime('%B %d, %Y'),
+                ]
+                for ev in events:
+                    if ev.get('date') in note_date_strs:
+                        matching_event = ev
+                        break
+
+            # Fallback positional
+            if not matching_event and i < len(events):
+                matching_event = events[i]
+
+            if not matching_event:
+                continue
+
+            if matching_event.get('description'):
+                note.description = matching_event['description']
+            if matching_event.get('participants'):
+                note.participants = matching_event['participants']
+            if matching_event.get('recommended_with'):
+                note.recommended_with = matching_event['recommended_with']
+            if matching_event.get('sight'):
+                note.appearance = matching_event['sight']
+            if matching_event.get('smell'):
+                note.nose = matching_event['smell']
+            if matching_event.get('taste'):
+                note.palate = matching_event['taste']
+            if matching_event.get('overall'):
+                note.overall = matching_event['overall']
+            if matching_event.get('rating'):
+                rm = re.search(r'([\d.]+)', matching_event['rating'])
+                if rm:
+                    val = float(rm.group(1))
+                    if val <= 5:
+                        note.score = int(val * 20)
+                    else:
+                        note.score = int(val)
+            updated += 1
+
+    if updated:
+        db.session.flush()
+    print(f"  - Applied structured tasting note details to {updated} notes")
 
 
 def _apply_original_wine_details(user_id):
@@ -870,11 +1011,39 @@ def _apply_original_wine_details(user_id):
                 wine.producer_url = f'http://www.{url_match.group(1)}'
                 changed = True
 
+        # Apply rating from original site (text -> numeric)
+        orig_rating = detail.get('rating', '')
+        if orig_rating and orig_rating.lower() != 'n/a':
+            rating_map = {
+                'outstanding': 96, 'excellent': 90, 'very good': 85,
+                'good/very good': 80, 'good': 75, 'average/good': 70,
+                'fair': 65, 'poor': 50,
+            }
+            numeric_rating = rating_map.get(orig_rating.strip().lower())
+            if numeric_rating:
+                wine.rating = numeric_rating
+                # Also apply to consumed copies
+                for cc in wine.consumed_copies.all():
+                    cc.rating = numeric_rating
+                changed = True
+
+        # Apply alcohol_pct from original site
+        orig_alcohol = detail.get('alcohol')
+        if orig_alcohol and str(orig_alcohol) != 'None':
+            try:
+                alc = float(orig_alcohol)
+                wine.alcohol_pct = alc
+                for cc in wine.consumed_copies.all():
+                    cc.alcohol_pct = alc
+                changed = True
+            except (ValueError, TypeError):
+                pass
+
         if changed:
             updated += 1
 
     db.session.flush()
-    print(f"  - Applied original site details to {updated} cellar wines (appellation, type, price, maturity, producer_url)")
+    print(f"  - Applied original site details to {updated} cellar wines (appellation, type, price, maturity, producer_url, rating, alcohol)")
 
     # ── Phase 2: Fix consumed / on-order wines ──
     # Build appellation lookup: short -> full from all scraped detail data

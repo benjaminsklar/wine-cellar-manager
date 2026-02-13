@@ -745,6 +745,10 @@ def _seed_bread_user():
     # Re-propagate ratings from tasting notes to consumed copies (after reassociation)
     _propagate_tasting_ratings(user.id)
 
+    # Commit all post-processing changes
+    db.session.commit()
+    print("  - Committed all post-processing fixes")
+
 
 def _reassociate_tasting_notes(user_id):
     """Move tasting notes from cellar wines to their consumed copies, using the consumption date."""
@@ -892,13 +896,17 @@ def _apply_tasting_note_details(user_id):
             if matching_event.get('overall'):
                 note.overall = matching_event['overall']
             if matching_event.get('rating'):
-                rm = re.search(r'([\d.]+)', matching_event['rating'])
-                if rm:
-                    val = float(rm.group(1))
-                    if val <= 5:
-                        note.score = int(val * 20)
-                    else:
-                        note.score = int(val)
+                rating_str = matching_event['rating']
+                # Only apply rating if it contains "stars" or "points" (reliable format)
+                # Bare numbers like "4" are truncated by scraper (e.g., "4.5" -> "4")
+                if 'star' in rating_str or 'point' in rating_str:
+                    rm = re.search(r'([\d.]+)', rating_str)
+                    if rm:
+                        val = float(rm.group(1))
+                        if val <= 5:
+                            note.score = int(val * 20)
+                        else:
+                            note.score = int(val)
             updated += 1
 
     if updated:

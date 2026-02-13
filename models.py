@@ -58,7 +58,8 @@ class Wine(db.Model):
     # ── Acquisition Information ──
     acq_date = db.Column(db.Date)
     quantity = db.Column(db.Integer, default=1)
-    price = db.Column(db.Float)
+    price = db.Column(db.Float)                # Estimated/retail price
+    acq_price = db.Column(db.Float)            # Acquisition price (what was paid)
     acq_from = db.Column(db.String(200))       # Where purchased
     on_order = db.Column(db.Boolean, default=False)
     stored = db.Column(db.String(200))          # Cellar location
@@ -73,6 +74,7 @@ class Wine(db.Model):
     # Drinking window
     drink_from = db.Column(db.Integer)  # year
     drink_to = db.Column(db.Integer)    # year
+    maturity_override = db.Column(db.String(30))  # Exact maturity from original site
 
     # Rating (1-100 scale)
     rating = db.Column(db.Integer)
@@ -122,6 +124,8 @@ class Wine(db.Model):
     @property
     def maturity_display(self):
         """Return maturity text matching ManageYourCellar format."""
+        if self.maturity_override:
+            return self.maturity_override
         current_year = date.today().year
         if not self.drink_from and not self.drink_to:
             return ''

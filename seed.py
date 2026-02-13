@@ -733,6 +733,310 @@ def _seed_bread_user():
     # (transaction data changes quantities, which affects the ready bottle count)
     _recalibrate_ready_count(user.id)
 
+    # Apply accurate detail data scraped from original site
+    _apply_original_wine_details(user.id)
+
+    # Move tasting notes from cellar wines to consumed copies (with correct dates)
+    _reassociate_tasting_notes(user.id)
+
+
+def _reassociate_tasting_notes(user_id):
+    """Move tasting notes from cellar wines to their consumed copies, using the consumption date."""
+    cellar_wines = Wine.query.filter_by(user_id=user_id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
+
+    fixed = 0
+    for cw in cellar_wines:
+        notes = cw.tasting_notes.all()
+        if not notes:
+            continue
+        consumed_copies = cw.consumed_copies.order_by(Wine.date_consumed.desc()).all()
+        if consumed_copies:
+            latest_consumed = consumed_copies[0]
+            if latest_consumed.date_consumed:
+                for note in notes:
+                    note.wine_id = latest_consumed.id
+                    note.tasting_date = latest_consumed.date_consumed
+                    fixed += 1
+
+    if fixed:
+        db.session.flush()
+    print(f"  - Reassociated {fixed} tasting notes to consumed copies with correct dates")
+
+
+def _apply_original_wine_details(user_id):
+    """Apply accurate appellation, type, maturity, price, and producer_url from scraped original site data."""
+    import json
+    import os
+    import re
+
+    details_path = os.path.join(os.path.dirname(__file__), 'wine_details_original.json')
+    if not os.path.exists(details_path):
+        print("  - wine_details_original.json not found, skipping detail overrides")
+        return
+
+    txn_path = os.path.join(os.path.dirname(__file__), 'wine_transactions.json')
+    with open(details_path) as f:
+        details = json.load(f)
+    with open(txn_path) as f:
+        txns = json.load(f)
+
+    detail_by_id = {d['wine_id']: d for d in details if 'error' not in d and d.get('wine_id')}
+    txn_by_id = {tx['wine_id']: tx for tx in txns if tx.get('wine_id')}
+
+    def _norm(name):
+        return re.sub(r'\s+', ' ', (name or '').lower().strip())
+
+    def _parse_wine_name(full_name):
+        full_name = re.sub(r'\s*RATED\s*$', '', full_name.strip())
+        m = re.match(r'^(\d{4})\s+(.+?)\s*\((\d+(?:\.\d+)?(?:ml|l))\)\s*$', full_name)
+        if m:
+            size_str = m.group(3)
+            if 'l' in size_str and 'ml' not in size_str:
+                size_ml = int(float(size_str.replace('l', '')) * 1000)
+            else:
+                size_ml = int(float(size_str.replace('ml', '')))
+            return int(m.group(1)), m.group(2).strip(), size_ml
+        m2 = re.match(r'^(.+?)\s*\((\d+(?:\.\d+)?(?:ml|l))\)\s*$', full_name)
+        if m2:
+            size_str = m2.group(2)
+            if 'l' in size_str and 'ml' not in size_str:
+                size_ml = int(float(size_str.replace('l', '')) * 1000)
+            else:
+                size_ml = int(float(size_str.replace('ml', '')))
+            return None, m2.group(1).strip(), size_ml
+        return None, full_name, 750
+
+    def _parse_price(price_str):
+        if not price_str:
+            return None
+        m = re.search(r'[\d,.]+', price_str.replace(',', ''))
+        if m:
+            return float(m.group())
+        return None
+
+    cellar_wines = Wine.query.filter_by(user_id=user_id, status='cellar').filter(
+        db.or_(Wine.on_order == False, Wine.on_order.is_(None))
+    ).all()
+
+    # Size-aware lookup to handle duplicate names with different bottle sizes
+    our_lookup = {}
+    for w in cellar_wines:
+        our_lookup[(_norm(w.name), w.vintage, w.size_ml or 750)] = w
+
+    updated = 0
+    for orig_id, detail in detail_by_id.items():
+        tx = txn_by_id.get(orig_id)
+        if not tx:
+            continue
+        vintage, name, size_ml = _parse_wine_name(tx['wine_name'])
+        key = (_norm(name), vintage, size_ml)
+        wine = our_lookup.get(key)
+        if not wine:
+            # Fallback: try without size
+            for ckey, cw in our_lookup.items():
+                if ckey[1] == vintage and ckey[0][:20] == _norm(name)[:20]:
+                    wine = cw
+                    break
+        if not wine:
+            continue
+
+        changed = False
+        orig_app = detail.get('appellation', '')
+        if orig_app and orig_app != wine.appellation:
+            wine.appellation = orig_app
+            changed = True
+
+        orig_type = detail.get('type', '')
+        if orig_type and orig_type.lower() != (wine.wine_type or '').lower():
+            wine.wine_type = orig_type
+            changed = True
+
+        orig_price = _parse_price(detail.get('price', ''))
+        if orig_price and orig_price != wine.price:
+            wine.price = orig_price
+            changed = True
+
+        orig_maturity = detail.get('maturity', '')
+        if orig_maturity:
+            wine.maturity_override = orig_maturity
+            changed = True
+
+        prod_text = detail.get('producer', '')
+        if prod_text:
+            url_match = re.search(r'(\S+\.(?:com|net|org|wine|co|fr|it|es|de|ch|at|cl|nz|au))\b', prod_text)
+            if url_match and not wine.producer_url:
+                wine.producer_url = f'http://www.{url_match.group(1)}'
+                changed = True
+
+        if changed:
+            updated += 1
+
+    db.session.flush()
+    print(f"  - Applied original site details to {updated} cellar wines (appellation, type, price, maturity, producer_url)")
+
+    # ── Phase 2: Fix consumed / on-order wines ──
+    # Build appellation lookup: short -> full from all scraped detail data
+    consumed_details_path = os.path.join(os.path.dirname(__file__), 'consumed_details_original.json')
+    extra_details = []
+    if os.path.exists(consumed_details_path):
+        with open(consumed_details_path) as f:
+            extra_details = json.load(f)
+
+    app_map = {}
+    for d in details + extra_details:
+        if 'error' in d:
+            continue
+        full_app = d.get('appellation', '')
+        if not full_app or ' - ' not in full_app:
+            continue
+        parts = full_app.split(' - ')
+        short = parts[0].strip()
+        if short:
+            app_map[short.lower()] = full_app
+
+    # Manual mappings for regions not covered by scraped data
+    manual_map = {
+        'adelaide hills': 'Adelaide Hills - South Australia - Australia',
+        'alsace': 'Alsace - France (AOC)',
+        'amarone della valpolicella': 'Amarone della Valpolicella - Veneto - Italy (DOCG)',
+        'atlas peak': 'Atlas Peak - Napa Valley - USA (AVA)',
+        'barbaresco': 'Barbaresco - Piemonte - Italy (DOCG)',
+        'campania': 'Campania - Italy (IGT)',
+        'casablanca': 'Casablanca - Chile',
+        'central coast': 'Central Coast - California - USA (AVA)',
+        'central otago': 'Central Otago - New Zealand',
+        'chianti': 'Chianti - Toscana - Italy (DOCG)',
+        'châteauneuf-du-pape': 'Châteauneuf-du-Pape - Rhône - France (AOC)',
+        'costières de nimes': 'Costières de Nîmes - Rhône - France (AOC)',
+        "crémant d'alsace": "Crémant d'Alsace - Alsace - France (AOC)",
+        'côtes de castillon': 'Côtes de Castillon - Bordeaux - France (AOC)',
+        'dry creek valley': 'Dry Creek Valley - Sonoma County - USA (AVA)',
+        'entre-deux-mers': 'Entre-Deux-Mers - Bordeaux - France (AOC)',
+        'graves': 'Graves - Bordeaux - France (AOC)',
+        "hawke's bay": "Hawke's Bay - New Zealand",
+        'lodi': 'Lodi - California - USA (AVA)',
+        'maremma': 'Maremma - Toscana - Italy (DOC)',
+        'martinborough': 'Martinborough - Wairarapa - New Zealand',
+        'mendoza': 'Mendoza - Argentina',
+        'mosel-saar-ruwer': 'Mosel-Saar-Ruwer - Germany',
+        'mâcon-villages': 'Mâcon-Villages - Bourgogne - France (AOC)',
+        'north coast': 'North Coast - California - USA (AVA)',
+        'oakville': 'Oakville - Napa Valley - USA (AVA)',
+        'paso robles': 'Paso Robles - California - USA (AVA)',
+        'penedès': 'Penedès - Catalunya - Spain (DO)',
+        'pernand-vergelesses premier cru': 'Pernand-Vergelesses Premier Cru - Bourgogne - France (AOC)',
+        'pouilly-fumé': 'Pouilly-Fumé - Loire - France (AOC)',
+        'ruché di castagnole monferrato': 'Ruché di Castagnole Monferrato - Piemonte - Italy (DOCG)',
+        'russian river valley': 'Russian River Valley - Sonoma County - USA (AVA)',
+        'saint-aubin premier cru': 'Saint-Aubin Premier Cru - Bourgogne - France (AOC)',
+        'sonoma county': 'Sonoma County - California - USA (AVA)',
+        'stellenbosch': 'Stellenbosch - South Africa',
+        'swartland': 'Swartland - South Africa',
+        'toscana': 'Toscana - Italy (IGT)',
+        'touraine': 'Touraine - Loire - France (AOC)',
+        'veronese': 'Veronese - Veneto - Italy (IGT)',
+        "vin de pays d'oc": "Vin de Pays d'Oc - Languedoc-Roussillon - France",
+        'viré-clessé': 'Viré-Clessé - Bourgogne - France (AOC)',
+        'walla walla valley': 'Walla Walla Valley - Washington - USA (AVA)',
+        'chianti classico': 'Chianti Classico - Toscana - Italy (DOCG)',
+        'horse heaven hills': 'Horse Heaven Hills - Washington State - United States (AVA)',
+        'los carneros': 'Los Carneros - Napa/Sonoma - United States (AVA)',
+        'oakville': 'Oakville - Napa Valley - United States (AVA)',
+        'red mountain': 'Red Mountain - Washington State - United States (AVA)',
+        'russian river valley': 'Russian River Valley - Sonoma County - United States (AVA)',
+        'rutherford': 'Rutherford - Napa Valley - United States (AVA)',
+        'toscana': 'Toscana - Italy (IGT)',
+    }
+    app_map.update(manual_map)
+
+    # Also build a title-based detail lookup for consumed wines
+    def _norm_title(title):
+        t = re.sub(r'\s*\[Printable View\]\s*$', '', (title or '').strip())
+        return re.sub(r'\s+', ' ', t).lower()
+
+    detail_by_title = {}
+    for d in details + extra_details:
+        if 'error' in d:
+            continue
+        title = _norm_title(d.get('title', ''))
+        if title:
+            detail_by_title[title] = d
+
+    consumed_wines = Wine.query.filter_by(user_id=user_id, status='consumed').all()
+    on_order_wines = Wine.query.filter_by(user_id=user_id, on_order=True).all()
+
+    consumed_updated = 0
+    for wine in consumed_wines + on_order_wines:
+        changed = False
+
+        # Try title-based match first
+        if wine.vintage:
+            full_name = f"{wine.vintage} {wine.name}"
+        else:
+            full_name = wine.name
+        if wine.size_ml:
+            size = f"{wine.size_ml/1000:.1f}l" if wine.size_ml >= 1000 else f"{wine.size_ml}ml"
+        else:
+            size = '750ml'
+        title_key = _norm_title(f"{full_name} ({size})")
+        detail = detail_by_title.get(title_key)
+        if not detail:
+            for key in detail_by_title:
+                if _norm(full_name) in key:
+                    detail = detail_by_title[key]
+                    break
+
+        if detail:
+            orig_app = detail.get('appellation', '')
+            if orig_app and orig_app != wine.appellation:
+                wine.appellation = orig_app
+                changed = True
+            orig_type = detail.get('type', '')
+            if orig_type and orig_type.lower() != (wine.wine_type or '').lower():
+                wine.wine_type = orig_type
+                changed = True
+            orig_maturity = detail.get('maturity', '')
+            if orig_maturity:
+                wine.maturity_override = orig_maturity
+                changed = True
+            orig_price = _parse_price(detail.get('price', ''))
+            if orig_price and orig_price != wine.price:
+                wine.price = orig_price
+                changed = True
+            prod_text = detail.get('producer', '')
+            if prod_text and not wine.producer_url:
+                url_match = re.search(r'(\S+\.(?:com|net|org|wine|co|fr|it|es|de|ch|at|cl|nz|au))\b', prod_text)
+                if url_match:
+                    wine.producer_url = f'http://www.{url_match.group(1)}'
+                    changed = True
+        else:
+            # Fallback: appellation mapping only
+            if wine.appellation and ' - ' not in wine.appellation:
+                mapped = app_map.get(wine.appellation.strip().lower())
+                if mapped:
+                    wine.appellation = mapped
+                    changed = True
+
+        if changed:
+            consumed_updated += 1
+
+    db.session.flush()
+    print(f"  - Applied detail fixes to {consumed_updated} consumed/on-order wines")
+
+    # Phase 3: Apply appellation mapping to any remaining cellar wines with short appellations
+    cellar_app_fixed = 0
+    for wine in cellar_wines:
+        if wine.appellation and ' - ' not in wine.appellation:
+            mapped = app_map.get(wine.appellation.strip().lower())
+            if mapped:
+                wine.appellation = mapped
+                cellar_app_fixed += 1
+    if cellar_app_fixed:
+        db.session.flush()
+        print(f"  - Fixed {cellar_app_fixed} cellar wine appellations via mapping")
+
 
 def _recalibrate_ready_count(user_id):
     """After transaction data adjusts quantities, recalibrate drink windows to hit 610 ready bottles."""
@@ -843,7 +1147,7 @@ def _apply_transaction_data(user_id):
             if acq_date:
                 wine.acq_date = acq_date
             if first_acq.get('price'):
-                wine.price = first_acq['price']
+                wine.acq_price = first_acq['price']
             if first_acq.get('from'):
                 wine.acq_from = first_acq['from'].split('\n')[0].strip()
 

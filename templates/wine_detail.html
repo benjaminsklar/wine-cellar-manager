@@ -7,7 +7,7 @@
 <td colspan="3" class="toptitle">
 {{ wine.vintage or 'NV' }}
 {{ wine.name }}
-({{ wine.size_ml or 750 }}ml)
+({{ wine.size_display or '750ml' }})
 
 <span class="smalledit">
 &nbsp;
@@ -39,6 +39,7 @@
 {{ wine.producer_url|replace('http://www.','')|replace('https://www.','')|replace('http://','')|replace('https://','') }}
 </a>
 {% endif %}
+&nbsp; <a href="{{ url_for('wine_detail', wine_id=wine.id) }}">details</a>
 </td>
 </tr>
 
@@ -161,81 +162,50 @@ Personal Transactions:
 <b>acquired:</b>
 </span>
 
-{% if wine.acq_date %}
-on {{ wine.acq_date.strftime('%B %d, %Y') }}
+{% if acq_wine.acq_date %}
+on {{ acq_wine.acq_date.strftime('%B %d, %Y') }}
 {% endif %}
 
 , quantity {{ total_acquired }}
 
+{% if acq_wine.acq_price %}
+ at US${{ "%.2f"|format(acq_wine.acq_price) }}
+{% endif %}
+
 &nbsp;
 <span class="smalledit">
-<a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
+<a href="{{ url_for('edit_wine', wine_id=acq_wine.id) }}">[Edit</a>
 -
-<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
+<a href="{{ url_for('delete_wine', wine_id=acq_wine.id) }}">Delete]</a></span>
 
 </td></tr>
 
-{% if wine.acq_from %}
+{% if acq_wine.acq_from %}
 <tr><td colspan="1" class="smallfieldvalue">
 
 From 
 
-{{ wine.acq_from }}
+{{ acq_wine.acq_from }}
 
 </td></tr>
 {% endif %}
 
-{% if wine.stored %}
-<tr><td colspan="1" class="smallfieldvalue">Stored: {{ wine.stored }}</td></tr>
+{% if acq_wine.stored %}
+<tr><td colspan="1" class="smallfieldvalue">Stored: {{ acq_wine.stored }}</td></tr>
 {% endif %}
 
 
 <tr>
 <td colspan="1">
 
-{% if wine.status == 'cellar' %}
-<input type="submit" name="submitAction" value="Remove from Cellar" title="Consume this wine" onclick="window.location='{{ url_for('consume_wine', wine_id=wine.id) }}'; return false;">
+{% if actual_in_cellar > 0 %}
+<input type="submit" name="submitAction" value="Remove from Cellar" title="Consume this wine" onclick="window.location='{{ url_for('consume_wine', wine_id=acq_wine.id) }}'; return false;">
 {% endif %}
 
 <input type="submit" name="submitAction" value="Add a Valuation" title="Add a valuation to this wine for your overall cellar valuation">
 
 </td>
 </tr>
-
-<!-- Valuation event -->
-{% if wine.price %}
-<tr><td class="smallfieldvalue" colspan="1">
-<span class="redsmalltext">
-<b>valued:</b>
-</span>
-
-{% if wine.acq_date %}
-on {{ wine.acq_date.strftime('%B %d, %Y') }}
-{% endif %}
-
- 
-at US${{ "%.2f"|format(wine.price) }}
-
-&nbsp;
-<span class="smalledit">
-<a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
--
-<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
-
-</td></tr>
-
-{% if wine.description %}
-<tr><td colspan="1" class="smallfieldvalue">
-<span class="redsmalltext">Notes: </span>
-{{ wine.description }}
-</td></tr>
-{% endif %}
-
-<tr>
-<td colspan="1">
-</td>
-</tr>
-{% endif %}
 
 
 <!-- Consumption events -->
@@ -266,6 +236,43 @@ on {{ consumed.date_consumed.strftime('%B %d, %Y') }}
 {% endfor %}
 
 
+<!-- Tasting events (shown as "tasted:" in Personal Transactions) -->
+{% for note in tasting_notes %}
+<tr><td class="smallfieldvalue" colspan="1">
+<span class="redsmalltext">
+<b>tasted:</b>
+</span>
+
+{% if note.tasting_date %}
+on {{ note.tasting_date.strftime('%B %d, %Y') }}
+{% endif %}
+
+{% if note.overall %}
+, {{ note.overall }}
+{% endif %}
+
+&nbsp;
+<span class="smalledit">
+<a href="{{ url_for('edit_wine', wine_id=wine.id) }}">[Edit</a>
+-
+<a href="{{ url_for('delete_wine', wine_id=wine.id) }}">Delete]</a></span>
+
+</td></tr>
+
+{% if note.score %}
+<tr><td colspan="1" class="smallfieldvalue">
+<span class="redsmalltext">Rating: </span>
+{{ "%.1f"|format(note.score / 20) }} stars.
+</td></tr>
+{% endif %}
+
+<tr>
+<td colspan="1">
+</td>
+</tr>
+{% endfor %}
+
+
 <!-- Availability section -->
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>
 <tr><td colspan="1" class="title">
@@ -281,25 +288,6 @@ Locate a store with
 Wine-Searcher</a>
 </td></tr>
 
-
-<!-- Tasting Notes section (user's own) -->
-{% if tasting_notes %}
-<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
-<tr><td colspan="1" class="title">
-Tasting Notes:
-</td></tr>
-<tr><td colspan="1" class="titlepaddingbottom"></td></tr>
-
-{% for note in tasting_notes %}
-<tr><td class="smallfieldvalue">
-<span class="redsmalltext"><b>{{ note.tasting_date.strftime('%B %d, %Y') if note.tasting_date else 'No date' }}</b></span>
-{% if note.score %} - {{ note.score }} points{% endif %}
-</td></tr>
-{% if note.overall %}
-<tr><td class="smallfieldvalue">{{ note.overall }}</td></tr>
-{% endif %}
-{% endfor %}
-{% endif %}
 
 <!-- Other Tasting Notes section -->
 <tr><td colspan="1" class="titlepaddingbottom"></td></tr>

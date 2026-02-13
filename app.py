@@ -429,6 +429,9 @@ def wine_detail(wine_id):
         (parent.quantity if parent else 0) if wine.status == 'consumed' and wine.parent_wine_id else 0
     )
 
+    # The "acquisition wine" is the cellar parent (or the wine itself if cellar)
+    acq_wine = parent if parent else wine
+
     # Find related wines: other wines by same producer in user's cellar
     related_wines = Wine.query.filter(
         Wine.user_id == current_user.id,
@@ -437,12 +440,28 @@ def wine_detail(wine_id):
         Wine.status == 'cellar'
     ).limit(5).all()
 
-    return render_template('wine_detail.html', wine=wine, tasting_notes=tasting_notes,
+    # Gather tasting notes from both the wine and its consumed copies (deduplicated)
+    seen_note_ids = set()
+    all_tasting_notes = []
+    for note in tasting_notes:
+        if note.id not in seen_note_ids:
+            all_tasting_notes.append(note)
+            seen_note_ids.add(note.id)
+    for cc in consumed_copies:
+        for note in cc.tasting_notes.all():
+            if note.id not in seen_note_ids:
+                all_tasting_notes.append(note)
+                seen_note_ids.add(note.id)
+    # Sort by date desc
+    all_tasting_notes.sort(key=lambda n: n.tasting_date or datetime.min, reverse=True)
+
+    return render_template('wine_detail.html', wine=wine, tasting_notes=all_tasting_notes,
                            consumed_copies=consumed_copies,
                            total_acquired=total_acquired,
                            total_consumed=total_consumed,
                            actual_in_cellar=actual_in_cellar,
                            parent_wine=parent,
+                           acq_wine=acq_wine,
                            related_wines=related_wines)
 
 
@@ -1122,6 +1141,10 @@ def init_db():
                 cursor.execute("ALTER TABLE wines ADD COLUMN original_quantity INTEGER")
             if 'producer_url' not in cols:
                 cursor.execute("ALTER TABLE wines ADD COLUMN producer_url VARCHAR(300)")
+            if 'maturity_override' not in cols:
+                cursor.execute("ALTER TABLE wines ADD COLUMN maturity_override VARCHAR(30)")
+            if 'acq_price' not in cols:
+                cursor.execute("ALTER TABLE wines ADD COLUMN acq_price FLOAT")
             conn.commit()
             conn.close()
         except Exception:

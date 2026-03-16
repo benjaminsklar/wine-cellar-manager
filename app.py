@@ -144,18 +144,23 @@ def cellar():
         search_query = None
     if search_query:
         search_term = f"%{search_query}%"
-        query = query.filter(
-            db.or_(
-                Wine.name.ilike(search_term),
-                Wine.producer.ilike(search_term),
-                Wine.varietal1.ilike(search_term),
-                Wine.varietal2.ilike(search_term),
-                Wine.varietal3.ilike(search_term),
-                Wine.varietal4.ilike(search_term),
-                Wine.appellation.ilike(search_term),
-                Wine.acq_from.ilike(search_term)
-            )
-        )
+        or_conditions = [
+            Wine.name.ilike(search_term),
+            Wine.producer.ilike(search_term),
+            Wine.varietal1.ilike(search_term),
+            Wine.varietal2.ilike(search_term),
+            Wine.varietal3.ilike(search_term),
+            Wine.varietal4.ilike(search_term),
+            Wine.appellation.ilike(search_term),
+            Wine.acq_from.ilike(search_term),
+        ]
+        try:
+            year = int(search_query.strip())
+            if 1900 <= year <= 2100:
+                or_conditions.append(Wine.vintage == year)
+        except ValueError:
+            pass
+        query = query.filter(db.or_(*or_conditions))
     if search_form.wine_type.data:
         query = query.filter_by(wine_type=search_form.wine_type.data)
     if search_form.appellation.data:

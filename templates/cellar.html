@@ -131,6 +131,7 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td type="String" class="subhead">Maturity</td>
 <td type="String" class="subhead" nowrap>Rating</td>
 <td type="String" class="subhead">Price</td>
+<td type="Number" class="subhead">Qty</td>
 {% endif %}
 </tr>
 </thead>
@@ -183,6 +184,7 @@ Page {{ page if not show_all else 1 }} of {{ total_pages if not show_all else 1 
 <td align="center">{{ wine.maturity_display or '' }}</td>
 <td align="center">{{ wine.rating_text }}</td>
 <td align="right">{% if wine.price %}US${{ "%.2f"|format(wine.price) }}{% else %}n/a{% endif %}</td>
+<td align="center">{{ wine.quantity }}</td>
 {% endif %}
 </tr>
 {% endfor %}
